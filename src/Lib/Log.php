@@ -4,7 +4,7 @@ namespace App\Lib;
 
 class Log
 {
-    private const string LOG = __DIR__ . '/../log/';
+    private const string LOG = __DIR__ . '/../../log/';
 
     private static function file()
     {
