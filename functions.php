@@ -40,3 +40,8 @@ function session(string|array|null $key = null)
 {
     return (new \App\Lib\Arrays($_SESSION))->access($key);
 }
+
+function e(string|null $string)
+{
+    return htmlspecialchars($string ?? '');
+}

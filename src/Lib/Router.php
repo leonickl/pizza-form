@@ -24,6 +24,9 @@ class Router
                 'GET' => [\App\Controllers\MainController::class, 'index'],
                 'POST' => [\App\Controllers\MainController::class, 'action'],
             ],
+            '/90d13090-fa3b-480f-a6d2-3e06fec20954' => [
+                'GET' => [\App\Controllers\AdminController::class, 'index'],
+            ]
         ];
 
         if (!array_key_exists($path, $routes)) {

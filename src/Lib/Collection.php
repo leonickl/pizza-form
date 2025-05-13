@@ -89,4 +89,9 @@ class Collection implements \ArrayAccess, \Countable
     {
         return $this->items;
     }
+
+    public function reverse()
+    {
+        return self::make(array_reverse($this->items));
+    }
 }

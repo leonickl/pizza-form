@@ -23,6 +23,8 @@ abstract class Model
         foreach ($data as $key => $value) {
             $this->record[$key] = $value;
         }
+
+        return $this;
     }
 
     public function table()
@@ -39,7 +41,7 @@ abstract class Model
     {
         $list = \App\Lib\DB::init()->all((new static)->table());
 
-        return c(...$list);
+        return c(...$list)->map(fn(array $record) => (new static)->fill($record));
     }
 
     public static function find(int $id)
