@@ -6,8 +6,14 @@ class App
 {
     public static function run()
     {
-        return Router::route()
+        Session::start();
+
+        $page = Router::route()
             ->layout('app')
             ->render();
+
+        Session::stop();
+
+        return $page;
     }
 }

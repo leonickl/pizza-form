@@ -53,6 +53,15 @@ abstract class Model
         return $object;
     }
 
+    public static function create(mixed ...$props)
+    {
+        $object = new static;
+
+        $object->fill($props);
+
+        return $object->save();
+    }
+
     public function save()
     {
         $updated = $this->id
@@ -60,6 +69,8 @@ abstract class Model
             : \App\Lib\DB::init()->insert($this->table(), $this->record);
 
         $this->fill($updated);
+
+        return $this;
     }
 
     public function dd()

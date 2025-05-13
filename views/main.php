@@ -10,7 +10,8 @@
         color: red;
     }
 
-    input[type="text"], textarea {
+    input[type="text"],
+    textarea {
         width: 100%;
         padding: 0.5rem;
         border: 1px solid #ccc;
@@ -33,7 +34,8 @@
     }
 
     .radio-group input[type="radio"] {
-        accent-color: #3b82f6; /* optional: adds color for supported browsers */
+        accent-color: #3b82f6;
+        /* optional: adds color for supported browsers */
     }
 
     button {
@@ -49,10 +51,24 @@
     button:hover {
         background-color: #2563eb;
     }
+
+    .info {
+        background: #b1ecff;
+        padding: 8px;
+        border: 1px blue solid;
+        border-radius: 5px;
+    }
 </style>
 
 <form action="/" method="post">
     <h1>Pizza bestellen</h1>
+
+    <?php if (session('order')): ?>
+        <?php $order = session('order') ?>
+
+        <p class="info">Bestellung aufgenommen für <b><?= $order->name ?></b>: <?= $order->type ?>,
+            <?= $order->extra ?? '---' ?></p>
+    <?php endif ?>
 
     <label for="name" class="required">Name</label>
     <input type="text" id="name" name="name" required>
@@ -60,21 +76,21 @@
     <label class="required">Pizza</label>
     <div class="radio-group">
         <label>
-            <input type="radio" name="typ" value="Vegan" required>
+            <input type="radio" name="type" value="Vegan" required>
             Vegan
         </label>
         <label>
-            <input type="radio" name="typ" value="Vegetarisch">
+            <input type="radio" name="type" value="Vegetarisch">
             Vegetarisch
         </label>
         <label>
-            <input type="radio" name="typ" value="Alles">
+            <input type="radio" name="type" value="Alles">
             Alles
         </label>
     </div>
 
     <label for="wünsche">Sonderwünsche</label>
-    <textarea id="wünsche" name="wünsche" rows="4" placeholder="Optional..."></textarea>
+    <textarea id="wünsche" name="extra" rows="4" placeholder="Optional..."></textarea>
 
     <button type="submit">Bestellen</button>
 </form>
