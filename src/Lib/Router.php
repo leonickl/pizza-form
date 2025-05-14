@@ -21,8 +21,8 @@ class Router
     {
         $routes = [
             '/' => [
-                'GET' => [\App\Controllers\MainController::class, 'index'],
-                'POST' => [\App\Controllers\MainController::class, 'action'],
+                'GET' => [\App\Controllers\OrderController::class, 'index'],
+                'POST' => [\App\Controllers\OrderController::class, 'action'],
             ],
             '/90d13090-fa3b-480f-a6d2-3e06fec20954' => [
                 'GET' => [\App\Controllers\AdminController::class, 'index'],
@@ -42,7 +42,7 @@ class Router
 
     public static function redirect(string $uri, array $data = [])
     {
-        if($data) {
+        if ($data) {
             Session::setAll($data);
         }
 

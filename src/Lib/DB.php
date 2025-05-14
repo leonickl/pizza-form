@@ -28,6 +28,13 @@ class DB
 
     public function create(string $table, array $columns)
     {
+        $columns = [
+            'id' => 'integer primary key',
+            ...$columns,
+            'created_at' => 'datetime',
+            'modified_at' => 'datetime',
+        ];
+
         $db_columns = '';
 
         foreach ($columns as $name => $type) {
@@ -64,15 +71,14 @@ class DB
             ->map(fn($x) => "`$x`")
             ->join(', ');
 
-        $placeholders = Collection::repeat('?', 3)->join(', ');
+        $placeholders = c(...$record)
+            ->keys()
+            ->map(fn(string $key) => ":$key")
+            ->join(', ');
 
         $sql = "insert into `$table` ($columns) values ($placeholders);";
 
-        $values = c(...$record)
-            ->values()
-            ->toArray();
-
-        $status = $this->pdo->prepare($sql)->execute($values);
+        $status = $this->pdo->prepare($sql)->execute($record);
 
         if ($status === false) {
             throw new \Exception("creating record failed");
@@ -110,5 +116,12 @@ class DB
         }
 
         return $this->find($table, $id);
+    }
+
+    public function addColumns(string $table, array $columns)
+    {
+        foreach ($columns as $name => $type) {
+            $this->pdo->exec("alter table `$table` add `$name` $type;");
+        }
     }
 }

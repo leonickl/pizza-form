@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Lib\Router;
 
-class MainController
+class OrderController
 {
     public function index()
     {
@@ -13,7 +13,7 @@ class MainController
 
     public function action()
     {
-        $request = (array)request(['name', 'type', 'extra']);
+        $request = (array) request(['name', 'type', 'extra']);
 
         $order = \App\Models\Order::create(...$request);
 

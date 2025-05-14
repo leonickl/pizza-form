@@ -1,0 +1,14 @@
+#!/usr/bin/php
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+
+$command = @$argv[1];
+
+if (!$command || $command === 'server') {
+    shell_exec('/usr/bin/php -S localhost:8085 index.php');
+}
+
+if ($command === 'migrate') {
+    shell_exec('/usr/bin/php migrate.php');
+}

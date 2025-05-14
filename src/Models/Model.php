@@ -8,6 +8,11 @@ abstract class Model
 {
     private array $record = [];
 
+    private function __construct(private bool $exists = false)
+    {
+
+    }
+
     public function __get(string $attr)
     {
         return @$this->record[$attr];
@@ -18,7 +23,7 @@ abstract class Model
         $this->record[$attr] = $value;
     }
 
-    public function fill(array $data)
+    private function fill(array $data)
     {
         foreach ($data as $key => $value) {
             $this->record[$key] = $value;
@@ -27,50 +32,59 @@ abstract class Model
         return $this;
     }
 
-    public function table()
+    private static function table()
     {
-        if (!isset($this->table)) {
+        $object = new static;
+
+        if (!isset($object->table)) {
             $class = static::class;
             throw new RuntimeException("please set table property for $class");
         }
 
-        return $this->table;
+        return $object->table;
     }
 
     public static function all()
     {
-        $list = \App\Lib\DB::init()->all((new static)->table());
+        $list = \App\Lib\DB::init()->all(self::table());
 
-        return c(...$list)->map(fn(array $record) => (new static)->fill($record));
+        return c(...$list)->map(fn(array $record) => (new static(true))->fill($record));
     }
 
     public static function find(int $id)
     {
-        $object = new static;
+        $object = new static(true);
 
-        $record = \App\Lib\DB::init()->find($object->table(), $id);
+        $record = \App\Lib\DB::init()->find(self::table(), $id);
+
+        if (!$record) {
+            throw new \App\Exceptions\ModelNotFoundException(static::class, $id);
+        }
 
         $object->fill($record);
 
         return $object;
     }
 
+    public static function new(mixed ...$props)
+    {
+        return (new static)->fill($props);
+    }
+
     public static function create(mixed ...$props)
     {
-        $object = new static;
-
-        $object->fill($props);
-
-        return $object->save();
+        return self::new(...$props)->save();
     }
 
     public function save()
     {
-        $updated = $this->id
+        $updated = $this->exists
             ? \App\Lib\DB::init()->update($this->table(), $this->record)
             : \App\Lib\DB::init()->insert($this->table(), $this->record);
 
         $this->fill($updated);
+
+        $this->exists = true;
 
         return $this;
     }
@@ -78,5 +92,11 @@ abstract class Model
     public function dd()
     {
         dd($this->record);
+    }
+
+    public function dump()
+    {
+        dump($this->record);
+        return $this;
     }
 }

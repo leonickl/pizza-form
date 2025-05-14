@@ -5,7 +5,11 @@ use App\Lib\Collection;
 function dump(mixed ...$data)
 {
     echo '<pre>';
-    var_dump(...$data);
+    
+    if ($data) {
+        var_dump(...$data);
+    }
+    
     echo '</pre>';
 }
 
