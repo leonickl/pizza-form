@@ -28,6 +28,11 @@
 
 <h1>Bestellungen</h1>
 
+<?php if (session('deleted')): ?>
+    <?php $order = session('deleted') ?>
+
+    <p class="info">Bestellung von <b><?= $order->name ?></b> gelöscht</p>
+<?php endif ?>
 
 <table>
     <thead>
@@ -36,6 +41,7 @@
             <th>Name</th>
             <th>Typ</th>
             <th>Extra</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -45,6 +51,11 @@
                 <td><?= e($order->name) ?></td>
                 <td><?= e($order->type) ?></td>
                 <td><?= e($order->extra) ?></td>
+                <td>
+                    <form action="/90d13090-fa3b-480f-a6d2-3e06fec20954/delete?id=<?= e($order->id) ?>" method="post">
+                        <button class="warn">Löschen</button>
+                    </form>
+                </td>
             </tr>
         <?php endforeach ?>
     </tbody>

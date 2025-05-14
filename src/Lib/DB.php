@@ -124,4 +124,9 @@ class DB
             $this->pdo->exec("alter table `$table` add `$name` $type;");
         }
     }
+
+    public function delete(string $table, int $id)
+    {
+        $this->pdo->prepare("delete from $table where id = ?;")->execute([$id]);
+    }
 }

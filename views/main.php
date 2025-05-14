@@ -37,27 +37,6 @@
         accent-color: #3b82f6;
         /* optional: adds color for supported browsers */
     }
-
-    button {
-        margin-top: 1.5rem;
-        padding: 0.7rem 1.5rem;
-        background-color: #3b82f6;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-    }
-
-    button:hover {
-        background-color: #2563eb;
-    }
-
-    .info {
-        background: #b1ecff;
-        padding: 8px;
-        border: 1px blue solid;
-        border-radius: 5px;
-    }
 </style>
 
 <form action="/" method="post">
@@ -67,7 +46,8 @@
         <?php $order = session('order') ?>
 
         <p class="info">Bestellung aufgenommen für <b><?= $order->name ?></b>: <?= $order->type ?>,
-            <?= $order->extra ?? '---' ?></p>
+            <?= $order->extra ?? '---' ?>
+        </p>
     <?php endif ?>
 
     <label for="name" class="required">Name</label>
@@ -92,5 +72,5 @@
     <label for="wünsche">Sonderwünsche</label>
     <textarea id="wünsche" name="extra" rows="4" placeholder="Optional..."></textarea>
 
-    <button type="submit">Bestellen</button>
+    <button type="submit" class="primary">Bestellen</button>
 </form>

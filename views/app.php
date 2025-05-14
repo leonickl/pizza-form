@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +32,9 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
 
-        h1, h2, h3 {
+        h1,
+        h2,
+        h3 {
             margin-bottom: 1rem;
             color: #111827;
         }
@@ -49,6 +52,38 @@
             text-decoration: underline;
         }
 
+        .info {
+            background: #b1ecff;
+            padding: 8px;
+            border: 1px blue solid;
+            border-radius: 5px;
+        }
+
+        button {
+            margin-top: 1.5rem;
+            padding: 0.7rem 1.5rem;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button.primary {
+            background-color: #3b82f6;
+        }
+
+        button.primary:hover {
+            background-color: #2563eb;
+        }
+
+        button.warn {
+            background-color: rgb(255, 94, 94);
+        }
+
+        button.warn:hover {
+            background-color: rgb(255, 0, 0);
+        }
+
         @media (max-width: 600px) {
             body {
                 padding: 1rem;
@@ -60,9 +95,11 @@
         }
     </style>
 </head>
+
 <body>
     <main>
         <?= $slot ?>
     </main>
 </body>
+
 </html>

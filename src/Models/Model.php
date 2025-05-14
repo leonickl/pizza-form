@@ -79,14 +79,19 @@ abstract class Model
     public function save()
     {
         $updated = $this->exists
-            ? \App\Lib\DB::init()->update($this->table(), $this->record)
-            : \App\Lib\DB::init()->insert($this->table(), $this->record);
+            ? \App\Lib\DB::init()->update(self::table(), $this->record)
+            : \App\Lib\DB::init()->insert(self::table(), $this->record);
 
         $this->fill($updated);
 
         $this->exists = true;
 
         return $this;
+    }
+
+    public function delete()
+    {
+        \App\Lib\DB::init()->delete(self::table(), $this->id);
     }
 
     public function dd()
