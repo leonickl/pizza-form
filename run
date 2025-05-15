@@ -3,6 +3,20 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
+// auto-generate necessary directories
+
+foreach (['database', 'log'] as $dir) {
+    $path = __DIR__ . '/' . $dir;
+
+    if (file_exists($path) && is_dir($path)) {
+        continue;
+    }
+
+    mkdir($path);
+}
+
+// execute commands
+
 $command = @$argv[1];
 
 if (!$command || $command === 'server') {
