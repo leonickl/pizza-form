@@ -66,6 +66,9 @@ class DB
 
     public function insert(string $table, array $record)
     {
+        $record['created_at'] = date('Y-m-d H:i:s');
+        $record['modified_at'] = date('Y-m-d H:i:s');
+
         $columns = c(...$record)
             ->keys()
             ->map(fn($x) => "`$x`")
@@ -91,6 +94,8 @@ class DB
 
     public function update(string $table, array $record)
     {
+        $record['modified_at'] = date('Y-m-d H:i:s');
+
         $update = '';
 
         foreach ($record as $key => $value) {

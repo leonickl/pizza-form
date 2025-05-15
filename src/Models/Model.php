@@ -23,7 +23,7 @@ abstract class Model
         $this->record[$attr] = $value;
     }
 
-    private function fill(array $data)
+    public function fill(mixed ...$data)
     {
         foreach ($data as $key => $value) {
             $this->record[$key] = $value;
@@ -48,7 +48,7 @@ abstract class Model
     {
         $list = \App\Lib\DB::init()->all(self::table());
 
-        return c(...$list)->map(fn(array $record) => (new static(true))->fill($record));
+        return c(...$list)->map(fn(array $record) => (new static(true))->fill(...$record));
     }
 
     public static function find(int $id)
@@ -61,14 +61,14 @@ abstract class Model
             throw new \App\Exceptions\ModelNotFoundException(static::class, $id);
         }
 
-        $object->fill($record);
+        $object->fill(...$record);
 
         return $object;
     }
 
     public static function new(mixed ...$props)
     {
-        return (new static)->fill($props);
+        return (new static)->fill(...$props);
     }
 
     public static function create(mixed ...$props)
@@ -82,7 +82,7 @@ abstract class Model
             ? \App\Lib\DB::init()->update(self::table(), $this->record)
             : \App\Lib\DB::init()->insert(self::table(), $this->record);
 
-        $this->fill($updated);
+        $this->fill(...$updated);
 
         $this->exists = true;
 

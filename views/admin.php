@@ -41,6 +41,7 @@
             <th>Name</th>
             <th>Typ</th>
             <th>Extra</th>
+            <th>Erstellt/Geändert</th>
             <th></th>
         </tr>
     </thead>
@@ -51,6 +52,13 @@
                 <td><?= e($order->name) ?></td>
                 <td><?= e($order->type) ?></td>
                 <td><?= e($order->extra) ?></td>
+                <td>
+                    <?= e($order->created_at) ?>
+
+                    <?php if ($order->created_at !== $order->modified_at): ?>
+                        / <?= e($order->modified_at) ?>
+                    <?php endif ?>
+                </td>
                 <td>
                     <form action="/90d13090-fa3b-480f-a6d2-3e06fec20954/delete?id=<?= e($order->id) ?>" method="post">
                         <button class="warn">Löschen</button>
