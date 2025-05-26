@@ -31,6 +31,7 @@ class View {
 	{
        	return self::make($view, [
             'slot' => $this->render(),
+			...$this->params,
 		]);
 	}
 }

@@ -8,7 +8,7 @@ class OrderController
 {
     public function index()
     {
-        return view('main');
+        return view('main', ['embedded' => request('embedded') !== null]);
     }
 
     public function action()
