@@ -9,9 +9,11 @@ class App
         Session::start();
 
         try {
-            $page = Router::route()
-                ->layout('app')
-                ->render();
+            $response = Router::route();
+
+            $page = $response instanceof View
+                ? $response->layout('app')->render()
+                : null;
         } catch (\Exception $e) {
             $class = $e::class;
             $msg = $e->getMessage();
@@ -24,7 +26,6 @@ class App
         }
 
         Session::stop();
-
 
         return $page;
     }
