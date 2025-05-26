@@ -33,6 +33,7 @@ class DB
             ...$columns,
             'created_at' => 'datetime',
             'modified_at' => 'datetime',
+            'deleted_at' => 'datetime',
         ];
 
         $db_columns = '';
@@ -52,14 +53,14 @@ class DB
 
     public function all(string $table)
     {
-        $stmt = $this->pdo->prepare("select * from $table;");
+        $stmt = $this->pdo->prepare("select * from $table where deleted_at is null;");
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function find(string $table, int $id)
     {
-        $stmt = $this->pdo->prepare("select * from $table where id = ?;");
+        $stmt = $this->pdo->prepare("select * from $table where id = ? and deleted_at is null;");
         $stmt->execute([$id]);
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
@@ -132,6 +133,7 @@ class DB
 
     public function delete(string $table, int $id)
     {
-        $this->pdo->prepare("delete from $table where id = ?;")->execute([$id]);
+        $this->pdo->prepare("update $table set deleted_at = ? where id = ?;")
+            ->execute([date('Y-m-d H:i:s'), $id]);
     }
 }
