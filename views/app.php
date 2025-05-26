@@ -15,7 +15,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f9fafb;
+            background: <?= $embedded ? 'black' : '#f9fafb' ?>;
             color: #333;
             line-height: 1.6;
             padding: 2rem;
@@ -98,7 +98,7 @@
         /* Dark mode styles */
         @media (prefers-color-scheme: dark) {
             body {
-                background: #111827;
+                background: <?= $embedded ? 'black' : '#111827' ?>;
                 color: #e5e7eb;
             }
 
