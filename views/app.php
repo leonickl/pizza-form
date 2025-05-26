@@ -55,7 +55,7 @@
         .info {
             background: #b1ecff;
             padding: 8px;
-            border: 1px blue solid;
+            border: 1px solid blue;
             border-radius: 5px;
         }
 
@@ -84,6 +84,7 @@
             background-color: rgb(255, 0, 0);
         }
 
+        /* Responsive styles */
         @media (max-width: 600px) {
             body {
                 padding: 1rem;
@@ -91,6 +92,51 @@
 
             main {
                 padding: 1.5rem;
+            }
+        }
+
+        /* Dark mode styles */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #111827;
+                color: #e5e7eb;
+            }
+
+            main {
+                background: #1f2937;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            }
+
+            h1,
+            h2,
+            h3 {
+                color: #f9fafb;
+            }
+
+            a {
+                color: #60a5fa;
+            }
+
+            .info {
+                background: #2563eb;
+                border-color: #3b82f6;
+                color: #e0f2fe;
+            }
+
+            button.primary {
+                background-color: #60a5fa;
+            }
+
+            button.primary:hover {
+                background-color: #3b82f6;
+            }
+
+            button.warn {
+                background-color: rgb(255, 94, 94);
+            }
+
+            button.warn:hover {
+                background-color: rgb(255, 0, 0);
             }
         }
     </style>

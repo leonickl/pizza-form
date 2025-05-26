@@ -16,6 +16,8 @@
         padding: 0.5rem;
         border: 1px solid #ccc;
         border-radius: 6px;
+        background-color: #fff;
+        color: #111;
     }
 
     .radio-group {
@@ -35,7 +37,64 @@
 
     .radio-group input[type="radio"] {
         accent-color: #3b82f6;
-        /* optional: adds color for supported browsers */
+    }
+
+    button {
+        margin-top: 1.5rem;
+        padding: 0.7rem 1.5rem;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        background-color: #3b82f6;
+    }
+
+    button:hover {
+        background-color: #2563eb;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 600px) {
+
+        input[type="text"],
+        textarea {
+            font-size: 1rem;
+        }
+
+        button {
+            width: 100%;
+        }
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+        label {
+            color: #f3f4f6;
+        }
+
+        input[type="text"],
+        textarea {
+            background-color: #1f2937;
+            border-color: #4b5563;
+            color: #f9fafb;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #9ca3af;
+        }
+
+        .radio-group label {
+            color: #d1d5db;
+        }
+
+        button {
+            background-color: #60a5fa;
+        }
+
+        button:hover {
+            background-color: #3b82f6;
+        }
     }
 </style>
 
