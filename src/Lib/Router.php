@@ -14,7 +14,7 @@ class Router
 
         @[$class, $function, $params] = self::find($path, $method);
 
-        return (new $class)->{$function}(...($params ?? []));
+        return (new $class)->{$function}(...$params ?? []);
     }
 
     private static function find(string $path, string $method)
