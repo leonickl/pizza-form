@@ -12,7 +12,9 @@ class App
             $response = Router::route();
 
             $page = $response instanceof View
-                ? $response->layout('app')->render()
+                ? $response->layout('app', [
+                    'embedded' => request()->bool('embedded'),
+                ])->render()
                 : null;
         } catch (\Exception $e) {
             $class = $e::class;
@@ -25,7 +27,9 @@ class App
             $page = \App\Lib\View::make('error')->layout('app')->render();
         }
 
-        Session::stop();
+        if ($page) {
+            Session::stop();
+        }
 
         return $page;
     }

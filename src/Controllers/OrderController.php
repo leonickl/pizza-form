@@ -8,7 +8,7 @@ class OrderController
 {
     public function index()
     {
-        return view('main', ['embedded' => request('embedded') !== null]);
+        return view('main');
     }
 
     public function action()
@@ -17,6 +17,6 @@ class OrderController
 
         $order = \App\Models\Order::create(...$request);
 
-        return Router::redirect(request('embedded') === null ? '/' : '/?embedded', compact('order'));
+        return Router::redirect(request()->bool('embedded') ? '/?embedded' : '/', compact('order'));
     }
 }

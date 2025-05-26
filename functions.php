@@ -5,11 +5,11 @@ use App\Lib\Collection;
 function dump(mixed ...$data)
 {
     echo '<pre>';
-    
+
     if ($data) {
         var_dump(...$data);
     }
-    
+
     echo '</pre>';
 }
 
@@ -37,6 +37,10 @@ function obj(mixed ...$values)
 
 function request(string|array|null $key = null)
 {
+    if ($key === null) {
+        return new \App\Lib\Arrays($_REQUEST);
+    }
+
     return (new \App\Lib\Arrays($_REQUEST))->access($key);
 }
 

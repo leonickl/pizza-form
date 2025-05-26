@@ -30,4 +30,19 @@ class Arrays
 
         throw new \RuntimeException("invalid key '$key'");
     }
+
+    public function array()
+    {
+        return $this->array;
+    }
+
+    public function int(string $key)
+    {
+        return (int) $this->access($key);
+    }
+
+    public function bool(string $key)
+    {
+        return $this->access($key) !== null;
+    }
 }

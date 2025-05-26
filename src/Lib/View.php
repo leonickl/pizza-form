@@ -6,7 +6,9 @@ class View
 {
 	private const string PATH = __DIR__ . '/../../views';
 
-	private function __construct(protected string $view, protected array $params) {}
+	private function __construct(protected string $view, protected array $params)
+	{
+	}
 
 	public static function make(string $view, array $params = []): self
 	{
@@ -28,11 +30,13 @@ class View
 		return ob_get_clean();
 	}
 
-	public function layout(string $view)
+	public function layout(string $view, array $additionalParams = [])
 	{
+		$this->params = [...$this->params, ...$additionalParams];
+
 		return self::make($view, [
 			'slot' => $this->render(),
-			...$this->params,
+			...$additionalParams,
 		]);
 	}
 }
