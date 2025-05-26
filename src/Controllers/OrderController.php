@@ -17,6 +17,6 @@ class OrderController
 
         $order = \App\Models\Order::create(...$request);
 
-        return Router::redirect('/', compact('order'));
+        return Router::redirect(request('embedded') === null ? '/' : '/?embedded', compact('order'));
     }
 }
