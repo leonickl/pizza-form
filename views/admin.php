@@ -51,6 +51,10 @@
         background-color: #f9fafb;
     }
 
+    .checkbox-button {
+        height: 40px;
+    }
+
     /* Dark mode */
     @media (prefers-color-scheme: dark) {
         thead {
@@ -77,20 +81,6 @@
 
         .button-blue:hover {
             background-color: #1d4ed8;
-        }
-
-        .checkbox-button {
-            background: none;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-        }
-
-        .checkbox-button input[type="checkbox"] {
-            width: 1rem;
-            height: 1rem;
-            accent-color: #3b82f6;
-            cursor: pointer;
         }
     }
 
@@ -148,9 +138,7 @@
                     <td>
                         <form action="/90d13090-fa3b-480f-a6d2-3e06fec20954/toggle-paid" method="post" style="display: inline;">
                             <input type="hidden" name="id" value="<?= e($order->id) ?>">
-                            <button type="submit" class="checkbox-button" title="Status wechseln">
-                                <input type="checkbox" <?= $order->paid ? 'checked' : '' ?> onclick="return false;">
-                            </button>
+                            <button type="submit" class="checkbox-button" title="Status wechseln" style="background-color: <?= $order->paid ? 'lightgreen' : 'red' ?>"></button>
                         </form>
                     </td>
                     <td>
