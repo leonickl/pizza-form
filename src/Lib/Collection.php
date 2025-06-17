@@ -98,7 +98,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate
     {
         $groups = [];
 
-        foreach ($this->toArray() as $item) {
+        foreach ($this as $item) {
             $key = $extractKey($item);
 
             if (!isset($groups[$key])) {

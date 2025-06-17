@@ -133,7 +133,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($orders->reverse()->toArray() as $order): ?>
+            <?php foreach ($orders->reverse() as $order): ?>
                 <tr>
                     <td><?= e($order->id) ?></td>
                     <td><?= e($order->name) ?></td>
