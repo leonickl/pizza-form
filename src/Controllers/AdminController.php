@@ -24,7 +24,8 @@ class AdminController
         ]);
     }
 
-    public function analysis() {
+    public function analysis()
+    {
         $orders = \App\Models\Order::all();
         $types = [];
 
@@ -37,5 +38,20 @@ class AdminController
         }
 
         return view('analysis', ['types' => $types, 'total' => $orders->count()]);
+    }
+
+    public function togglePaid()
+    {
+        $id = (int) request('id');
+
+        $order = \App\Models\Order::find($id);
+        
+        $order->paid = ! $order->paid;
+
+        $order->save();
+
+        return Router::redirect('/90d13090-fa3b-480f-a6d2-3e06fec20954', [
+            'paid' => $order,
+        ]);
     }
 }

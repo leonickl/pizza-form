@@ -11,7 +11,7 @@
     }
 
     .button-blue {
-        background-color: #3b82f6; /* Blue-500 */
+        background-color: #3b82f6;
         color: white;
         padding: 0.5rem 1rem;
         border: none;
@@ -22,7 +22,7 @@
     }
 
     .button-blue:hover {
-        background-color: #2563eb; /* Blue-600 */
+        background-color: #2563eb;
     }
 
     table {
@@ -51,7 +51,7 @@
         background-color: #f9fafb;
     }
 
-    /* Dark mode support */
+    /* Dark mode */
     @media (prefers-color-scheme: dark) {
         thead {
             background-color: #374151;
@@ -78,6 +78,20 @@
         .button-blue:hover {
             background-color: #1d4ed8;
         }
+
+        .checkbox-button {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .checkbox-button input[type="checkbox"] {
+            width: 1rem;
+            height: 1rem;
+            accent-color: #3b82f6;
+            cursor: pointer;
+        }
     }
 
     @media (max-width: 600px) {
@@ -92,6 +106,11 @@
 <?php if (session('deleted')): ?>
     <?php $order = session('deleted') ?>
     <p class="info">Bestellung von <b><?= $order->name ?></b> gelöscht</p>
+<?php endif ?>
+
+<?php if (session('paid')): ?>
+    <?php $order = session('paid') ?>
+    <p class="info"><b><?= e($order->name) ?></b> hat <?= $order->paid ? 'bezahlt' : 'nicht bezahlt' ?>.</p>
 <?php endif ?>
 
 <div class="table-container">
@@ -126,7 +145,14 @@
                             / <?= e($order->modified_at) ?>
                         <?php endif ?>
                     </td>
-                    <td><?= $order->paid ? 'ja' : 'nein' ?></td>
+                    <td>
+                        <form action="/90d13090-fa3b-480f-a6d2-3e06fec20954/toggle-paid" method="post" style="display: inline;">
+                            <input type="hidden" name="id" value="<?= e($order->id) ?>">
+                            <button type="submit" class="checkbox-button" title="Status wechseln">
+                                <input type="checkbox" <?= $order->paid ? 'checked' : '' ?> onclick="return false;">
+                            </button>
+                        </form>
+                    </td>
                     <td>
                         <form action="/90d13090-fa3b-480f-a6d2-3e06fec20954/delete?id=<?= e($order->id) ?>" method="post">
                             <button class="warn">Löschen</button>
