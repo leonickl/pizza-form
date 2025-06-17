@@ -101,7 +101,7 @@
     }
 </style>
 
-<h1>Bestellungen</h1>
+<h1>Bestellungen (<?= $orders->count() ?>)</h1>
 
 <?php if (session('deleted')): ?>
     <?php $order = session('deleted') ?>
