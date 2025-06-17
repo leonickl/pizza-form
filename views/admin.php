@@ -35,8 +35,7 @@
         background-color: #f3f4f6;
     }
 
-    th,
-    td {
+    th, td {
         text-align: left;
         padding: 0.75rem;
         border-bottom: 1px solid #e5e7eb;
@@ -53,6 +52,48 @@
 
     .checkbox-button {
         height: 40px;
+        width: 40px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .card-list {
+        display: none;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .card {
+        border: 1px solid #e5e7eb;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        background: #fff;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .card-item {
+        margin-bottom: 0.5rem;
+    }
+
+    .card-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1rem;
+    }
+
+    .warn {
+        background-color: #dc2626;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 0.375rem;
+        cursor: pointer;
+    }
+
+    .warn:hover {
+        background-color: #b91c1c;
     }
 
     /* Dark mode */
@@ -82,11 +123,25 @@
         .button-blue:hover {
             background-color: #1d4ed8;
         }
+
+        .card {
+            background-color: #1f2937;
+            border-color: #374151;
+            color: #f9fafb;
+        }
+
+        .warn {
+            background-color: #b91c1c;
+        }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
         table {
-            font-size: 0.9rem;
+            display: none;
+        }
+
+        .card-list {
+            display: flex;
         }
     }
 </style>
@@ -150,4 +205,32 @@
             <?php endforeach ?>
         </tbody>
     </table>
+
+    <div class="card-list">
+        <?php foreach ($orders->reverse() as $order): ?>
+            <div class="card">
+                <div class="card-item"><strong>ID:</strong> <?= e($order->id) ?></div>
+                <div class="card-item"><strong>Name:</strong> <?= e($order->name) ?></div>
+                <div class="card-item"><strong>Typ:</strong> <?= e($order->type) ?></div>
+                <div class="card-item"><strong>Extra:</strong> <?= e($order->extra) ?></div>
+                <div class="card-item"><strong>Erstellt/Geändert:</strong>
+                    <?= e($order->created_at) ?>
+                    <?php if ($order->created_at !== $order->modified_at): ?>
+                        / <?= e($order->modified_at) ?>
+                    <?php endif ?>
+                </div>
+                <div class="card-actions">
+                    <form action="/90d13090-fa3b-480f-a6d2-3e06fec20954/toggle-paid" method="post">
+                        <input type="hidden" name="id" value="<?= e($order->id) ?>">
+                        <button type="submit" class="checkbox-button" title="Status wechseln"
+                            style="background-color: <?= $order->paid ? 'lightgreen' : 'red' ?>"></button>
+                    </form>
+                    <form action="/90d13090-fa3b-480f-a6d2-3e06fec20954/delete?id=<?= e($order->id) ?>" method="post">
+                        <button class="warn">Löschen</button>
+                    </form>
+                </div>
+            </div>
+        <?php endforeach ?>
+    </div>
+
 </div>
