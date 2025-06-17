@@ -94,4 +94,21 @@ class Collection implements \ArrayAccess, \Countable
     {
         return self::make(array_reverse($this->items));
     }
+
+    public function groupBy(callable $extractKey)
+    {
+        $groups = [];
+
+        foreach($this->toArray() as $item) {
+            $key = $extractKey($item);
+
+            if(!isset($groups[$key])) {
+                $groups[$key] = [];
+            }
+
+            $groups[$key][] = $item;
+        }
+
+        return $groups;
+    }
 }

@@ -71,9 +71,9 @@
     <?php foreach ($types as $type => $extras): ?>
         <div class="type-label"><?= e($type) ?> (<?= count($extras) ?>)</div>
         <ul class="extra-list">
-            <?php foreach ($extras as $extra): ?>
-                <?php if(strlen(trim($extra)) > 0): ?>
-                    <li><?= e($extra) ?></li>
+            <?php foreach ($extras as $order): ?>
+                <?php if(strlen(trim($order->extra)) > 0): ?>
+                    <li><?= e($order->extra) ?></li>
                 <?php endif ?>
             <?php endforeach ?>
         </ul>

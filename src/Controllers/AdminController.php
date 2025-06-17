@@ -27,17 +27,11 @@ class AdminController
     public function analysis()
     {
         $orders = \App\Models\Order::all();
-        $types = [];
 
-        foreach($orders->toArray() as $order) {
-            if(!isset($types[$order->type])) {
-                $types[$order->type] = [];
-            }
-
-            $types[$order->type][] = $order->extra;
-        }
-
-        return view('analysis', ['types' => $types, 'total' => $orders->count()]);
+        return view('analysis', [
+            'types' => $orders->groupBy(fn($order) => $order->type),
+            'total' => $orders->count(),
+        ]);
     }
 
     public function togglePaid()
