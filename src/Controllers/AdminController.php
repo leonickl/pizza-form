@@ -23,4 +23,18 @@ class AdminController
             'deleted' => $order,
         ]);
     }
+
+    public function analysis() {
+        $types = [];
+
+        foreach(\App\Models\Order::all()->toArray() as $order) {
+            if(!isset($types[$order->type])) {
+                $types[$order->type] = [];
+            }
+
+            $types[$order->type][] = $order->extra;
+        }
+
+        return view('analysis', ['types' => $types]);
+    }
 }
