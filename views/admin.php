@@ -4,6 +4,27 @@
         margin-top: 1rem;
     }
 
+    .button-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 1rem;
+    }
+
+    .button-blue {
+        background-color: #3b82f6; /* Blue-500 */
+        color: white;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 0.375rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    .button-blue:hover {
+        background-color: #2563eb; /* Blue-600 */
+    }
+
     table {
         width: 100%;
         border-collapse: collapse;
@@ -49,6 +70,14 @@
         tr:hover {
             background-color: #1f2937;
         }
+
+        .button-blue {
+            background-color: #2563eb;
+        }
+
+        .button-blue:hover {
+            background-color: #1d4ed8;
+        }
     }
 
     @media (max-width: 600px) {
@@ -66,6 +95,12 @@
 <?php endif ?>
 
 <div class="table-container">
+    <div class="button-container">
+        <form action="/90d13090-fa3b-480f-a6d2-3e06fec20954/analysis" method="get">
+            <button class="button-blue">Analyse</button>
+        </form>
+    </div>
+
     <table>
         <thead>
             <tr>
@@ -86,7 +121,6 @@
                     <td><?= e($order->extra) ?></td>
                     <td>
                         <?= e($order->created_at) ?>
-
                         <?php if ($order->created_at !== $order->modified_at): ?>
                             / <?= e($order->modified_at) ?>
                         <?php endif ?>
