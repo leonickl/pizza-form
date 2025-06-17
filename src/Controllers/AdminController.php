@@ -25,9 +25,10 @@ class AdminController
     }
 
     public function analysis() {
+        $orders = \App\Models\Order::all();
         $types = [];
 
-        foreach(\App\Models\Order::all()->toArray() as $order) {
+        foreach($orders->toArray() as $order) {
             if(!isset($types[$order->type])) {
                 $types[$order->type] = [];
             }
@@ -35,6 +36,6 @@ class AdminController
             $types[$order->type][] = $order->extra;
         }
 
-        return view('analysis', ['types' => $types]);
+        return view('analysis', ['types' => $types, 'total' => $orders->count()]);
     }
 }

@@ -65,12 +65,16 @@
     <a href="/90d13090-fa3b-480f-a6d2-3e06fec20954" class="button-blue">Zurück</a>
 </div>
 
+<div class="type-label">Insgesamt (<?= e($total) ?>)</div>
+
 <div class="list-container">
     <?php foreach ($types as $type => $extras): ?>
-        <div class="type-label"><?= e($type) ?></div>
+        <div class="type-label"><?= e($type) ?> (<?= count($extras) ?>)</div>
         <ul class="extra-list">
             <?php foreach ($extras as $extra): ?>
-                <li><?= e($extra) ?></li>
+                <?php if(strlen(trim($extra)) > 0): ?>
+                    <li><?= e($extra) ?></li>
+                <?php endif ?>
             <?php endforeach ?>
         </ul>
     <?php endforeach ?>
