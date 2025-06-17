@@ -2,8 +2,7 @@
 
 namespace App\Lib;
 
-
-class Collection implements \ArrayAccess, \Countable
+class Collection implements \ArrayAccess, \Countable, \IteratorAggregate
 {
     private function __construct(private array $items)
     {
@@ -50,59 +49,59 @@ class Collection implements \ArrayAccess, \Countable
         return count($this->items);
     }
 
-    public function map(callable $callback)
+    public function map(callable $callback): self
     {
         return self::make(array_map($callback, $this->items));
     }
 
-    public function filter(callable $callback)
+    public function filter(callable $callback): self
     {
         return self::make(array_filter($this->items, $callback));
     }
 
-    public function join(string $glue = '')
+    public function join(string $glue = ''): string
     {
         return implode($glue, $this->items);
     }
 
-    public function last()
+    public function last(): mixed
     {
-        return $this->items[count($this->items) - 1];
+        return $this->items[count($this->items) - 1] ?? null;
     }
 
-    public function dd(mixed ...$append)
+    public function dd(mixed ...$append): void
     {
         dd($this->items, ...$append);
     }
 
-    public function keys()
+    public function keys(): self
     {
         return self::make(array_keys($this->items));
     }
 
-    public function values()
+    public function values(): self
     {
         return self::make(array_values($this->items));
     }
 
-    public function toArray()
+    public function toArray(): array
     {
         return $this->items;
     }
 
-    public function reverse()
+    public function reverse(): self
     {
         return self::make(array_reverse($this->items));
     }
 
-    public function groupBy(callable $extractKey)
+    public function groupBy(callable $extractKey): array
     {
         $groups = [];
 
-        foreach($this->toArray() as $item) {
+        foreach ($this->toArray() as $item) {
             $key = $extractKey($item);
 
-            if(!isset($groups[$key])) {
+            if (!isset($groups[$key])) {
                 $groups[$key] = [];
             }
 
@@ -110,5 +109,10 @@ class Collection implements \ArrayAccess, \Countable
         }
 
         return $groups;
+    }
+
+    public function getIterator(): \Traversable
+    {
+        return new \ArrayIterator($this->items);
     }
 }
