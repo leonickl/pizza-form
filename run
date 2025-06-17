@@ -26,3 +26,7 @@ if (!$command || $command === 'server') {
 if ($command === 'migrate') {
     shell_exec('/usr/bin/php migrate.php');
 }
+
+if ($command === 'play') {
+    require __DIR__ . '/playground.php';
+}
