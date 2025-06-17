@@ -9,3 +9,7 @@ $db->create('orders', [
     'type' => 'text',
     'extra' => 'text',
 ]);
+
+$db->addColumns('orders', [
+    'paid' => 'boolean not null default 0',
+]);

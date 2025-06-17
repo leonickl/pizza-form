@@ -109,6 +109,7 @@
                 <th>Typ</th>
                 <th>Extra</th>
                 <th>Erstellt/Geändert</th>
+                <th>Bezahlt</th>
                 <th></th>
             </tr>
         </thead>
@@ -125,6 +126,7 @@
                             / <?= e($order->modified_at) ?>
                         <?php endif ?>
                     </td>
+                    <td><?= $order->paid ? 'ja' : 'nein' ?></td>
                     <td>
                         <form action="/90d13090-fa3b-480f-a6d2-3e06fec20954/delete?id=<?= e($order->id) ?>" method="post">
                             <button class="warn">Löschen</button>

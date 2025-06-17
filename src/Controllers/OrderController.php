@@ -15,7 +15,7 @@ class OrderController
     {
         $request = (array) request(['name', 'type', 'extra']);
 
-        $order = \App\Models\Order::create(...$request);
+        $order = \App\Models\Order::create(...$request, paid: false);
 
         return Router::redirect(request()->bool('embedded') ? '/?embedded' : '/', compact('order'));
     }
