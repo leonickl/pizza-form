@@ -30,3 +30,35 @@ if ($command === 'migrate') {
 if ($command === 'play') {
     require __DIR__ . '/playground.php';
 }
+
+if ($command === 'trash') {
+    $table = @$argv[2];
+
+    if(! $table) {
+        die('Please enter table' . PHP_EOL);
+    }
+
+    $trashed = \App\Lib\DB::init()->trashedOnly($table);
+
+    foreach($trashed as $record) {
+        echo json_encode(array_values($record)), PHP_EOL;
+    }
+}
+
+if($command === 'restore') {
+    $table = @$argv[2];
+
+    if(! $table) {
+        die('Please enter table' . PHP_EOL);
+    }
+
+    $id = @$argv[3];
+
+    if(! $id) {
+        die('Please enter an id' . PHP_EOL);
+    }
+
+    \App\Lib\DB::init()->restore($table, (int) $id);
+
+    echo "Restored $table with id $id.", PHP_EOL;
+}

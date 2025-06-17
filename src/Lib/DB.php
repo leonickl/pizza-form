@@ -58,6 +58,13 @@ class DB
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function trashedOnly(string $table)
+    {
+        $stmt = $this->pdo->prepare("select * from $table where deleted_at is not null;");
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     public function find(string $table, int $id)
     {
         $stmt = $this->pdo->prepare("select * from $table where id = ? and deleted_at is null;");
@@ -135,5 +142,11 @@ class DB
     {
         $this->pdo->prepare("update $table set deleted_at = ? where id = ?;")
             ->execute([date('Y-m-d H:i:s'), $id]);
+    }
+
+    public function restore(string $table, int $id)
+    {
+        $this->pdo->prepare("update $table set deleted_at = NULL where id = ?;")
+            ->execute([$id]);
     }
 }
