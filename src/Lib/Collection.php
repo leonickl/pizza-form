@@ -115,4 +115,11 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate
     {
         return new \ArrayIterator($this->items);
     }
+
+    public function sort(callable $compare)
+    {
+        usort($this->items, $compare);
+
+        return $this;
+    }
 }
