@@ -8,7 +8,10 @@ class AdminController
 {
     public function index()
     {
-        return view('admin', ['orders' => \App\Models\Order::all()]);
+        return view('admin', [
+            'orders' => \App\Models\Order::all()
+                ->sort(fn($a, $b) => $b->paid <=> $a->paid ?: $b->name <=> $a->name),
+        ]);
     }
 
     public function destroy()
