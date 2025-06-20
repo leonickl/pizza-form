@@ -6,14 +6,14 @@ class Session
 {
     public static function start()
     {
-session_set_cookie_params([
-    'lifetime' => 0,
-    'path' => '/',
-    'domain' => 'pizza.leonickl.de',
-    'secure' => true,
-    'httponly' => true,
-    'samesite' => 'None'
-]);
+        session_set_cookie_params([
+            'lifetime' => 0,
+            'path' => '/',
+            'domain' => 'pizza.leonickl.de',
+            'secure' => true,
+            'httponly' => true,
+            'samesite' => 'None'
+        ]);
 
         session_start();
     }
