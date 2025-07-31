@@ -21,15 +21,21 @@ class Router
     {
         $routes = config('routes');
 
-        if (!array_key_exists($path, $routes)) {
+        $tree = RouteTree::build($routes);
+
+        $endpoint = $tree->find($path);
+
+        if($endpoint === null) {
             return [\App\Controllers\ErrorController::class, 'notFound', [$path]];
         }
 
-        if (!array_key_exists($method, $routes[$path])) {
+        $action = $endpoint->method($method);
+
+        if ($action === null) {
             return [\App\Controllers\ErrorController::class, 'methodNotSupported', [$path, $method]];
         }
 
-        return $routes[$path][$method];
+        return $action;
     }
 
     public static function redirect(string $uri, array $data = [])
