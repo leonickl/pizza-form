@@ -25,7 +25,7 @@ class Router
 
         $endpoint = $tree->find($path);
 
-        if($endpoint === null) {
+        if($endpoint === null || count($endpoint->method()) === 0) {
             return [\App\Controllers\ErrorController::class, 'notFound', ['route' => $path]];
         }
 

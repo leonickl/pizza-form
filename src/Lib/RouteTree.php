@@ -94,9 +94,9 @@ class RouteTree
         return $this->match(explode('/', trim($route, '/')));
     }
 
-    public function method(string $method)
+    public function method(?string $method = null)
     {
-        return $this->methods[$method] ?? null;
+        return $method === null ? $this->methods : $this->methods[$method] ?? null;
     }
 
     public function param(null|string|array $param = null)
