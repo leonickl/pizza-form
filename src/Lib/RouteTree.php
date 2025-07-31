@@ -4,6 +4,8 @@ namespace App\Lib;
 
 class RouteTree
 {
+    private static array $params = [];
+
     private function __construct(private array $children, private array $methods) {}
 
     private static function empty()
@@ -18,38 +20,55 @@ class RouteTree
         foreach($routes as $route => $action) {
             $split = explode('/', trim($route, '/'));
 
-            $tree->children($split, create: true)->methods($action);
+            $tree->children($split)->methods($action);
         }
 
         return $tree;
     }
 
-    private function child(string $key, bool $create): ?self
+    private function child(string $key): ?self
     {
         if(!array_key_exists($key, $this->children)) {
-            if($create) {
-                $this->children[$key] = self::empty();
-            } else {
-                return null;
-            }
+            $this->children[$key] = self::empty();
         }
 
         return $this->children[$key];
     }
 
-    private function children(array $keys, bool $create): ?self
+    private function children(array $keys): ?self
     {
-        if(count($keys) === 0) {
-            return $this;
-        }
-
-        if(count($keys) === 1 && $keys[0] === '') {
+        if(count($keys) === 0 || count($keys) === 1 && $keys[0] === '') {
             return $this;
         }
 
         return $this
-            ->child(array_shift($keys), $create)
-            ?->children($keys, $create);
+            ->child(array_shift($keys))
+            ?->children($keys);
+    }
+
+    private function match(string|array $keys)
+    {
+        if(is_string($keys)) {
+            foreach($this->children as $key => $child) {
+                if($key === $keys) {
+                    return $keys;
+                }
+
+                if(str_starts_with($key, '{') && str_ends_with($key, '}')) {
+                    $this->param([substr($key, 1, -1) => $keys]);
+
+                    return $child;
+                }
+            }
+
+            return null;
+        }
+
+        if(count($keys) === 0 || count($keys) === 1 && $keys[0] === '') {
+            return $this;
+        }
+
+        return $this->match(array_shift($keys))?->match($keys);
     }
 
     private function methods(array $methods)
@@ -72,13 +91,24 @@ class RouteTree
 
     public function find(string $route)
     {
-        $split = explode('/', trim($route, '/'));
-
-        return $this->children($split, create: false);
+        return $this->match(explode('/', trim($route, '/')));
     }
 
     public function method(string $method)
     {
         return $this->methods[$method] ?? null;
+    }
+
+    public function param(null|string|array $param = null)
+    {
+        if(is_array($param)) {
+            self::$params = [...self::$params, ...$param];
+        }
+
+        if(is_string($param)) {
+            return self::$params[$param];
+        }
+
+        return self::$params;
     }
 }

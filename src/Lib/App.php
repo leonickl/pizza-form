@@ -16,6 +16,8 @@ class App
                     'embedded' => request()->bool('embedded'),
                 ])->render()
                 : null;
+        } catch(App\Exceptions\UnauthorizedException) {
+            $page = \App\Lib\View::make('error.unauthorized')->layout('app')->render();
         } catch (\Exception $e) {
             $class = $e::class;
             $msg = $e->getMessage();

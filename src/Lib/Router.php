@@ -26,14 +26,16 @@ class Router
         $endpoint = $tree->find($path);
 
         if($endpoint === null) {
-            return [\App\Controllers\ErrorController::class, 'notFound', [$path]];
+            return [\App\Controllers\ErrorController::class, 'notFound', ['route' => $path]];
         }
 
         $action = $endpoint->method($method);
 
         if ($action === null) {
-            return [\App\Controllers\ErrorController::class, 'methodNotSupported', [$path, $method]];
+            return [\App\Controllers\ErrorController::class, 'methodNotSupported', ['route' => $path, 'method' => $method]];
         }
+
+        $action[2] = [...($action[2] ?? []), ...$tree->param()];
 
         return $action;
     }

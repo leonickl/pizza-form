@@ -8,16 +8,16 @@ return [
             'GET' => [\App\Controllers\OrderController::class, 'index'],
             'POST' => [\App\Controllers\OrderController::class, 'action'],
         ],
-        '/90d13090-fa3b-480f-a6d2-3e06fec20954' => [
+        '/admin/{secret}' => [
             'GET' => [\App\Controllers\AdminController::class, 'index'],
         ],
-        '/90d13090-fa3b-480f-a6d2-3e06fec20954/analysis' => [
+        '/admin/{secret}/analysis' => [
             'GET' => [\App\Controllers\AdminController::class, 'analysis'],
         ],
-        '/90d13090-fa3b-480f-a6d2-3e06fec20954/delete' => [
+        '/admin/{secret}/delete' => [
             'POST' => [\App\Controllers\AdminController::class, 'destroy'],
         ],
-        '/90d13090-fa3b-480f-a6d2-3e06fec20954/toggle-paid' => [
+        '/admin/{secret}/toggle-paid' => [
             'POST' => [\App\Controllers\AdminController::class, 'togglePaid'],
         ],
     ],
