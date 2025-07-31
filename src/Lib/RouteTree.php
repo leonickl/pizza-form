@@ -51,7 +51,7 @@ class RouteTree
         if(is_string($keys)) {
             foreach($this->children as $key => $child) {
                 if($key === $keys) {
-                    return $keys;
+                    return $child;
                 }
 
                 if(str_starts_with($key, '{') && str_ends_with($key, '}')) {
