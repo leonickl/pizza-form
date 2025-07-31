@@ -9,7 +9,7 @@ class Session
         session_set_cookie_params([
             'lifetime' => 0,
             'path' => '/',
-            'domain' => 'pizza.leonickl.de',
+            'domain' => config('domain'),
             'secure' => true,
             'httponly' => true,
             'samesite' => 'None'
