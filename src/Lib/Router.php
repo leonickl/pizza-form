@@ -19,7 +19,7 @@ class Router
 
     private static function find(string $path, string $method)
     {
-        $routes = config('routes');
+        $routes = Route::listForTree();
 
         $tree = RouteTree::build($routes);
 

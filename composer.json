@@ -10,7 +10,8 @@
             "App\\": "src/"
         },
         "files": [
-            "functions.php"
+            "functions.php",
+            "routes.php"
         ]
     },
     "authors": [
