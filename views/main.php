@@ -98,7 +98,7 @@
     }
 </style>
 
-<form action="<?= $embedded ? '/?embedded' : '/' ?>" method="post">
+<form action="<?= ($embedded ?? false) ? '/?embedded' : '/' ?>" method="post">
     <h1>Pizza bestellen</h1>
 
     <?php if (session('order')): ?>
