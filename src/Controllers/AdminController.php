@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Exceptions\UnauthorizedException;
 use App\Lib\Router;
 
 class AdminController
@@ -10,7 +9,7 @@ class AdminController
     private function guard(string $secret)
     {
         if($secret !== '90d13090-fa3b-480f-a6d2-3e06fec20954') {
-            throw new UnauthorizedException;
+            throw new \App\Exceptions\UnauthorizedException;
         }
     }
 
