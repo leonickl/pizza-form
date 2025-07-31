@@ -51,7 +51,13 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate
 
     public function map(callable $callback): self
     {
-        return self::make(array_map($callback, $this->items));
+        $new = [];
+
+        foreach($this->items as $key => $value) {
+            $new[$key] = $callback($value, $key);
+        }
+
+        return self::make($new);
     }
 
     public function filter(callable $callback): self
@@ -76,7 +82,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate
 
     public function keys(): self
     {
-        return self::make(array_keys($this->items));
+        return self::make(array_values(array_keys($this->items)));
     }
 
     public function values(): self
