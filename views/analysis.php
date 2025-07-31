@@ -62,7 +62,7 @@
 <h1>Typen und Extras</h1>
 
 <div class="button-container">
-    <a href="/90d13090-fa3b-480f-a6d2-3e06fec20954" class="button-blue">Zurück</a>
+    <a href="<?= '/admin/' . config('secret') ?>" class="button-blue">Zurück</a>
 </div>
 
 <div class="type-label">Insgesamt (<?= e($total) ?>)</div>

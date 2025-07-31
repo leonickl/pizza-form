@@ -160,7 +160,7 @@
 
 <div class="table-container">
     <div class="button-container">
-        <form action="/90d13090-fa3b-480f-a6d2-3e06fec20954/analysis" method="get">
+        <form action="<?= '/admin/' . config('secret') ?>/analysis" method="get">
             <button class="button-blue">Analyse</button>
         </form>
     </div>
@@ -191,13 +191,13 @@
                         <?php endif ?>
                     </td>
                     <td>
-                        <form action="/90d13090-fa3b-480f-a6d2-3e06fec20954/toggle-paid" method="post" style="display: inline;">
+                        <form action="<?= '/admin/' . config('secret') ?>/toggle-paid" method="post" style="display: inline;">
                             <input type="hidden" name="id" value="<?= e($order->id) ?>">
                             <button type="submit" class="checkbox-button" title="Status wechseln" style="background-color: <?= $order->paid ? 'lightgreen' : 'red' ?>"></button>
                         </form>
                     </td>
                     <td>
-                        <form action="/90d13090-fa3b-480f-a6d2-3e06fec20954/delete?id=<?= e($order->id) ?>" method="post">
+                        <form action="<?= '/admin/' . config('secret') ?>/delete?id=<?= e($order->id) ?>" method="post">
                             <button class="warn">Löschen</button>
                         </form>
                     </td>
@@ -220,12 +220,12 @@
                     <?php endif ?>
                 </div>
                 <div class="card-actions">
-                    <form action="/90d13090-fa3b-480f-a6d2-3e06fec20954/toggle-paid" method="post">
+                    <form action="<?= '/admin/' . config('secret') ?>/toggle-paid" method="post">
                         <input type="hidden" name="id" value="<?= e($order->id) ?>">
                         <button type="submit" class="checkbox-button" title="Status wechseln"
                             style="background-color: <?= $order->paid ? 'lightgreen' : 'red' ?>"></button>
                     </form>
-                    <form action="/90d13090-fa3b-480f-a6d2-3e06fec20954/delete?id=<?= e($order->id) ?>" method="post">
+                    <form action="<?= '/admin/' . config('secret') ?>/delete?id=<?= e($order->id) ?>" method="post">
                         <button class="warn">Löschen</button>
                     </form>
                 </div>

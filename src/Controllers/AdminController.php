@@ -8,7 +8,7 @@ class AdminController
 {
     private function guard(string $secret)
     {
-        if($secret !== '90d13090-fa3b-480f-a6d2-3e06fec20954') {
+        if($secret !== config('secret')) {
             throw new \App\Exceptions\UnauthorizedException;
         }
     }
@@ -33,7 +33,7 @@ class AdminController
         
         $order->delete();
 
-        return Router::redirect('/90d13090-fa3b-480f-a6d2-3e06fec20954', [
+        return Router::redirect('/admin/' . config('secret'), [
             'deleted' => $order,
         ]);
     }
@@ -62,7 +62,7 @@ class AdminController
 
         $order->save();
 
-        return Router::redirect('/90d13090-fa3b-480f-a6d2-3e06fec20954', [
+        return Router::redirect('/admin/' . config('secret'), [
             'paid' => $order,
         ]);
     }
