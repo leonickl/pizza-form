@@ -12,7 +12,7 @@ class Session
             'domain' => config('domain'),
             'secure' => true,
             'httponly' => true,
-            'samesite' => 'None'
+            'samesite' => 'None',
         ]);
 
         session_start();

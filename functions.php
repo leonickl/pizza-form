@@ -17,7 +17,7 @@ function dd(mixed ...$data)
 {
     dump(...$data);
 
-    die();
+    exit();
 }
 
 function view(string $view, array $params = [])
@@ -49,16 +49,16 @@ function session(string|array|null $key = null)
     return (new \App\Lib\Arrays($_SESSION))->access($key);
 }
 
-function e(string|null $string)
+function e(?string $string)
 {
     return htmlspecialchars($string ?? '');
 }
 
-function config(string|null $key = null, mixed $default = null)
+function config(?string $key = null, mixed $default = null)
 {
-    $config = require __DIR__ . '/config.php';
+    $config = require __DIR__.'/config.php';
 
-    if($key) {
+    if ($key) {
         return $config[$key] ?? $default;
     }
 

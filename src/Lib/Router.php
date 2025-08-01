@@ -6,7 +6,7 @@ class Router
 {
     public static function route()
     {
-        $uri = '/' . trim($_SERVER['REQUEST_URI'], "/\r\n\t ");
+        $uri = '/'.trim($_SERVER['REQUEST_URI'], "/\r\n\t ");
 
         $path = parse_url($uri, PHP_URL_PATH);
 
@@ -25,7 +25,7 @@ class Router
 
         $endpoint = $tree->find($path);
 
-        if($endpoint === null || count($endpoint->method()) === 0) {
+        if ($endpoint === null || count($endpoint->method()) === 0) {
             return [\App\Controllers\ErrorController::class, 'notFound', ['route' => $path]];
         }
 

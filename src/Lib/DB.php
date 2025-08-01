@@ -4,16 +4,14 @@ namespace App\Lib;
 
 class DB
 {
-    private const string DB = __DIR__ . '/../../database/db.sqlite';
+    private const string DB = __DIR__.'/../../database/db.sqlite';
 
-    private function __construct(private \PDO $pdo)
-    {
-    }
+    private function __construct(private \PDO $pdo) {}
 
     public static function init()
     {
         try {
-            return new self(pdo: new \PDO('sqlite:' . self::DB));
+            return new self(pdo: new \PDO('sqlite:'.self::DB));
         } catch (\PDOException $e) {
             Log::log($e->getMessage());
 
@@ -55,6 +53,7 @@ class DB
     {
         $stmt = $this->pdo->prepare("select * from $table where deleted_at is null;");
         $stmt->execute();
+
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
@@ -62,6 +61,7 @@ class DB
     {
         $stmt = $this->pdo->prepare("select * from $table where deleted_at is not null;");
         $stmt->execute();
+
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
@@ -69,6 +69,7 @@ class DB
     {
         $stmt = $this->pdo->prepare("select * from $table where id = ? and deleted_at is null;");
         $stmt->execute([$id]);
+
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
@@ -79,12 +80,12 @@ class DB
 
         $columns = c(...$record)
             ->keys()
-            ->map(fn($x) => "`$x`")
+            ->map(fn ($x) => "`$x`")
             ->join(', ');
 
         $placeholders = c(...$record)
             ->keys()
-            ->map(fn(string $key) => ":$key")
+            ->map(fn (string $key) => ":$key")
             ->join(', ');
 
         $sql = "insert into `$table` ($columns) values ($placeholders);";
@@ -92,7 +93,7 @@ class DB
         $status = $this->pdo->prepare($sql)->execute($record);
 
         if ($status === false) {
-            throw new \Exception("creating record failed");
+            throw new \Exception('creating record failed');
         }
 
         $id = $this->pdo->lastInsertId();
@@ -125,7 +126,7 @@ class DB
         $status = $this->pdo->prepare($sql)->execute($values);
 
         if ($status === false) {
-            throw new \Exception("creating record failed");
+            throw new \Exception('creating record failed');
         }
 
         return $this->find($table, $id);

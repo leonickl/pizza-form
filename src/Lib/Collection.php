@@ -4,9 +4,7 @@ namespace App\Lib;
 
 class Collection implements \ArrayAccess, \Countable, \IteratorAggregate
 {
-    private function __construct(private array $items)
-    {
-    }
+    private function __construct(private array $items) {}
 
     public static function make(array $items = []): self
     {
@@ -53,7 +51,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate
     {
         $new = [];
 
-        foreach($this->items as $key => $value) {
+        foreach ($this->items as $key => $value) {
             $new[$key] = $callback($value, $key);
         }
 
@@ -107,7 +105,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate
         foreach ($this as $item) {
             $key = $extractKey($item);
 
-            if (!isset($groups[$key])) {
+            if (! isset($groups[$key])) {
                 $groups[$key] = [];
             }
 

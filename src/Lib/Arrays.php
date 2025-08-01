@@ -4,9 +4,7 @@ namespace App\Lib;
 
 class Arrays
 {
-    public function __construct(private array $array)
-    {
-    }
+    public function __construct(private array $array) {}
 
     public function access(string|array|null $key = null)
     {

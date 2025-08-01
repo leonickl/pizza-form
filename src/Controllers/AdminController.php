@@ -8,7 +8,7 @@ class AdminController
 {
     private function guard(string $secret)
     {
-        if($secret !== config('secret')) {
+        if ($secret !== config('secret')) {
             throw new \App\Exceptions\UnauthorizedException;
         }
     }
@@ -19,7 +19,7 @@ class AdminController
 
         return view('admin', [
             'orders' => \App\Models\Order::all()
-                ->sort(fn($a, $b) => $b->paid <=> $a->paid ?: $b->name <=> $a->name),
+                ->sort(fn ($a, $b) => $b->paid <=> $a->paid ?: $b->name <=> $a->name),
         ]);
     }
 
@@ -30,10 +30,10 @@ class AdminController
         $id = (int) request('id');
 
         $order = \App\Models\Order::find($id);
-        
+
         $order->delete();
 
-        return Router::redirect('/admin/' . config('secret'), [
+        return Router::redirect('/admin/'.config('secret'), [
             'deleted' => $order,
         ]);
     }
@@ -45,7 +45,7 @@ class AdminController
         $orders = \App\Models\Order::all();
 
         return view('analysis', [
-            'types' => $orders->groupBy(fn($order) => $order->type),
+            'types' => $orders->groupBy(fn ($order) => $order->type),
             'total' => $orders->count(),
         ]);
     }
@@ -57,12 +57,12 @@ class AdminController
         $id = (int) request('id');
 
         $order = \App\Models\Order::find($id);
-        
+
         $order->paid = ! $order->paid;
 
         $order->save();
 
-        return Router::redirect('/admin/' . config('secret'), [
+        return Router::redirect('/admin/'.config('secret'), [
             'paid' => $order,
         ]);
     }

@@ -17,7 +17,7 @@ class RouteTree
     {
         $tree = self::empty();
 
-        foreach($routes as $route => $action) {
+        foreach ($routes as $route => $action) {
             $split = explode('/', trim($route, '/'));
 
             $tree->children($split)->methods($action);
@@ -28,7 +28,7 @@ class RouteTree
 
     private function child(string $key): ?self
     {
-        if(!array_key_exists($key, $this->children)) {
+        if (! array_key_exists($key, $this->children)) {
             $this->children[$key] = self::empty();
         }
 
@@ -37,7 +37,7 @@ class RouteTree
 
     private function children(array $keys): ?self
     {
-        if(count($keys) === 0 || count($keys) === 1 && $keys[0] === '') {
+        if (count($keys) === 0 || count($keys) === 1 && $keys[0] === '') {
             return $this;
         }
 
@@ -48,13 +48,13 @@ class RouteTree
 
     private function match(string|array $keys)
     {
-        if(is_string($keys)) {
-            foreach($this->children as $key => $child) {
-                if($key === $keys) {
+        if (is_string($keys)) {
+            foreach ($this->children as $key => $child) {
+                if ($key === $keys) {
                     return $child;
                 }
 
-                if(str_starts_with($key, '{') && str_ends_with($key, '}')) {
+                if (str_starts_with($key, '{') && str_ends_with($key, '}')) {
                     $this->param([substr($key, 1, -1) => $keys]);
 
                     return $child;
@@ -64,7 +64,7 @@ class RouteTree
             return null;
         }
 
-        if(count($keys) === 0 || count($keys) === 1 && $keys[0] === '') {
+        if (count($keys) === 0 || count($keys) === 1 && $keys[0] === '') {
             return $this;
         }
 
@@ -80,7 +80,7 @@ class RouteTree
     {
         return [
             'methods' => $this->methods,
-            'children' => c(...$this->children)->map(fn($child) => $child->toArray())->toArray(),
+            'children' => c(...$this->children)->map(fn ($child) => $child->toArray())->toArray(),
         ];
     }
 
@@ -101,11 +101,11 @@ class RouteTree
 
     public function param(null|string|array $param = null)
     {
-        if(is_array($param)) {
+        if (is_array($param)) {
             self::$params = [...self::$params, ...$param];
         }
 
-        if(is_string($param)) {
+        if (is_string($param)) {
             return self::$params[$param];
         }
 

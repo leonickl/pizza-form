@@ -8,10 +8,7 @@ abstract class Model
 {
     private array $record = [];
 
-    private function __construct(private bool $exists = false)
-    {
-
-    }
+    private function __construct(private bool $exists = false) {}
 
     public function __get(string $attr)
     {
@@ -36,7 +33,7 @@ abstract class Model
     {
         $object = new static;
 
-        if (!isset($object->table)) {
+        if (! isset($object->table)) {
             $class = static::class;
             throw new RuntimeException("please set table property for $class");
         }
@@ -48,7 +45,7 @@ abstract class Model
     {
         $list = \App\Lib\DB::init()->all(self::table());
 
-        return c(...$list)->map(fn(array $record) => (new static(true))->fill(...$record));
+        return c(...$list)->map(fn (array $record) => (new static(true))->fill(...$record));
     }
 
     public static function find(int $id)
@@ -57,7 +54,7 @@ abstract class Model
 
         $record = \App\Lib\DB::init()->find(self::table(), $id);
 
-        if (!$record) {
+        if (! $record) {
             throw new \App\Exceptions\ModelNotFoundException(static::class, $id);
         }
 
@@ -102,6 +99,7 @@ abstract class Model
     public function dump()
     {
         dump($this->record);
+
         return $this;
     }
 }

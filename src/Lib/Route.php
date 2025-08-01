@@ -4,10 +4,10 @@ namespace App\Lib;
 
 class Route
 {
-
     private static array $routes = [];
 
     private ?string $name = null;
+
     private ?array $action = null;
 
     private function __construct(private string $route, private string $method) {}
@@ -25,8 +25,8 @@ class Route
     {
         $routes = [];
 
-        foreach(self::$routes as $route) {
-            if(!array_key_exists($route->route, $routes)) {
+        foreach (self::$routes as $route) {
+            if (! array_key_exists($route->route, $routes)) {
                 $routes[$route->route] = [];
             }
 

@@ -4,39 +4,38 @@ namespace App\Lib;
 
 class View
 {
-	private const string PATH = __DIR__ . '/../../views';
+    private const string PATH = __DIR__.'/../../views';
 
-	private function __construct(protected string $view, protected array $params)
-	{
-	}
+    private function __construct(protected string $view, protected array $params) {}
 
-	public static function make(string $view, array $params = []): self
-	{
-		return new self($view, $params);
-	}
+    public static function make(string $view, array $params = []): self
+    {
+        return new self($view, $params);
+    }
 
-	public function render(): string
-	{
-		$path = self::PATH . '/' . $this->view . '.php';
+    public function render(): string
+    {
+        $path = self::PATH.'/'.$this->view.'.php';
 
-		if (!file_exists($path)) {
-			throw new \App\Exceptions\ViewNotFoundException($path);
-		}
+        if (! file_exists($path)) {
+            throw new \App\Exceptions\ViewNotFoundException($path);
+        }
 
-		extract($this->params);
+        extract($this->params);
 
-		ob_start();
-		include $path;
-		return ob_get_clean();
-	}
+        ob_start();
+        include $path;
 
-	public function layout(string $view, array $additionalParams = [])
-	{
-		$this->params = [...$this->params, ...$additionalParams];
+        return ob_get_clean();
+    }
 
-		return self::make($view, [
-			'slot' => $this->render(),
-			...$additionalParams,
-		]);
-	}
+    public function layout(string $view, array $additionalParams = [])
+    {
+        $this->params = [...$this->params, ...$additionalParams];
+
+        return self::make($view, [
+            'slot' => $this->render(),
+            ...$additionalParams,
+        ]);
+    }
 }
