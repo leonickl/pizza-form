@@ -8,7 +8,7 @@ abstract class Model
 {
     private array $record = [];
 
-    private function __construct(private bool $exists = false) {}
+    final private function __construct(private bool $exists = false) {}
 
     public function __get(string $attr)
     {
