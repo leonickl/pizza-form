@@ -19,5 +19,8 @@
             "name": "Leo Nickl",
             "email": "leo@leonickl.de"
         }
-    ]
+    ],
+    "require-dev": {
+        "laravel/pint": "^1.24"
+    }
 }
