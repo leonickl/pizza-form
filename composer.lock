@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:leonickl/pxp-core.git",
-                "reference": "8ec86d5896fa827fa67b366de93fbb2adacb62f5"
+                "reference": "981c10b7e9d5240595b9a9f03208485727713b0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leonickl/pxp-core/zipball/8ec86d5896fa827fa67b366de93fbb2adacb62f5",
-                "reference": "8ec86d5896fa827fa67b366de93fbb2adacb62f5",
+                "url": "https://api.github.com/repos/leonickl/pxp-core/zipball/981c10b7e9d5240595b9a9f03208485727713b0a",
+                "reference": "981c10b7e9d5240595b9a9f03208485727713b0a",
                 "shasum": ""
             },
             "default-branch": true,
@@ -41,7 +41,7 @@
                 "source": "https://github.com/leonickl/pxp-core/tree/main",
                 "issues": "https://github.com/leonickl/pxp-core/issues"
             },
-            "time": "2025-08-02T13:55:13+00:00"
+            "time": "2025-08-02T14:08:44+00:00"
         }
     ],
     "packages-dev": [
