@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use PXP\Core\Lib\Model;
+
 class Order extends Model
 {
     protected $table = 'orders';

@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Lib\Router;
+use PXP\Core\Lib\Router;
 
 class OrderController
 {

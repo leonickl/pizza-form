@@ -2,7 +2,7 @@
 
 require __DIR__.'/vendor/autoload.php';
 
-$db = \App\Lib\DB::init();
+$db = \PXP\Core\Lib\DB::init();
 
 $db->create('orders', [
     'name' => 'text not null',

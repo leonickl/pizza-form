@@ -2,7 +2,7 @@
 
 use App\Controllers\AdminController;
 use App\Controllers\OrderController;
-use App\Lib\Route;
+use PXP\Core\Lib\Route;
 
 Route::get('/')->do(OrderController::class, 'index');
 Route::post('/')->do(OrderController::class, 'action');

@@ -4,8 +4,46 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "060fa05a66a9d47ee3860b21828fd41a",
-    "packages": [],
+    "content-hash": "e854cd3e110c5410cce3d14171044d71",
+    "packages": [
+        {
+            "name": "leonickl/pxp-core",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:leonickl/pxp-core.git",
+                "reference": "8ec86d5896fa827fa67b366de93fbb2adacb62f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/leonickl/pxp-core/zipball/8ec86d5896fa827fa67b366de93fbb2adacb62f5",
+                "reference": "8ec86d5896fa827fa67b366de93fbb2adacb62f5",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PXP\\Core\\": "src/"
+                },
+                "files": [
+                    "functions.php"
+                ]
+            },
+            "authors": [
+                {
+                    "name": "Leo Nickl",
+                    "email": "leo@leonickl.de"
+                }
+            ],
+            "description": "Core functionality for leonickl/pxp",
+            "support": {
+                "source": "https://github.com/leonickl/pxp-core/tree/main",
+                "issues": "https://github.com/leonickl/pxp-core/issues"
+            },
+            "time": "2025-08-02T13:55:13+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "laravel/pint",
@@ -137,7 +175,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "leonickl/pxp-core": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

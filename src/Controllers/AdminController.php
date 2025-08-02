@@ -2,14 +2,15 @@
 
 namespace App\Controllers;
 
-use App\Lib\Router;
+use PXP\Core\Controllers\Controller;
+use PXP\Core\Lib\Router;
 
-class AdminController
+class AdminController extends Controller
 {
     private function guard(string $secret)
     {
         if ($secret !== config('secret')) {
-            throw new \App\Exceptions\UnauthorizedException;
+            throw new \PXP\Core\Exceptions\UnauthorizedException;
         }
     }
 
