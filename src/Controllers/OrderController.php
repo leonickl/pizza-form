@@ -3,12 +3,15 @@
 namespace App\Controllers;
 
 use PXP\Core\Lib\Router;
+use PXP\Core\Lib\Session;
 
 class OrderController
 {
     public function index()
     {
-        return view('main');
+        return view('main', [
+            'order' => Session::take('order'),
+        ]);
     }
 
     public function action()

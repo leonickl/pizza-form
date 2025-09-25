@@ -101,9 +101,7 @@
 <form action="<?= ($embedded ?? false) ? '/?embedded' : '/' ?>" method="post">
     <h1>Pizza bestellen</h1>
 
-    <?php if (session('order')): ?>
-        <?php $order = session('order') ?>
-
+    <?php if ($order): ?>
         <p class="info">Bestellung aufgenommen für <b><?= $order->name ?></b>: <?= $order->type ?>,
             <?= $order->extra ?? '---' ?>
         </p>

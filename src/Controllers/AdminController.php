@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use PXP\Core\Controllers\Controller;
 use PXP\Core\Lib\Router;
+use PXP\Core\Lib\Session;
 
 class AdminController extends Controller
 {
@@ -21,6 +22,8 @@ class AdminController extends Controller
         return view('admin', [
             'orders' => \App\Models\Order::all()
                 ->sort(fn ($a, $b) => $b->paid <=> $a->paid ?: $b->name <=> $a->name),
+            'deleted' => Session::take('deleted'),
+            'paid' => Session::take('paid'),
         ]);
     }
 

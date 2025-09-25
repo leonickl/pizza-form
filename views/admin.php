@@ -148,13 +148,13 @@
 
 <h1>Bestellungen (<?= $orders->count() ?>)</h1>
 
-<?php if (session('deleted')): ?>
-    <?php $order = session('deleted') ?>
+<?php if ($deleted): ?>
+    <?php $order = $deleted ?>
     <p class="info">Bestellung von <b><?= $order->name ?></b> gelöscht</p>
 <?php endif ?>
 
-<?php if (session('paid')): ?>
-    <?php $order = session('paid') ?>
+<?php if ($paid): ?>
+    <?php $order = $paid ?>
     <p class="info"><b><?= e($order->name) ?></b> hat <?= $order->paid ? 'bezahlt' : 'nicht bezahlt' ?>.</p>
 <?php endif ?>
 
