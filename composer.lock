@@ -4,32 +4,35 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e854cd3e110c5410cce3d14171044d71",
+    "content-hash": "058584c9f00e5e0c5dddf2d126393681",
     "packages": [
         {
             "name": "leonickl/pxp-core",
-            "version": "dev-main",
+            "version": "v1.10.0",
             "source": {
                 "type": "git",
-                "url": "git@github.com:leonickl/pxp-core.git",
-                "reference": "981c10b7e9d5240595b9a9f03208485727713b0a"
+                "url": "https://github.com/leonickl/pxp-core.git",
+                "reference": "734691314b986ca3470f9e1a828c63479b16e388"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leonickl/pxp-core/zipball/981c10b7e9d5240595b9a9f03208485727713b0a",
-                "reference": "981c10b7e9d5240595b9a9f03208485727713b0a",
+                "url": "https://api.github.com/repos/leonickl/pxp-core/zipball/734691314b986ca3470f9e1a828c63479b16e388",
+                "reference": "734691314b986ca3470f9e1a828c63479b16e388",
                 "shasum": ""
             },
-            "default-branch": true,
+            "require-dev": {
+                "laravel/pint": "^1.24"
+            },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "PXP\\Core\\": "src/"
-                },
                 "files": [
                     "functions.php"
-                ]
+                ],
+                "psr-4": {
+                    "PXP\\Core\\": "src/"
+                }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "authors": [
                 {
                     "name": "Leo Nickl",
@@ -38,25 +41,25 @@
             ],
             "description": "Core functionality for leonickl/pxp",
             "support": {
-                "source": "https://github.com/leonickl/pxp-core/tree/main",
-                "issues": "https://github.com/leonickl/pxp-core/issues"
+                "issues": "https://github.com/leonickl/pxp-core/issues",
+                "source": "https://github.com/leonickl/pxp-core/tree/v1.10.0"
             },
-            "time": "2025-08-02T14:08:44+00:00"
+            "time": "2025-09-23T18:45:52+00:00"
         }
     ],
     "packages-dev": [
         {
             "name": "laravel/pint",
-            "version": "v1.24.0",
+            "version": "v1.25.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/pint.git",
-                "reference": "0345f3b05f136801af8c339f9d16ef29e6b4df8a"
+                "reference": "5016e263f95d97670d71b9a987bd8996ade6d8d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/pint/zipball/0345f3b05f136801af8c339f9d16ef29e6b4df8a",
-                "reference": "0345f3b05f136801af8c339f9d16ef29e6b4df8a",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/5016e263f95d97670d71b9a987bd8996ade6d8d9",
+                "reference": "5016e263f95d97670d71b9a987bd8996ade6d8d9",
                 "shasum": ""
             },
             "require": {
@@ -67,9 +70,9 @@
                 "php": "^8.2.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^3.82.2",
-                "illuminate/view": "^11.45.1",
-                "larastan/larastan": "^3.5.0",
+                "friendsofphp/php-cs-fixer": "^3.87.2",
+                "illuminate/view": "^11.46.0",
+                "larastan/larastan": "^3.7.1",
                 "laravel-zero/framework": "^11.45.0",
                 "mockery/mockery": "^1.6.12",
                 "nunomaduro/termwind": "^2.3.1",
@@ -80,9 +83,6 @@
             ],
             "type": "project",
             "autoload": {
-                "files": [
-                    "overrides/Runner/Parallel/ProcessFactory.php"
-                ],
                 "psr-4": {
                     "App\\": "app/",
                     "Database\\Seeders\\": "database/seeders/",
@@ -112,20 +112,20 @@
                 "issues": "https://github.com/laravel/pint/issues",
                 "source": "https://github.com/laravel/pint"
             },
-            "time": "2025-07-10T18:09:32+00:00"
+            "time": "2025-09-19T02:57:12+00:00"
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.21",
+            "version": "2.1.29",
             "source": {
                 "type": "git",
-                "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "1ccf445757458c06a04eb3f803603cb118fe5fa6"
+                "url": "https://github.com/phpstan/phpstan-phar-composer-source.git",
+                "reference": "git"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/1ccf445757458c06a04eb3f803603cb118fe5fa6",
-                "reference": "1ccf445757458c06a04eb3f803603cb118fe5fa6",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/d618573eed4a1b6b75e37b2e0b65ac65c885d88e",
+                "reference": "d618573eed4a1b6b75e37b2e0b65ac65c885d88e",
                 "shasum": ""
             },
             "require": {
@@ -170,14 +170,12 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-07-28T19:35:08+00:00"
+            "time": "2025-09-25T06:58:18+00:00"
         }
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "leonickl/pxp-core": 20
-    },
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
