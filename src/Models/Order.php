@@ -8,5 +8,5 @@ class Order extends Model
 {
     protected $table = 'orders';
 
-    protected $fields = ['id', 'name', 'type', 'extra', 'paid'];
+    protected $fields = ['id', 'name', 'email', 'type', 'extra', 'paid'];
 }

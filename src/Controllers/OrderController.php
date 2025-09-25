@@ -13,7 +13,7 @@ class OrderController
 
     public function action()
     {
-        $request = (array) request(['name', 'type', 'extra']);
+        $request = (array) request(['name', 'email', 'type', 'extra']);
 
         $order = \App\Models\Order::create(...$request, paid: false);
 

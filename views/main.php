@@ -112,6 +112,9 @@
     <label for="name" class="required">Name</label>
     <input type="text" id="name" name="name" required>
 
+    <label for="email" class="required">E-Mail-Adresse</label>
+    <input type="text" id="email" name="email" required>
+
     <label class="required">Pizza</label>
     <div class="radio-group">
         <label>

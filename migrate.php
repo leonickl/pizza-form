@@ -12,4 +12,5 @@ $db->create('orders', [
 
 $db->addColumns('orders', [
     'paid' => 'boolean not null default 0',
+    'email' => 'text',
 ]);
