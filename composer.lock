@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "058584c9f00e5e0c5dddf2d126393681",
+    "content-hash": "ef48502d2e7013628909cb77d1fb099c",
     "packages": [
         {
             "name": "leonickl/pxp-core",
-            "version": "v1.10.0",
+            "version": "v1.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/leonickl/pxp-core.git",
-                "reference": "734691314b986ca3470f9e1a828c63479b16e388"
+                "reference": "340542504ecb0acb1673d40dde0042414df6b713"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leonickl/pxp-core/zipball/734691314b986ca3470f9e1a828c63479b16e388",
-                "reference": "734691314b986ca3470f9e1a828c63479b16e388",
+                "url": "https://api.github.com/repos/leonickl/pxp-core/zipball/340542504ecb0acb1673d40dde0042414df6b713",
+                "reference": "340542504ecb0acb1673d40dde0042414df6b713",
                 "shasum": ""
             },
             "require-dev": {
@@ -42,9 +42,9 @@
             "description": "Core functionality for leonickl/pxp",
             "support": {
                 "issues": "https://github.com/leonickl/pxp-core/issues",
-                "source": "https://github.com/leonickl/pxp-core/tree/v1.10.0"
+                "source": "https://github.com/leonickl/pxp-core/tree/v1.11.0"
             },
-            "time": "2025-09-23T18:45:52+00:00"
+            "time": "2025-09-25T11:01:37+00:00"
         }
     ],
     "packages-dev": [
@@ -179,6 +179,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
+        "php": "8.4.*",
         "ext-pdo": "*"
     },
     "platform-dev": {},
