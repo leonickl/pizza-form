@@ -70,4 +70,13 @@ class AdminController extends Controller
             'paid' => $order,
         ]);
     }
+
+    public function toggleAccessiblity(string $secret)
+    {
+        $this->guard($secret);
+
+        perma(['accessible' => ! perma('accessible', false)]);
+        
+        return Router::redirect('/admin/'.config('secret'));
+    }
 }

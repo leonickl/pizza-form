@@ -11,3 +11,4 @@ Route::get('/admin/{secret}')->do(AdminController::class, 'index');
 Route::get('/admin/{secret}/analysis')->do(AdminController::class, 'analysis');
 Route::post('/admin/{secret}/delete')->do(AdminController::class, 'destroy');
 Route::post('/admin/{secret}/toggle-paid')->do(AdminController::class, 'togglePaid');
+Route::post('/admin/{secret}/toggle-accessibility')->do(AdminController::class, 'toggleAccessiblity');

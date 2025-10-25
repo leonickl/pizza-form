@@ -163,6 +163,10 @@
         <form action="<?= '/admin/' . config('secret') ?>/analysis" method="get">
             <button class="button-blue">Analyse</button>
         </form>
+
+        <form action="<?= '/admin/' . config('secret') ?>/toggle-accessibility" method="post">
+            <button type="submit" style="background-color: <?= perma('accessible', false) ? 'lightgreen' : 'red' ?>">Zugang umschalten</button>
+        </form>
     </div>
 
     <table>

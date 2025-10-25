@@ -9,6 +9,10 @@ class OrderController
 {
     public function index()
     {
+        if(! perma('accessible', false)) {
+            return view('orders-closed');
+        }
+
         return view('main', [
             'order' => Session::take('order'),
         ]);
