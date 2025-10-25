@@ -9,7 +9,7 @@ class OrderController
 {
     public function index()
     {
-        if(! perma('accessible', false)) {
+        if (! perma('accessible', false)) {
             return view('orders-closed');
         }
 

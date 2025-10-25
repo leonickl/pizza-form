@@ -76,7 +76,7 @@ class AdminController extends Controller
         $this->guard($secret);
 
         perma(['accessible' => ! perma('accessible', false)]);
-        
+
         return Router::redirect('/admin/'.config('secret'));
     }
 }
