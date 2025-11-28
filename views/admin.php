@@ -8,6 +8,7 @@
         display: flex;
         justify-content: flex-end;
         margin-bottom: 1rem;
+        gap: 10px;
     }
 
     .button-blue {
@@ -96,6 +97,20 @@
         background-color: #b91c1c;
     }
 
+    .btn-info {
+        background-color: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        padding: 0.5rem 1rem;
+        margin: 0;
+    }
+
+    .btn-info:hover {
+        background-color: #2563eb;
+    }
+
     /* Dark mode */
     @media (prefers-color-scheme: dark) {
         thead {
@@ -149,13 +164,20 @@
 <h1>Bestellungen (<?= $orders->count() ?>)</h1>
 
 <?php if ($deleted): ?>
-    <?php $order = $deleted ?>
-    <p class="info">Bestellung von <b><?= $order->name ?></b> gelöscht</p>
+    <div class="info"><p>Bestellung von <b><?= $deleted->name ?></b> gelöscht.</p>
+        <form action="<?= '/admin/' . config('secret') ?>/restore?id=<?= e($deleted->id) ?>" method="post">
+            <button class="btn-info">Wiederherstellen</button>
+        </form>
+    </div>
+<?php endif ?>
+
+<?php if ($restored): ?>
+    <div class="info"><p>Bestellung von <b><?= $restored->name ?></b> wiederhergestellt</p></div>
 <?php endif ?>
 
 <?php if ($paid): ?>
     <?php $order = $paid ?>
-    <p class="info"><b><?= e($order->name) ?></b> hat <?= $order->paid ? 'bezahlt' : 'nicht bezahlt' ?>.</p>
+    <div class="info"><p><b><?= e($order->name) ?></b> hat <?= $order->paid ? 'bezahlt' : 'nicht bezahlt' ?>.</p></div>
 <?php endif ?>
 
 <div class="table-container">

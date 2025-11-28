@@ -57,6 +57,15 @@
             padding: 8px;
             border: 1px solid blue;
             border-radius: 5px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-content: center;
+        }
+
+        .info p {
+            padding: 0;
+            margin: 0;
         }
 
         button {

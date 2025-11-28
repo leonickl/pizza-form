@@ -102,9 +102,11 @@
     <h1>Pizza bestellen</h1>
 
     <?php if ($order): ?>
-        <p class="info">Bestellung aufgenommen für <b><?= $order->name ?></b>: <?= $order->type ?>,
-            <?= $order->extra ?? '---' ?>
-        </p>
+        <div class="info">
+            <p>Bestellung aufgenommen für
+                <b><?= $order->name ?></b>: <?= $order->type ?>,
+                <?= $order->extra ?? '---' ?></p>
+        </div>
     <?php endif ?>
 
     <label for="name" class="required">Name</label>

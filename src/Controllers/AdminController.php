@@ -5,6 +5,7 @@ namespace App\Controllers;
 use PXP\Core\Controllers\Controller;
 use PXP\Core\Lib\Router;
 use PXP\Core\Lib\Session;
+use App\Models\Order;
 
 class AdminController extends Controller
 {
@@ -20,9 +21,10 @@ class AdminController extends Controller
         $this->guard($secret);
 
         return view('admin', [
-            'orders' => \App\Models\Order::all()
+            'orders' => Order::all()
                 ->sort(fn ($a, $b) => $b->paid <=> $a->paid ?: $b->name <=> $a->name),
             'deleted' => Session::take('deleted'),
+            'restored' => Session::take('restored'),
             'paid' => Session::take('paid'),
         ]);
     }
@@ -33,7 +35,7 @@ class AdminController extends Controller
 
         $id = (int) request('id');
 
-        $order = \App\Models\Order::find($id);
+        $order = Order::find($id);
 
         $order->delete();
 
@@ -42,11 +44,24 @@ class AdminController extends Controller
         ]);
     }
 
+    public function restore(string $secret)
+    {
+        $this->guard($secret);
+
+        $id = (int) request('id');
+
+        \PXP\Core\Lib\DB::init()->restore('orders', $id);
+
+        return Router::redirect('/admin/'.config('secret'), [
+            'restored' => Order::find($id),
+        ]);
+    }
+
     public function analysis(string $secret)
     {
         $this->guard($secret);
 
-        $orders = \App\Models\Order::all();
+        $orders = Order::all();
 
         return view('analysis', [
             'types' => $orders->groupBy(fn ($order) => $order->type),
@@ -60,7 +75,7 @@ class AdminController extends Controller
 
         $id = (int) request('id');
 
-        $order = \App\Models\Order::find($id);
+        $order = Order::find($id);
 
         $order->paid = ! $order->paid;
 
