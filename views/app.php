@@ -25,7 +25,7 @@
 
         main {
             background: #ffffff;
-            max-width: 800px;
+            max-width: 70vw;
             width: 100%;
             padding: 2rem;
             border-radius: 12px;
