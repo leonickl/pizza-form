@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
+use App\Models\Order;
 use PXP\Core\Controllers\Controller;
 use PXP\Core\Lib\Router;
 use PXP\Core\Lib\Session;
-use App\Models\Order;
 
 class AdminController extends Controller
 {
