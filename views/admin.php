@@ -194,19 +194,25 @@
     <table>
         <thead>
             <tr>
+                <th>Bezahlt</th>
                 <th>ID</th>
                 <th>Name</th>
                 <th>E-Mail</th>
                 <th>Typ</th>
                 <th>Extra</th>
                 <th>Erstellt/Geändert</th>
-                <th>Bezahlt</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($orders->reverse() as $order): ?>
                 <tr>
+                    <td>
+                        <form action="<?= '/admin/' . config('secret') ?>/toggle-paid" method="post" style="display: inline;">
+                            <input type="hidden" name="id" value="<?= e($order->id) ?>">
+                            <button type="submit" class="checkbox-button" title="Status wechseln" style="background-color: <?= $order->paid ? 'lightgreen' : 'red' ?>"></button>
+                        </form>
+                    </td>
                     <td><?= e($order->id) ?></td>
                     <td><?= e($order->name) ?></td>
                     <td><?= e($order->email) ?></td>
@@ -217,12 +223,6 @@
                         <?php if ($order->created_at !== $order->modified_at): ?>
                             / <?= e($order->modified_at) ?>
                         <?php endif ?>
-                    </td>
-                    <td>
-                        <form action="<?= '/admin/' . config('secret') ?>/toggle-paid" method="post" style="display: inline;">
-                            <input type="hidden" name="id" value="<?= e($order->id) ?>">
-                            <button type="submit" class="checkbox-button" title="Status wechseln" style="background-color: <?= $order->paid ? 'lightgreen' : 'red' ?>"></button>
-                        </form>
                     </td>
                     <td>
                         <form action="<?= '/admin/' . config('secret') ?>/delete?id=<?= e($order->id) ?>" method="post">
