@@ -102,6 +102,10 @@
             main {
                 padding: 1.5rem;
             }
+
+            main {
+                max-width: 100vw;
+            }
         }
 
         /* Dark mode styles */
