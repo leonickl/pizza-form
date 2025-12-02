@@ -22,8 +22,8 @@
 
     .radio-group {
         display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
+        flex-direction: row;
+        gap: 40px;
         margin-top: 0.5rem;
     }
 
