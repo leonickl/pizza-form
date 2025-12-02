@@ -30,6 +30,6 @@ class OrderController
 
         $order = \App\Models\Order::create(...$data, paid: false);
 
-        return Router::redirect(request()->bool('embedded') ? '/?embedded' : '/', compact('order'));
+        return Router::redirect('/', compact('order'));
     }
 }

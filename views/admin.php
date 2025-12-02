@@ -1,17 +1,8 @@
-<style>
-    .checkbox-button {
-        height: 40px;
-        width: 40px;
-        border: none;
-        cursor: pointer;
-        border-radius: 6px;        
-    }
-</style>
 
 <h1>Bestellungen (<?= $orders->count() ?>)</h1>
 
 <?php if ($deleted): ?>
-    <div class="info"><p>Bestellung von <b><?= $deleted->name ?></b> gelöscht.</p>
+    <div class="notification"><p class="m-0 p-0">Bestellung von <b><?= $deleted->name ?></b> gelöscht.</p>
         <form action="<?= '/admin/' . config('secret') ?>/restore?id=<?= e($deleted->id) ?>" method="post">
             <button class="btn">Wiederherstellen</button>
         </form>
@@ -19,12 +10,12 @@
 <?php endif ?>
 
 <?php if ($restored): ?>
-    <div class="info"><p>Bestellung von <b><?= $restored->name ?></b> wiederhergestellt</p></div>
+    <div class="notification"><p class="m-0 p-0">Bestellung von <b><?= $restored->name ?></b> wiederhergestellt</p></div>
 <?php endif ?>
 
 <?php if ($paid): ?>
     <?php $order = $paid ?>
-    <div class="info"><p><b><?= e($order->name) ?></b> hat <?= $order->paid ? 'bezahlt' : 'nicht bezahlt' ?>.</p></div>
+    <div class="notification"><p class="m-0 p-0"><b><?= e($order->name) ?></b> hat <?= $order->paid ? 'bezahlt' : 'nicht bezahlt' ?>.</p></div>
 <?php endif ?>
 
 <div class="row end mb">
