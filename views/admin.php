@@ -1,31 +1,4 @@
 <style>
-    .table-container {
-        overflow-x: auto;
-        margin-top: 1rem;
-    }
-
-    .button-container {
-        display: flex;
-        justify-content: flex-end;
-        margin-bottom: 1rem;
-        gap: 10px;
-    }
-
-    .button-blue {
-        background-color: #3b82f6;
-        color: white;
-        padding: 0.5rem 1rem;
-        border: none;
-        border-radius: 0.375rem;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: background-color 0.2s ease-in-out;
-    }
-
-    .button-blue:hover {
-        background-color: #2563eb;
-    }
-
     table {
         width: 100%;
         border-collapse: collapse;
@@ -131,14 +104,6 @@
             background-color: #1f2937;
         }
 
-        .button-blue {
-            background-color: #2563eb;
-        }
-
-        .button-blue:hover {
-            background-color: #1d4ed8;
-        }
-
         .card {
             background-color: #1f2937;
             border-color: #374151;
@@ -181,9 +146,9 @@
 <?php endif ?>
 
 <div class="table-container">
-    <div class="button-container">
+    <div class="row end mb">
         <form action="<?= '/admin/' . config('secret') ?>/analysis" method="get">
-            <button class="button-blue">Analyse</button>
+            <button class="btn">Analyse</button>
         </form>
 
         <form action="<?= '/admin/' . config('secret') ?>/toggle-accessibility" method="post">
