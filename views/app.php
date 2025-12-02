@@ -61,36 +61,12 @@
             flex-direction: row;
             justify-content: space-between;
             align-content: center;
+            margin-bottom: 1rem;
         }
 
         .info p {
             padding: 0;
             margin: 0;
-        }
-
-        button {
-            margin-top: 1.5rem;
-            padding: 0.7rem 1.5rem;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        button.primary {
-            background-color: #3b82f6;
-        }
-
-        button.primary:hover {
-            background-color: #2563eb;
-        }
-
-        button.warn {
-            background-color: rgb(255, 94, 94);
-        }
-
-        button.warn:hover {
-            background-color: rgb(255, 0, 0);
         }
 
         /* Responsive styles */
@@ -156,28 +132,66 @@
 
 
     <style>
+        :root {
+            --text-light: #545a68ff;
+            --thead-background: #f3f4f6;
+            --th-color: #111827;
+            --td-color: black;
+            --tr-background-hover: #f9fafb;
+            --tborder: #e5e7eb;
 
-        * {
             --primary: #3b82f6;
             --primary-hover: #2563eb;
-            --text-light: #545a68ff;
+            --warn: #ff5e5eff;
+            --warn-hover: #ff0000ff;
+
+            --card-text: black;
+            --card-border: #e5e7eb;
+            --card-background: #fff;
         }
 
         @media (prefers-color-scheme: dark) {
-            * {
+            :root {
+                --text-light: #d1d5db;
+                --thead-background: #374151;
+                --th-color: #f9fafb;
+                --td-color: #e5e7eb;
+                --tr-background-hover: #1f2937;
+                --tborder: #4b5563;
+
                 --primary: #2563eb;
                 --primary-hover: #1d4ed8;
-                --text-light: #d1d5db;
+                --warn: #b91c1c;
+                --warn-hover: #ff0000ff;
+
+                --card-text: #f9fafb;
+                --card-border: #374151;
+                --card-background: #1f2937;
             }
         }
 
         .row {
             display: flex;
+            flex-direction: row;
+            gap: 1rem;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
             gap: 1rem;
         }
 
         .end {
             justify-content: flex-end;
+        }
+
+        .between {
+            justify-content: space-between;
+        }
+
+        .items-center {
+            align-items: center;
         }
 
         .mb {
@@ -196,6 +210,10 @@
             margin-left: 2rem;
         }
 
+        .mb-05 {
+            margin-bottom: 0.5rem;
+        }
+
         .pl {
             padding-left: 1rem;
         }
@@ -208,7 +226,6 @@
             border-radius: 0.375rem;
             font-size: 1rem;
             cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
             text-decoration: none;
             display: inline-block;
         }
@@ -218,12 +235,75 @@
             text-decoration: none;
         }
 
+        .btn.warn {
+            background-color: var(--warn);
+        }
+
+        .btn.warn:hover {
+            background-color: var(--warn-hover);
+        }
+
         .text-light {
             color: var(--text-light);
         }
 
         .text-bold {
             font-weight: bold;
+        }
+
+        @media (min-width: 769px) {
+            .mobile-only {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .desktop-only {
+                display: none !important;
+            }
+        }
+
+        .card {
+            color: var(--card-text);
+            border: 1px solid var(--card-border);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            background: var(--card-background);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .w-full {
+            width: 100%;  
+        }
+
+        .w-min-40 {
+            min-width: 40rem;
+        }
+
+        table.styled {
+            border-collapse: collapse;
+        }
+
+        table.styled thead {
+            background-color: var(--thead-background);
+        }
+
+        table.styled th {
+            border-bottom: 1px var(--tborder) solid;
+            color: var(--th-color);
+            text-align: left;
+            padding: 0.75rem;
+        }
+
+        table.styled td {
+            border-bottom: 1px var(--tborder) solid;
+            color: var(--td-color);
+            text-align: left;
+            padding: 0.75rem;
+        }
+
+        table.styled tr:hover {
+            background-color: var(--tr-background-hover);
         }
     </style>
 </head>
