@@ -92,3 +92,12 @@
 .text-bold {
     font-weight: bold;
 }
+
+
+/**
+ * Other Stuff
+ */
+
+.overflow-x-auto {
+    overflow-x: auto;
+}

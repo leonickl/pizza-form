@@ -1,4 +1,3 @@
-
 <h1>Bestellungen (<?= $orders->count() ?>)</h1>
 
 <?php if ($deleted): ?>
@@ -28,50 +27,53 @@
     </form>
 </div>
 
-<table class="desktop-only styled w-full w-min-40">
-    <thead>
-        <tr>
-            <th>Bezahlt</th>
-            <th>ID</th>
-            <th>Name</th>
-            <th>E-Mail</th>
-            <th>Tage</th>
-            <th>Typ</th>
-            <th>Extra</th>
-            <th>Erstellt/Geändert</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($orders->reverse() as $order): ?>
+<div class="desktop-only overflow-x-auto">
+    <table class="styled w-full w-min-40">
+        <thead>
             <tr>
-                <td>
-                    <form action="<?= '/admin/' . config('secret') ?>/toggle-paid" method="post" style="display: inline;">
-                        <input type="hidden" name="id" value="<?= e($order->id) ?>">
-                        <button type="submit" class="checkbox-button" title="Status wechseln" style="background-color: <?= $order->paid ? 'lightgreen' : 'red' ?>"></button>
-                    </form>
-                </td>
-                <td><?= e($order->id) ?></td>
-                <td><?= e($order->name) ?></td>
-                <td><?= e($order->email) ?></td>
-                <td><?= e($order->daysLabel()) ?></td>
-                <td><?= e($order->type) ?></td>
-                <td><?= e($order->extra) ?></td>
-                <td>
-                    <?= e($order->created_at) ?>
-                    <?php if ($order->created_at !== $order->modified_at): ?>
-                        / <?= e($order->modified_at) ?>
-                    <?php endif ?>
-                </td>
-                <td>
-                    <form action="<?= '/admin/' . config('secret') ?>/delete?id=<?= e($order->id) ?>" method="post">
-                        <button class="btn warn">Löschen</button>
-                    </form>
-                </td>
+                <th>Bezahlt</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>E-Mail</th>
+                <th>Tage</th>
+                <th>Typ</th>
+                <th>Extra</th>
+                <th>Erstellt/Geändert</th>
+                <th></th>
             </tr>
-        <?php endforeach ?>
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+            <?php foreach ($orders->reverse() as $order): ?>
+                <tr>
+                    <td>
+                        <form action="<?= '/admin/' . config('secret') ?>/toggle-paid" method="post" style="display: inline;">
+                            <input type="hidden" name="id" value="<?= e($order->id) ?>">
+                            <button type="submit" class="checkbox-button" title="Status wechseln" style="background-color: <?= $order->paid ? 'lightgreen' : 'red' ?>"></button>
+                        </form>
+                    </td>
+                    <td><?= e($order->id) ?></td>
+                    <td><?= e($order->name) ?></td>
+                    <td><?= e($order->email) ?></td>
+                    <td><?= e($order->daysLabel()) ?></td>
+                    <td><?= e($order->type) ?></td>
+                    <td><?= e($order->extra) ?></td>
+                    <td>
+                        <?= e($order->created_at) ?>
+                        <?php if ($order->created_at !== $order->modified_at): ?>
+                            / <?= e($order->modified_at) ?>
+                        <?php endif ?>
+                    </td>
+                    <td>
+                        <form action="<?= '/admin/' . config('secret') ?>/delete?id=<?= e($order->id) ?>" method="post">
+                            <button class="btn warn">Löschen</button>
+                        </form>
+                    </td>
+                </tr>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+</div>
 
 <div class="mobile-only column mt">
     <?php foreach ($orders->reverse() as $order): ?>
