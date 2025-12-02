@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\DayOfWeek;
 use PXP\Core\Lib\Router;
 use PXP\Core\Lib\Session;
 
@@ -20,9 +21,14 @@ class OrderController
 
     public function action()
     {
-        $request = (array) request(['name', 'email', 'type', 'extra']);
+        $data = (array) request(['name', 'email', 'type', 'extra']);
 
-        $order = \App\Models\Order::create(...$request, paid: false);
+        $data['days'] = DayOfWeek::combine(
+            c(...request('days') ?? [])
+                ->map(fn ($day) => DayOfWeek::from((int) $day)),
+        );
+
+        $order = \App\Models\Order::create(...$data, paid: false);
 
         return Router::redirect(request()->bool('embedded') ? '/?embedded' : '/', compact('order'));
     }

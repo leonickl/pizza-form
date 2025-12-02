@@ -198,6 +198,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>E-Mail</th>
+                <th>Tage</th>
                 <th>Typ</th>
                 <th>Extra</th>
                 <th>Erstellt/Geändert</th>
@@ -216,6 +217,7 @@
                     <td><?= e($order->id) ?></td>
                     <td><?= e($order->name) ?></td>
                     <td><?= e($order->email) ?></td>
+                    <td><?= e($order->daysLabel()) ?></td>
                     <td><?= e($order->type) ?></td>
                     <td><?= e($order->extra) ?></td>
                     <td>
@@ -240,6 +242,7 @@
                 <div class="card-item"><strong>ID:</strong> <?= e($order->id) ?></div>
                 <div class="card-item"><strong>Name:</strong> <?= e($order->name) ?></div>
                 <div class="card-item"><strong>E-Mail:</strong> <?= e($order->email) ?></div>
+                <div class="card-item"><strong>Tage:</strong> <?= e($order->daysLabel()) ?></div>
                 <div class="card-item"><strong>Typ:</strong> <?= e($order->type) ?></div>
                 <div class="card-item"><strong>Extra:</strong> <?= e($order->extra) ?></div>
                 <div class="card-item"><strong>Erstellt/Geändert:</strong>

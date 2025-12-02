@@ -38,6 +38,10 @@
     .button-blue:hover {
         background-color: #2563eb;
     }
+    
+    .day-container {
+        margin-bottom: 50px;
+    }
 
     /* Dark mode support */
     @media (prefers-color-scheme: dark) {
@@ -65,17 +69,21 @@
     <a href="<?= '/admin/' . config('secret') ?>" class="button-blue">Zurück</a>
 </div>
 
-<div class="type-label">Insgesamt (<?= e($total) ?>)</div>
-
-<div class="list-container">
-    <?php foreach ($types as $type => $extras): ?>
-        <div class="type-label"><?= e($type) ?> (<?= count($extras) ?>)</div>
-        <ul class="extra-list">
-            <?php foreach ($extras as $order): ?>
-                <?php if(strlen(trim($order->extra)) > 0): ?>
-                    <li><?= e($order->extra) ?></li>
-                <?php endif ?>
+<? foreach ($days as $day): ?>
+    <div class="day-container">
+        <div class="type-label">Insgesamt am <?= $day->day->label() ?>: <?= e($day->total) ?></div>
+        
+        <div class="list-container">
+            <?php foreach ($day->types as $type => $extras): ?>
+                <div class="type-label"><?= e($type) ?> (<?= count($extras) ?>)</div>
+                <ul class="extra-list">
+                    <?php foreach ($extras as $order): ?>
+                        <?php if(strlen(trim($order->extra)) > 0): ?>
+                            <li><?= e($order->extra) ?></li>
+                        <?php endif ?>
+                    <?php endforeach ?>
+                </ul>
             <?php endforeach ?>
-        </ul>
-    <?php endforeach ?>
-</div>
+        </div>
+    </div>
+<? endforeach ?>

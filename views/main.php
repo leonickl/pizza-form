@@ -39,6 +39,25 @@
         accent-color: #3b82f6;
     }
 
+    .checkbox-group {
+        display: flex;
+        flex-direction: row;
+        gap: 0.75rem;
+        margin-top: 0.5rem;
+    }
+
+    .checkbox-group label {
+        display: flex;
+        align-items: center;
+        font-weight: normal;
+        gap: 0.5rem;
+        cursor: pointer;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+        accent-color: #3b82f6;
+    }
+
     button {
         margin-top: 1.5rem;
         padding: 0.7rem 1.5rem;
@@ -115,6 +134,16 @@
     <label for="email" class="required">E-Mail-Adresse</label>
     <input type="text" id="email" name="email" required>
 
+    <label>Tag</label>
+    <div class="checkbox-group">
+        <? foreach(App\DayOfWeek::all() as $day): ?>
+            <label>
+                <input type="checkbox" name="days[<?= $day->name ?>]" value="<?= $day->value ?>">
+                <?= $day->label() ?>
+            </label>
+        <? endforeach ?>
+    </div>
+
     <label class="required">Pizza</label>
     <div class="radio-group">
         <label>
@@ -131,8 +160,21 @@
         </label>
     </div>
 
-    <label for="wünsche">Sonderwünsche</label>
-    <textarea id="wünsche" name="extra" rows="4" placeholder="Optional..."></textarea>
+    <label for="extra">Sonderwünsche</label>
+    <textarea id="extra" name="extra" rows="4" placeholder="Optional..."></textarea>
+
+    <label for="agb" class="required">Hinweise</label>
+    <p>Wer seine Bestellung für einen Tag stornieren möchte, macht das bitte
+        <em>spätestens am Vorabend</em> um 18 Uhr per E-Mail
+        (<a href="mailto:pizza@hardchor-passau.de">pizza@hardchor-passau.de</a>)
+        oder auf WhatsApp (01522 8751413). Wer für zwei Tage bestellt hat, bitte den
+        Gesamtbetrag <em>auf einmal</em> bezahlen und nicht zweimal extra.</p>
+    <label style="font-weight: normal">
+        <input type="checkbox" id="agb" name="agb" required>
+        Habe ich zur Kenntnis genommen.
+    </label>
+
+    <p></p>
 
     <button type="submit" class="primary">Bestellen</button>
 </form>

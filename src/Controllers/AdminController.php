@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\DayOfWeek;
 use App\Models\Order;
 use PXP\Core\Controllers\Controller;
 use PXP\Core\Lib\Router;
@@ -61,12 +62,20 @@ class AdminController extends Controller
     {
         $this->guard($secret);
 
-        $orders = Order::all();
+        $days = [];
 
-        return view('analysis', [
-            'types' => $orders->groupBy(fn ($order) => $order->type),
-            'total' => $orders->count(),
-        ]);
+        foreach (DayOfWeek::all() as $day) {
+            $orders = Order::all()
+                ->filter(fn (Order $order) => $order->days & $day->value);
+
+            $days[] = (object) [
+                'day' => $day,
+                'types' => $orders->groupBy(fn ($order) => $order->type),
+                'total' => $orders->count(),
+            ];
+        }
+
+        return view('analysis', compact('days'));
     }
 
     public function togglePaid(string $secret)
