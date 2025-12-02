@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\DayOfWeek;
+use App\Day;
 use PXP\Core\Lib\Model;
 
 class Order extends Model
@@ -13,7 +13,7 @@ class Order extends Model
 
     public function daysLabel()
     {
-        return DayOfWeek::separate($this->days)
+        return Day::separate($this->days)
             ->map(fn ($day) => $day->label())
             ->join(', ');
     }

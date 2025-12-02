@@ -8,7 +8,7 @@ use PXP\Core\Lib\Collection;
  * Bitmask for weekdays
  * Next day should therefor have 4, next 8, and so on
  */
-enum DayOfWeek: int
+enum Day: int
 {
     case SATURDAY = 1;
     case SUNDAY = 2;

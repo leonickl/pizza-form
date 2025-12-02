@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\DayOfWeek;
+use App\Day;
 use PXP\Core\Lib\Router;
 use PXP\Core\Lib\Session;
 
@@ -23,9 +23,9 @@ class OrderController
     {
         $data = (array) request(['name', 'email', 'type', 'extra']);
 
-        $data['days'] = DayOfWeek::combine(
+        $data['days'] = Day::combine(
             c(...request('days') ?? [])
-                ->map(fn ($day) => DayOfWeek::from((int) $day)),
+                ->map(fn ($day) => Day::from((int) $day)),
         );
 
         $order = \App\Models\Order::create(...$data, paid: false);

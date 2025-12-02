@@ -18,7 +18,7 @@
 
     <label>Tag</label>
     <div class="checkbox-group">
-        <?php foreach(App\DayOfWeek::all() as $day): ?>
+        <?php foreach(App\Day::all() as $day): ?>
             <label>
                 <input type="checkbox" name="days[<?= $day->name ?>]" value="<?= $day->value ?>">
                 <?= $day->label() ?>

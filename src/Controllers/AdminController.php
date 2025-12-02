@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\DayOfWeek;
+use App\Day;
 use App\Models\Order;
 use PXP\Core\Controllers\Controller;
 use PXP\Core\Lib\Router;
@@ -64,7 +64,7 @@ class AdminController extends Controller
 
         $days = [];
 
-        foreach (DayOfWeek::all() as $day) {
+        foreach (Day::all() as $day) {
             $orders = Order::all()
                 ->filter(fn (Order $order) => $order->days & $day->value);
 
