@@ -75,6 +75,15 @@ class AdminController extends Controller
             ];
         }
 
+        $ordersWithoutDay = Order::all()
+            ->filter(fn (Order $order) => $order->days === 0);
+
+        $days[] = (object) [
+            'day' => null,
+            'types' => $ordersWithoutDay->groupBy(fn ($order) => $order->type),
+            'total' => $ordersWithoutDay->count(),
+        ];
+
         return view('analysis', compact('days'));
     }
 
