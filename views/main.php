@@ -136,12 +136,12 @@
 
     <label>Tag</label>
     <div class="checkbox-group">
-        <? foreach(App\DayOfWeek::all() as $day): ?>
+        <?php foreach(App\DayOfWeek::all() as $day): ?>
             <label>
                 <input type="checkbox" name="days[<?= $day->name ?>]" value="<?= $day->value ?>">
                 <?= $day->label() ?>
             </label>
-        <? endforeach ?>
+        <?php endforeach ?>
     </div>
 
     <label class="required">Pizza</label>

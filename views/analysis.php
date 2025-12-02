@@ -69,7 +69,7 @@
     <a href="<?= '/admin/' . config('secret') ?>" class="button-blue">Zurück</a>
 </div>
 
-<? foreach ($days as $day): ?>
+<?php foreach ($days as $day): ?>
     <div class="day-container">
         <div class="type-label">Insgesamt am <?= $day->day->label() ?>: <?= e($day->total) ?></div>
         
@@ -86,4 +86,4 @@
             <?php endforeach ?>
         </div>
     </div>
-<? endforeach ?>
+<?php endforeach ?>
