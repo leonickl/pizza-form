@@ -124,7 +124,8 @@
         <div class="info">
             <p>Bestellung aufgenommen für
                 <b><?= $order->name ?></b>: <?= $order->type ?>,
-                <?= $order->extra ?? '---' ?></p>
+                <?= $order->extra ?? '---' ?>,
+                <?= $oder->daysLabel() ?></p>
         </div>
     <?php endif ?>
 
