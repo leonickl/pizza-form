@@ -6,7 +6,7 @@ use App\Day;
 use App\Models\Order;
 use PXP\Core\Lib\Router;
 use PXP\Core\Lib\Session;
-use PXP\Exceptions\ValidationException;
+use PXP\Core\Exceptions\ValidationException;
 
 class OrderController
 {
