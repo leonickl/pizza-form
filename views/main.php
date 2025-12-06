@@ -11,10 +11,10 @@
     <?php endif ?>
 
     <label for="name" class="required">Name</label>
-    <input type="text" id="name" name="name" required>
+    <input type="text" id="name" name="name" required minlength="3" maxlength="40">
 
     <label for="email" class="required">E-Mail-Adresse</label>
-    <input type="text" id="email" name="email" required>
+    <input type="text" id="email" name="email" required minlength="6" maxlength="50">
 
     <label>Tag</label>
     <div class="checkbox-group">
@@ -43,7 +43,7 @@
     </div>
 
     <label for="extra">Sonderwünsche</label>
-    <textarea id="extra" name="extra" rows="4" placeholder="Optional..."></textarea>
+    <textarea id="extra" name="extra" rows="4" placeholder="Optional..." maxlength="300"></textarea>
 
     <label for="agb" class="required">Hinweise</label>
     <p>Wer seine Bestellung für einen Tag stornieren möchte, macht das bitte
