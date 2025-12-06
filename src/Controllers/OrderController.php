@@ -4,9 +4,9 @@ namespace App\Controllers;
 
 use App\Day;
 use App\Models\Order;
+use PXP\Core\Exceptions\ValidationException;
 use PXP\Core\Lib\Router;
 use PXP\Core\Lib\Session;
-use PXP\Core\Exceptions\ValidationException;
 
 class OrderController
 {
