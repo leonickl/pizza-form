@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Day;
-use PXP\Core\Lib\Model;
+use PXP\Data\Model;
 
 class Order extends Model
 {

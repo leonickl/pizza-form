@@ -4,9 +4,9 @@ namespace App\Controllers;
 
 use App\Day;
 use App\Models\Order;
-use PXP\Core\Exceptions\ValidationException;
-use PXP\Core\Lib\Router;
-use PXP\Core\Lib\Session;
+use PXP\Exceptions\ValidationException;
+use PXP\Router\Router;
+use PXP\Lib\Session;
 
 class OrderController
 {
@@ -46,7 +46,7 @@ class OrderController
         }
 
         $data->days = Day::combine(
-            c(...$data->days ?? [])
+            v(...array_values($data->days ?? []))
                 ->map(fn ($day) => Day::from((int) $day)),
         );
 

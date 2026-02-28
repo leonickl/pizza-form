@@ -1,9 +1,9 @@
 <?php
 
 use App\Controllers\AdminController;
-use App\Controllers\AssetController;
+use PXP\Http\Controllers\AssetController;
 use App\Controllers\OrderController;
-use PXP\Core\Lib\Route;
+use PXP\Router\Route;
 
 Route::get('/')->do(OrderController::class, 'index');
 Route::post('/')->do(OrderController::class, 'action');

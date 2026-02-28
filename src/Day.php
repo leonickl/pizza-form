@@ -2,7 +2,7 @@
 
 namespace App;
 
-use PXP\Core\Lib\Collection;
+use PXP\Ds\Vector;
 
 /**
  * Bitmask for weekdays
@@ -21,12 +21,12 @@ enum Day: int
         };
     }
 
-    public static function all(): Collection
+    public static function all(): Vector
     {
-        return c(...self::cases());
+        return v(...self::cases());
     }
 
-    public static function combine(Collection $days): int
+    public static function combine(Vector $days): int
     {
         $mask = 0;
 
@@ -37,7 +37,7 @@ enum Day: int
         return $mask;
     }
 
-    public static function separate(int $days): Collection
+    public static function separate(int $days): Vector
     {
         return self::all()
             ->filter(fn (self $day) => $days & $day->value);
