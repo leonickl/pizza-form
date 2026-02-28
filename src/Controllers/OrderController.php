@@ -5,8 +5,8 @@ namespace App\Controllers;
 use App\Day;
 use App\Models\Order;
 use PXP\Exceptions\ValidationException;
-use PXP\Router\Router;
 use PXP\Lib\Session;
+use PXP\Router\Router;
 
 class OrderController
 {
