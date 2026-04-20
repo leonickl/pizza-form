@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\DayOfWeek;
 use App\Models\Order;
 use PXP\Core\Controllers\Controller;
+use PXP\Core\Exceptions\UnauthorizedException;
+use PXP\Core\Lib\DB;
 use PXP\Core\Lib\Router;
 use PXP\Core\Lib\Session;
 
@@ -13,7 +15,7 @@ class AdminController extends Controller
     private function guard(string $secret)
     {
         if ($secret !== config('secret')) {
-            throw new \PXP\Core\Exceptions\UnauthorizedException;
+            throw new UnauthorizedException;
         }
     }
 
@@ -51,7 +53,7 @@ class AdminController extends Controller
 
         $id = (int) request('id');
 
-        \PXP\Core\Lib\DB::init()->restore('orders', $id);
+        DB::init()->restore('orders', $id);
 
         return Router::redirect('/admin/'.config('secret'), [
             'restored' => Order::find($id),

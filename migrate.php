@@ -1,8 +1,10 @@
 <?php
 
+use PXP\Core\Lib\DB;
+
 require __DIR__.'/vendor/autoload.php';
 
-$db = \PXP\Core\Lib\DB::init();
+$db = DB::init();
 
 $db->create('orders', [
     'name' => 'text not null',

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\DayOfWeek;
+use App\Models\Order;
 use PXP\Core\Lib\Router;
 use PXP\Core\Lib\Session;
 
@@ -28,7 +29,7 @@ class OrderController
                 ->map(fn ($day) => DayOfWeek::from((int) $day)),
         );
 
-        $order = \App\Models\Order::create(...$data, paid: false);
+        $order = Order::create(...$data, paid: false);
 
         return Router::redirect('/', compact('order'));
     }

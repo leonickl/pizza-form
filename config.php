@@ -1,5 +1,7 @@
 <?php
 
+use App\DayOfWeek;
+
 return [
     'title' => 'Pizze',
 
@@ -9,7 +11,7 @@ return [
     'port' => 8085,
 
     'days' => [
-        \App\DayOfWeek::SATURDAY,
-        \App\DayOfWeek::SUNDAY,
+        DayOfWeek::SATURDAY,
+        DayOfWeek::SUNDAY,
     ],
 ];

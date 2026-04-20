@@ -1,5 +1,7 @@
 <?php
 
+use PXP\Core\App;
+
 require __DIR__.'/vendor/autoload.php';
 
-echo \PXP\Core\App::run();
+echo App::run();
