@@ -7,4 +7,9 @@ return [
 
     'domain' => env('HOST'),
     'port' => 8085,
+
+    'days' => [
+        \App\DayOfWeek::SATURDAY,
+        \App\DayOfWeek::SUNDAY,
+    ],
 ];

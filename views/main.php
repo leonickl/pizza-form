@@ -18,9 +18,10 @@
 
     <label>Tag</label>
     <div class="checkbox-group">
-        <?php foreach(App\DayOfWeek::all() as $day): ?>
+        <?php foreach(config('days') as $day): ?>
             <label>
-                <input type="checkbox" name="days[<?= $day->name ?>]" value="<?= $day->value ?>">
+                <input type="checkbox" name="days[<?= $day->name ?>]" value="<?= $day->value ?>"
+                    <?= count(config('days')) === 1 ? 'checked' : '' ?>>
                 <?= $day->label() ?>
             </label>
         <?php endforeach ?>
