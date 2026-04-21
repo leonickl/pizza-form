@@ -5,8 +5,7 @@ namespace App\Controllers;
 use App\Day;
 use App\Models\Order;
 use PXP\Http\Controllers\Controller;
-use PXP\Router\Router;
-use PXP\Lib\Session;
+use PXP\Http\Response\Redirect;
 use PXP\Exceptions\UnauthorizedException;
 use DB\Data\DB;
 
@@ -26,9 +25,9 @@ class AdminController extends Controller
         return view('admin', [
             'orders' => Order::all()
                 ->sort(fn ($a, $b) => $b->paid <=> $a->paid ?: $b->name <=> $a->name),
-            'deleted' => Session::take('deleted'),
-            'restored' => Session::take('restored'),
-            'paid' => Session::take('paid'),
+            'deleted' => session()->take('deleted'),
+            'restored' => session()->take('restored'),
+            'paid' => session()->take('paid'),
         ]);
     }
 
@@ -42,7 +41,7 @@ class AdminController extends Controller
 
         $order->delete();
 
-        return Router::redirect('/admin/'.config('secret'), [
+        return Redirect::path('/admin/'.config('secret'), [
             'deleted' => $order,
         ]);
     }
@@ -55,7 +54,7 @@ class AdminController extends Controller
 
         DB::init()->restore('orders', $id);
 
-        return Router::redirect('/admin/'.config('secret'), [
+        return Redirect::path('/admin/'.config('secret'), [
             'restored' => Order::find($id),
         ]);
     }
@@ -101,7 +100,7 @@ class AdminController extends Controller
 
         $order->save();
 
-        return Router::redirect('/admin/'.config('secret'), [
+        return Redirect::path('/admin/'.config('secret'), [
             'paid' => $order,
         ]);
     }
@@ -112,6 +111,6 @@ class AdminController extends Controller
 
         perma(['accessible' => ! perma('accessible', false)]);
 
-        return Router::redirect('/admin/'.config('secret'));
+        return Redirect::path('/admin/'.config('secret'));
     }
 }

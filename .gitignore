@@ -1,4 +1,5 @@
-database/*
-log/*
-vendor/*
+database
+log
+vendor
+cache
 .env

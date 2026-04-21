@@ -5,8 +5,7 @@ namespace App\Controllers;
 use App\Day;
 use App\Models\Order;
 use PXP\Exceptions\ValidationException;
-use PXP\Router\Router;
-use PXP\Lib\Session;
+use PXP\Http\Response\Redirect;
 
 class OrderController
 {
@@ -17,7 +16,7 @@ class OrderController
         }
 
         return view('main', [
-            'order' => Session::take('order'),
+            'order' => session()->take('order'),
         ]);
     }
 
@@ -50,8 +49,8 @@ class OrderController
                 ->map(fn ($day) => Day::from((int) $day)),
         );
 
-        return Router::redirect('/', [
-            'order' => Order::create(...(array) $data, paid: false),
+        return Redirect::path('/', [
+            'order' => Order::create(...$data->toArray(), paid: false),
         ]);
     }
 }
