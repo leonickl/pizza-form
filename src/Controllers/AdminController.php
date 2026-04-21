@@ -4,10 +4,10 @@ namespace App\Controllers;
 
 use App\Day;
 use App\Models\Order;
+use PXP\Data\DB;
+use PXP\Exceptions\UnauthorizedException;
 use PXP\Http\Controllers\Controller;
 use PXP\Http\Response\Redirect;
-use PXP\Exceptions\UnauthorizedException;
-use PXP\Data\DB;
 
 class AdminController extends Controller
 {
