@@ -1,14 +1,14 @@
 <form action="/" method="post">
     <h1>Pizza bestellen</h1>
 
-    <?php if ($order): ?>
+    {{ if: $order }}
         <div class="notification">
             <p>Bestellung aufgenommen für
-                <b><?= $order->name ?></b>: <?= $order->type ?>,
-                <?= $order->extra ?? '---' ?>,
-                <?= $order->daysLabel() ?></p>
+                <b>{{ $order->name }}</b>: {{ $order->type }},
+                {{ $order->extra ?? '---' }},
+                {{ $order->daysLabel() }}</p>
         </div>
-    <?php endif ?>
+    {{ if; }}
 
     <label for="name" class="required">Name</label>
     <input type="text" id="name" name="name" required minlength="3" maxlength="40">
@@ -18,13 +18,13 @@
 
     <label>Tag</label>
     <div class="checkbox-group">
-        <?php foreach(config('days') as $day): ?>
+        {{ each: config('days') as $day }}
             <label>
-                <input type="checkbox" name="days[<?= $day->name ?>]" value="<?= $day->value ?>"
-                    <?= count(config('days')) === 1 ? 'checked' : '' ?>>
-                <?= $day->label() ?>
+                <input type="checkbox" name="days[{{ $day->name }}]" value="{{ $day->value }}"
+                    {{ count(config('days')) === 1 ? 'checked' : '' }}>
+                {{ $day->label() }}
             </label>
-        <?php endforeach ?>
+        {{ each; }}
     </div>
 
     <label class="required">Pizza</label>

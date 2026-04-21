@@ -15,12 +15,12 @@
     <link rel="stylesheet" href="/css/components">
     <link rel="stylesheet" href="/css/form">
 
-    <title>Pizze</title>
+    <title>{{ config('title') }}</title>
 </head>
 
 <body>
     <main>
-        <?= $slot ?>
+        {{ ==$slot }}
     </main>
 </body>
 

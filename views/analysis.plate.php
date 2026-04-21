@@ -1,0 +1,29 @@
+<h1>Typen und Extras</h1>
+
+<div class="row end mb">
+    <a href="/admin/{{ config('secret') }}" class="btn">Zurück</a>
+</div>
+
+{{ each: $days as $day }}
+    <div class="mb-3">
+        <div class="text-bold mt">
+            Insgesamt am {{ $day->day?->label() ?? '---' }}: {{ $day->total }}
+        </div>
+        
+        <div class="mt pl">
+            {{ each: $day->types as $type => $extras }}
+                <div class="text-bold mt">
+                    {{ $type }} ({{ count($extras) }})
+                </div>
+
+                <ul class="text-light ml-2 extra-list">
+                    {{ each: $extras as $order }}
+                        {{ if: strlen(trim($order->extra)) > 0 }}
+                            <li>{{ $order->extra }}</li>
+                        {{ if; }}
+                    {{ each; }}
+                </ul>
+            {{ each; }}
+        </div>
+    </div>
+{{ each; }}
