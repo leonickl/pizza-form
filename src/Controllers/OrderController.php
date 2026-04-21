@@ -36,8 +36,8 @@ class OrderController
             throw new ValidationException('type is required and must be a valid entry from the list');
         }
 
-        if ($data->extra !== null && (! is_string($data->extra) || strlen($data->extra) > 300)) {
-            throw new ValidationException('extra must be maximum 300 characters long if given');
+        if ($data->extra !== null && (! is_string($data->extra) || strlen($data->extra) > 100)) {
+            throw new ValidationException('extra must be maximum 100 characters long if given');
         }
 
         if ($data->days !== null && ! is_array($data->days)) {

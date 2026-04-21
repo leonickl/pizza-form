@@ -44,7 +44,7 @@
     </div>
 
     <label for="extra">Sonderwünsche</label>
-    <textarea id="extra" name="extra" rows="4" placeholder="Optional..." maxlength="300"></textarea>
+    <textarea id="extra" name="extra" rows="4" placeholder="Optional..." maxlength="100"></textarea>
 
     <label for="agb" class="required">Hinweise</label>
     <p>Wer seine Bestellung für einen Tag stornieren möchte, macht das bitte
