@@ -1,5 +1,7 @@
 <?php
 
+use App\Day;
+
 return [
     'title' => 'Pizze',
 
@@ -9,7 +11,7 @@ return [
     'port' => 8085,
 
     'days' => [
-        \App\Day::SATURDAY,
-        \App\Day::SUNDAY,
+        Day::SATURDAY,
+        Day::SUNDAY,
     ],
 ];

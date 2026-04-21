@@ -1,9 +1,11 @@
 <?php
 
+use App\Models\Order;
+
 // Playground.
 // Can be executed with `./run play`
 
-\App\Models\Order::create(
+Order::create(
     name: 'John Doe',
     type: 'Vegan',
     extra: 'Funghi',
