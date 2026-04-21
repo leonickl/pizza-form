@@ -3,9 +3,9 @@
     "description": "Pizzabestellungen für den innenchor.de",
     "type": "project",
     "require": {
-        "php": "8.4.*",
+        "php": "^8.5",
         "ext-pdo": "*",
-        "leonickl/pxp-core": "^2.0"
+        "leonickl/pxp-core": "^3.0"
     },
     "autoload": {
         "psr-4": {
