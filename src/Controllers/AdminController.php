@@ -7,7 +7,7 @@ use App\Models\Order;
 use PXP\Http\Controllers\Controller;
 use PXP\Http\Response\Redirect;
 use PXP\Exceptions\UnauthorizedException;
-use DB\Data\DB;
+use PXP\Data\DB;
 
 class AdminController extends Controller
 {
