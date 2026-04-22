@@ -2,7 +2,7 @@
 
 {{ if: $deleted }}
     <div class="notification"><p class="m-0 p-0">Bestellung von <b>{{ $deleted->name }}</b> gelöscht.</p>
-        <form action="/admin/{{ config('secret') }}/restore?id={{ $deleted->id }}" method="post">
+        <form action="/admin/restore?id={{ $deleted->id }}" method="post">
             <button class="btn">Wiederherstellen</button>
         </form>
     </div>
@@ -17,11 +17,11 @@
 {{ if; }}
 
 <div class="row end mb">
-    <form action="/admin/{{ config('secret') }}/analysis" method="get">
+    <form action="/admin/analysis" method="get">
         <button class="btn">Analyse</button>
     </form>
 
-    <form action="/admin/{{ config('secret') }}/toggle-accessibility" method="post">
+    <form action="/admin/toggle-accessibility" method="post">
         <button class="btn" type="submit" style="background-color: {{ perma('accessible', false) ? 'lightgreen' : 'red' }}">Zugang umschalten</button>
     </form>
 </div>
@@ -46,7 +46,7 @@
             {{ each: $orders->reverse() as $order }}
                 <tr>
                     <td>
-                        <form action="/admin/{{ config('secret') }}/toggle-paid" method="post" style="display: inline;">
+                        <form action="/admin/toggle-paid" method="post" style="display: inline;">
                             <input type="hidden" name="id" value="{{ $order->id }}">
                             <button type="submit" class="checkbox-button" title="Status wechseln" style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }}"></button>
                         </form>
@@ -65,7 +65,7 @@
                         {{ if; }}
                     </td>
                     <td>
-                        <form action="/admin/{{ config('secret') }}/delete?id={{ $order->id }}" method="post">
+                        <form action="/admin/delete?id={{ $order->id }}" method="post">
                             <button class="btn warn">Löschen</button>
                         </form>
                     </td>
@@ -92,12 +92,12 @@
                 {{ if; }}
             </div>
             <div class="row between items-center mt">
-                <form action="/admin/{{ config('secret') }}/toggle-paid" method="post">
+                <form action="/admin/toggle-paid" method="post">
                     <input type="hidden" name="id" value="{{ $order->id }}">
                     <button type="submit" class="checkbox-button" title="Status wechseln"
                         style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }}"></button>
                 </form>
-                <form action="/admin/{{ config('secret') }}/delete?id={{ $order->id }}" method="post">
+                <form action="/admin/delete?id={{ $order->id }}" method="post">
                     <button class="btn warn">Löschen</button>
                 </form>
             </div>

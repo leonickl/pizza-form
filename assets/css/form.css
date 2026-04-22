@@ -5,11 +5,12 @@ label {
 }
 
 .required::after {
-    content: " *";
+    content: "*";
     color: red;
 }
 
 input[type="text"],
+input[type="password"],
 textarea {
     width: 100%;
     padding: 0.5rem;
@@ -70,6 +71,7 @@ textarea {
     }
 
     input[type="text"],
+    input[type="password"],
     textarea {
         background-color: #1f2937;
         border-color: #4b5563;

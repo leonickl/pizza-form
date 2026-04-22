@@ -20,3 +20,8 @@ $db->addColumns('orders', [
 $db->addColumns('orders', [
     'days' => 'int not null default 0',
 ]);
+
+$db->create('users', [
+    'username' => 'text not null',
+    'password_hash' => 'text not null',
+]);

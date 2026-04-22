@@ -11,17 +11,8 @@ use PXP\Http\Response\Redirect;
 
 class AdminController extends Controller
 {
-    private function guard(string $secret)
+    public function index()
     {
-        if ($secret !== config('secret')) {
-            throw new UnauthorizedException;
-        }
-    }
-
-    public function index(string $secret)
-    {
-        $this->guard($secret);
-
         return view('admin', [
             'orders' => Order::all()
                 ->sort(fn ($a, $b) => $b->paid <=> $a->paid ?: $b->name <=> $a->name),
@@ -31,38 +22,32 @@ class AdminController extends Controller
         ]);
     }
 
-    public function destroy(string $secret)
+    public function destroy()
     {
-        $this->guard($secret);
-
         $id = (int) request('id');
 
         $order = Order::find($id);
 
         $order->delete();
 
-        return Redirect::path('/admin/'.config('secret'), [
+        return Redirect::path('/admin', [
             'deleted' => $order,
         ]);
     }
 
-    public function restore(string $secret)
+    public function restore()
     {
-        $this->guard($secret);
-
         $id = (int) request('id');
 
         DB::init()->restore('orders', $id);
 
-        return Redirect::path('/admin/'.config('secret'), [
+        return Redirect::path('/admin', [
             'restored' => Order::find($id),
         ]);
     }
 
-    public function analysis(string $secret)
+    public function analysis()
     {
-        $this->guard($secret);
-
         $days = [];
 
         foreach (Day::all() as $day) {
@@ -88,10 +73,8 @@ class AdminController extends Controller
         return view('analysis', compact('days'));
     }
 
-    public function togglePaid(string $secret)
+    public function togglePaid()
     {
-        $this->guard($secret);
-
         $id = (int) request('id');
 
         $order = Order::find($id);
@@ -100,17 +83,15 @@ class AdminController extends Controller
 
         $order->save();
 
-        return Redirect::path('/admin/'.config('secret'), [
+        return Redirect::path('/admin/', [
             'paid' => $order,
         ]);
     }
 
-    public function toggleAccessiblity(string $secret)
+    public function toggleAccessiblity()
     {
-        $this->guard($secret);
-
         perma(['accessible' => ! perma('accessible', false)]);
 
-        return Redirect::path('/admin/'.config('secret'));
+        return Redirect::path('/admin/');
     }
 }

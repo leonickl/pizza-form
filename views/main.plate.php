@@ -1,3 +1,5 @@
+<a class="btn secondary mt-2" href="/login">Login</a>
+
 <form action="/" method="post">
     <h1>Pizza bestellen</h1>
 

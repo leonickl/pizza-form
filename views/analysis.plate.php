@@ -1,7 +1,7 @@
 <h1>Typen und Extras</h1>
 
 <div class="row end mb">
-    <a href="/admin/{{ config('secret') }}" class="btn">Zurück</a>
+    <a href="/admin" class="btn">Zurück</a>
 </div>
 
 {{ each: $days as $day }}
