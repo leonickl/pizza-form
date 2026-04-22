@@ -1,11 +1,11 @@
 <?php
 
 use App\Controllers\AdminController;
-use App\Controllers\OrderController;
 use App\Controllers\LoginController;
+use App\Controllers\OrderController;
 use PXP\Http\Controllers\AssetController;
-use PXP\Router\Route;
 use PXP\Http\Middleware\InteractiveAuth;
+use PXP\Router\Route;
 
 Route::get('/')->do(OrderController::class, 'index');
 Route::post('/')->do(OrderController::class, 'action');
