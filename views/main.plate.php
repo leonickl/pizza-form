@@ -1,7 +1,10 @@
-<a class="btn secondary mt-2" href="/login">Login</a>
-
 <form action="/" method="post">
-    <h1>Pizza bestellen</h1>
+    <div class="row between">
+        <h1>Pizza bestellen</h1>
+        <div>
+            <a class="btn secondary" href="/admin">Admin</a>
+        </div>
+    </div>
 
     {{ if: $order }}
         <div class="notification">

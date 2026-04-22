@@ -17,13 +17,13 @@
 {{ if; }}
 
 <div class="row end mb">
-    <form action="/admin/analysis" method="get">
-        <button class="btn">Analyse</button>
-    </form>
-
-    <form action="/admin/toggle-accessibility" method="post">
-        <button class="btn" type="submit" style="background-color: {{ perma('accessible', false) ? 'lightgreen' : 'red' }}">Zugang umschalten</button>
-    </form>
+    <a href="/admin/analysis" class="btn">Analyse</a>
+    <a href="/admin/toggle-accessibility?__method=post" class="btn"
+        style="background-color: {{ perma('accessible', false) ? 'lightgreen' : 'red' }}">
+            Zugang umschalten
+    </a>
+    <a class="btn secondary" href="/">Formular</a>
+    <a class="btn warn" href="/logout">Logout</a>
 </div>
 
 <div class="desktop-only overflow-x-auto">
