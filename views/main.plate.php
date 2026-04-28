@@ -52,11 +52,17 @@
     <textarea id="extra" name="extra" rows="4" placeholder="Optional..." maxlength="100"></textarea>
 
     <label for="agb" class="required">Hinweise</label>
-    <p>Wer seine Bestellung für einen Tag stornieren möchte, macht das bitte
+    <p>
+        Wer seine Bestellung für einen Tag stornieren möchte, macht das bitte
         <em>spätestens am Vorabend</em> um 18 Uhr per E-Mail
         (<a href="mailto:pizza@hardchor-passau.de">pizza@hardchor-passau.de</a>)
-        oder auf WhatsApp (01522 8751413). Wer für zwei Tage bestellt hat, bitte den
-        Gesamtbetrag <em>auf einmal</em> bezahlen und nicht zweimal extra.</p>
+        oder auf WhatsApp (<a href="tel:+4915228751413">01522 8751413</a>).
+
+        {{ if: count(config('days')) > 1 }}
+            Wer für mehrere Tage bestellt hat, bitte den
+            Gesamtbetrag <em>auf einmal</em> bezahlen und nicht zweimal extra.
+        {{ if; }}
+    </p>
     <label style="font-weight: normal">
         <input type="checkbox" id="agb" name="agb" required>
         Habe ich zur Kenntnis genommen.
