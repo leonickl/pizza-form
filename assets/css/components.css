@@ -14,3 +14,15 @@
     cursor: pointer;
     border-radius: 6px;        
 }
+
+.checkbox-readonly {
+    height: 40px;
+    width: 40px;
+    border: none;
+    cursor: auto;
+    border-radius: 6px;  
+}
+
+.nav {
+    flex-wrap: wrap;
+}

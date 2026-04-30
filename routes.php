@@ -12,9 +12,10 @@ Route::post('/')->do(OrderController::class, 'action');
 
 Route::group(
     Route::get('/admin')->do(AdminController::class, 'index'),
+    Route::get('/admin/trash')->do(AdminController::class, 'trash'),
     Route::get('/admin/analysis')->do(AdminController::class, 'analysis'),
     Route::post('/admin/delete')->do(AdminController::class, 'destroy'),
-    Route::post('/admin/restore')->do(AdminController::class, 'restore'),
+    Route::post('/admin/restore/{id}')->do(AdminController::class, 'restore'),
     Route::post('/admin/toggle-paid')->do(AdminController::class, 'togglePaid'),
     Route::post('/admin/toggle-accessibility')->do(AdminController::class, 'toggleAccessiblity'),
 )

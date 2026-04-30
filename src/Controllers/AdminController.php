@@ -21,6 +21,14 @@ class AdminController extends Controller
         ]);
     }
 
+    public function trash()
+    {
+        return view('trash', [
+            'orders' => Order::trashed()
+                ->sort(fn ($a, $b) => $a->deleted_at <=> $b->deleted_at),
+        ]);
+    }
+
     public function destroy()
     {
         $id = (int) request('id');
@@ -34,10 +42,8 @@ class AdminController extends Controller
         ]);
     }
 
-    public function restore()
+    public function restore(int $id)
     {
-        $id = (int) request('id');
-
         DB::init()->restore('orders', $id);
 
         return Redirect::path('/admin', [
