@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use PXP\Exceptions\ValidationException;
 use PXP\Http\Controllers\Controller;
 use PXP\Http\Response\Redirect;
 use PXP\Http\Response\Response;
@@ -19,13 +18,8 @@ class LoginController extends Controller
     {
         $request = request(['username', 'password']);
 
-        if (! is_string($request->username)) {
-            throw new ValidationException('username must be a string');
-        }
-
-        if (! is_string($request->password)) {
-            throw new ValidationException('password must be a string');
-        }
+        validate($request->username, 'username')->string();
+        validate($request->password, 'password')->string();
 
         Auth::login($request->username, $request->password);
 
