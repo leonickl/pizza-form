@@ -7,6 +7,6 @@ return [
     'port' => 8085,
 
     'days' => [
-        Day::SUNDAY,
+        \App\Day::SUNDAY,
     ],
 ];
