@@ -2,7 +2,7 @@
     <div class="row between">
         <h1>Pizza bestellen</h1>
         <div>
-            <a class="btn secondary" href="/admin">Admin</a>
+            <a class="btn secondary" href="/admin">Login</a>
         </div>
     </div>
 
