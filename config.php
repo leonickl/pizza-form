@@ -1,7 +1,5 @@
 <?php
 
-use App\Day;
-
 return [
     'title' => 'Pizze',
 
