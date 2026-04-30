@@ -4,8 +4,91 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5f071fe34c91a8432a5e1e48b5284573",
-    "packages": [],
+    "content-hash": "1c215d27029217eea22f281ad719559b",
+    "packages": [
+        {
+            "name": "leonickl/plate",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/leonickl/plate.git",
+                "reference": "65371b0eb86d84208eb681be9ffa9a12385039d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/leonickl/plate/zipball/65371b0eb86d84208eb681be9ffa9a12385039d2",
+                "reference": "65371b0eb86d84208eb681be9ffa9a12385039d2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LeoNickl\\Plate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Leo Nickl",
+                    "email": "leo@leonickl.de"
+                }
+            ],
+            "description": "A PHP templating engine",
+            "support": {
+                "issues": "https://github.com/leonickl/plate/issues",
+                "source": "https://github.com/leonickl/plate/tree/v1.0.1"
+            },
+            "time": "2026-04-21T16:24:01+00:00"
+        },
+        {
+            "name": "leonickl/pxp-core",
+            "version": "v3.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/leonickl/pxp-core.git",
+                "reference": "ce5ff45ba0d86b09f4c3ff0594319bc0eb51f32c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/leonickl/pxp-core/zipball/ce5ff45ba0d86b09f4c3ff0594319bc0eb51f32c",
+                "reference": "ce5ff45ba0d86b09f4c3ff0594319bc0eb51f32c",
+                "shasum": ""
+            },
+            "require": {
+                "leonickl/plate": "^1.0",
+                "php": "^8.4"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.24",
+                "phpstan/phpstan": "^2.1"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "functions.php"
+                ],
+                "psr-4": {
+                    "PXP\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Leo Nickl",
+                    "email": "leo@leonickl.de"
+                }
+            ],
+            "description": "Core functionality for leonickl/pxp",
+            "support": {
+                "issues": "https://github.com/leonickl/pxp-core/issues",
+                "source": "https://github.com/leonickl/pxp-core/tree/v3.6.0"
+            },
+            "time": "2026-04-30T21:58:33+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "laravel/pint",
@@ -131,12 +214,14 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
+        "php": "^8.5",
+        "ext-pdo": "*",
         "ext-sqlite3": "*"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
 }
