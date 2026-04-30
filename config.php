@@ -9,7 +9,6 @@ return [
     'port' => 8085,
 
     'days' => [
-        Day::SATURDAY,
-        Day::SUNDAY,
+        DayOfWeek::SUNDAY,
     ],
 ];
