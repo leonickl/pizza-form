@@ -27,7 +27,9 @@
             {{ each: $orders->reverse() as $order }}
                 <tr>
                     <td>
-                        <button class="checkbox-readonly" title="Status wechseln" style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }}" readonly></button>
+                        <button class="checkbox-readonly" title="Status wechseln"
+                            style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }}"
+                            readonly></button>
                     </td>
                     <td>{{ $order->id }}</td>
                     <td class="text-wrap">{{ $order->name }}</td>
@@ -84,11 +86,9 @@
             </div>
 
             <div class="row between items-center mt">
-                <form action="/admin/toggle-paid" method="post">
-                    <input type="hidden" name="id" value="{{ $order->id }}">
-                    <button type="submit" class="checkbox-button" title="Status wechseln"
-                        style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }}"></button>
-                </form>
+                <button class="checkbox-readonly" title="Status wechseln"
+                    style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }}"
+                    readonly></button>
                 <form action="/admin/restore/{{ $order->id }}" method="post">
                     <button class="btn">Restore</button>
                 </form>
