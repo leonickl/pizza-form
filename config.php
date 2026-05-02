@@ -13,14 +13,14 @@ return [
     ],
 
     'css' => [
-        "media",
-        "colors",
-        "base",
-        "snippets",
-        "button",
-        "table",
-        "notification",
-        "components",
-        "form",
-    ]
+        'media',
+        'colors',
+        'base',
+        'snippets',
+        'button',
+        'table',
+        'notification',
+        'components',
+        'form',
+    ],
 ];
