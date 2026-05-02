@@ -30,7 +30,7 @@ enum Day: int
     }
 
     /**
-     * @param Vector<self> $days
+     * @param  Vector<self>  $days
      */
     public static function combine(Vector $days): int
     {
