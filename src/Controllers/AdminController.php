@@ -29,15 +29,13 @@ class AdminController extends Controller
         ]);
     }
 
-    public function destroy()
+    public function destroy(int $id)
     {
-        $id = (int) request('id');
-
         $order = Order::find($id);
 
         $order->delete();
 
-        return Redirect::path('/admin', [
+        return Redirect::route('orders', [
             'deleted' => $order,
         ]);
     }
@@ -46,7 +44,7 @@ class AdminController extends Controller
     {
         DB::init()->restore('orders', $id);
 
-        return Redirect::path('/admin', [
+        return Redirect::route('orders', [
             'restored' => Order::find($id),
         ]);
     }
@@ -78,25 +76,23 @@ class AdminController extends Controller
         return view('analysis', compact('days'));
     }
 
-    public function togglePaid()
+    public function togglePaid(int $id)
     {
-        $id = (int) request('id');
-
         $order = Order::find($id);
 
         $order->paid = ! $order->paid;
 
         $order->save();
 
-        return Redirect::path('/admin/', [
+        return Redirect::route('orders', [
             'paid' => $order,
         ]);
     }
 
-    public function toggleAccessiblity()
+    public function toggleAccess()
     {
         perma(['accessible' => ! perma('accessible', false)]);
 
-        return Redirect::path('/admin/');
+        return Redirect::route('orders');
     }
 }

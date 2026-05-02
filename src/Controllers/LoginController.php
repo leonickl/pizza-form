@@ -23,13 +23,13 @@ class LoginController extends Controller
 
         Auth::login($request->username, $request->password);
 
-        return Redirect::path('/admin');
+        return Redirect::route('orders');
     }
 
     public function logout(): Response
     {
         Auth::logout();
 
-        return Redirect::path('/');
+        return Redirect::route('main');
     }
 }

@@ -1,7 +1,7 @@
 <div class="row between">
     <h1>Bestellungen geschlossen</h1>
     <div>
-        <a class="btn secondary" href="/admin">Login</a>
+        <a class="btn secondary" href="{{ route('orders') }}">Login</a>
     </div>
 </div>
 

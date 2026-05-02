@@ -34,7 +34,7 @@ class OrderController
                 ->map(fn ($day) => Day::from((int) $day)),
         );
 
-        return Redirect::path('/', [
+        return Redirect::route('main', [
             'order' => Order::create(...$data->toArray(), paid: false),
         ]);
     }

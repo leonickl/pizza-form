@@ -46,7 +46,7 @@
                     </td>
                     <td>{{ $order->deleted_at }}</td>
                     <td>
-                        <form action="/admin/restore/{{ $order->id }}" method="post">
+                        <form action="{{ route('restore', id: $order->id) }}" method="post">
                             <button class="btn">Restore</button>
                         </form>
                     </td>
@@ -89,7 +89,7 @@
                 <button class="checkbox-readonly" title="Status wechseln"
                     style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }}"
                     readonly></button>
-                <form action="/admin/restore/{{ $order->id }}" method="post">
+                <form action="{{ route('delete', id: $order->id) }}" method="post">
                     <button class="btn">Restore</button>
                 </form>
             </div>

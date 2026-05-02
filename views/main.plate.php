@@ -1,8 +1,8 @@
-<form action="/" method="post">
+<form action="{{ route('store') }}" method="post">
     <div class="row between">
         <h1>Pizza bestellen</h1>
         <div>
-            <a class="btn secondary" href="/admin">Login</a>
+            <a class="btn secondary" href="{{ route('orders') }}">Login</a>
         </div>
     </div>
 

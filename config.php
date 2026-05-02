@@ -11,4 +11,16 @@ return [
     'days' => [
         Day::SUNDAY,
     ],
+
+    'css' => [
+        "media",
+        "colors",
+        "base",
+        "snippets",
+        "button",
+        "table",
+        "notification",
+        "components",
+        "form",
+    ]
 ];
