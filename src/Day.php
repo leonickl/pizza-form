@@ -21,11 +21,17 @@ enum Day: int
         };
     }
 
+    /**
+     * @return Vector<self>
+     */
     public static function all(): Vector
     {
         return v(...self::cases());
     }
 
+    /**
+     * @param Vector<self> $days
+     */
     public static function combine(Vector $days): int
     {
         $mask = 0;
@@ -37,9 +43,12 @@ enum Day: int
         return $mask;
     }
 
+    /**
+     * @return Vector<self>
+     */
     public static function separate(int $days): Vector
     {
         return self::all()
-            ->filter(fn (self $day) => $days & $day->value);
+            ->filter(fn (self $day) => ($days & $day->value) > 0);
     }
 }

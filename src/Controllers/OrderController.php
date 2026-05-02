@@ -5,10 +5,11 @@ namespace App\Controllers;
 use App\Day;
 use App\Models\Order;
 use PXP\Http\Response\Redirect;
+use PXP\Http\Response\Response;
 
 class OrderController
 {
-    public function index()
+    public function index(): Response
     {
         if (! perma('accessible', false)) {
             return view('orders-closed');
@@ -19,7 +20,7 @@ class OrderController
         ]);
     }
 
-    public function action()
+    public function action(): Response
     {
         $data = request(['name', 'email', 'type', 'extra', 'days']);
 

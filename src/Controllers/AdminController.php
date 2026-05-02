@@ -7,10 +7,11 @@ use App\Models\Order;
 use PXP\Data\DB;
 use PXP\Http\Controllers\Controller;
 use PXP\Http\Response\Redirect;
+use PXP\Http\Response\Response;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index(): Response
     {
         return view('orders', [
             'orders' => Order::all()
@@ -21,7 +22,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function trash()
+    public function trash(): Response
     {
         return view('trash', [
             'orders' => Order::trashed()
@@ -29,7 +30,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function destroy(int $id)
+    public function destroy(int $id): Response
     {
         $order = Order::find($id);
 
@@ -40,7 +41,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function restore(int $id)
+    public function restore(int $id): Response
     {
         DB::init()->restore('orders', $id);
 
@@ -49,13 +50,13 @@ class AdminController extends Controller
         ]);
     }
 
-    public function analysis()
+    public function analysis(): Response
     {
         $days = [];
 
         foreach (Day::all() as $day) {
             $orders = Order::all()
-                ->filter(fn (Order $order) => $order->days & $day->value);
+                ->filter(fn (Order $order) => ($order->days & $day->value) > 0);
 
             $days[] = (object) [
                 'day' => $day,
@@ -76,7 +77,7 @@ class AdminController extends Controller
         return view('analysis', compact('days'));
     }
 
-    public function togglePaid(int $id)
+    public function togglePaid(int $id): Response
     {
         $order = Order::find($id);
 
@@ -89,7 +90,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function toggleAccess()
+    public function toggleAccess(): Response
     {
         perma(['accessible' => ! perma('accessible', false)]);
 
