@@ -12,7 +12,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin', [
+        return view('orders', [
             'orders' => Order::all()
                 ->sort(fn ($a, $b) => $b->paid <=> $a->paid ?: $b->name <=> $a->name),
             'deleted' => session()->take('deleted'),

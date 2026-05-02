@@ -1,10 +1,22 @@
-<h1>Papierkorb der Bestellungen ({{ $orders->count() }})</h1>
+<h1>Bestellungen ({{ $orders->count() }})</h1>
+
+{{ if: $deleted }}
+    <div class="notification"><p class="m-0 p-0">Bestellung von <b>{{ $deleted->name }}</b> gelöscht.</p>
+        <form action="{{ route('restore', id: $deleted->id) }}" method="post">
+            <button class="btn">Wiederherstellen</button>
+        </form>
+    </div>
+{{ if; }}
 
 {{ if: $restored }}
     <div class="notification"><p class="m-0 p-0">Bestellung von <b>{{ $restored->name }}</b> wiederhergestellt</p></div>
 {{ if; }}
 
-{{ ==view('admin.nav') }}
+{{ if: $paid }}
+    <div class="notification"><p class="m-0 p-0"><b>{{ $paid->name }}</b> hat {{ $paid->paid ? 'bezahlt' : 'nicht bezahlt' }}.</p></div>
+{{ if; }}
+
+{{ ==view('nav') }}
 
 <div class="desktop-only overflow-x-auto">
     <table class="styled w-full w-min-40">
@@ -18,7 +30,6 @@
                 <th>Typ</th>
                 <th>Extra</th>
                 <th>Erstellt/Geändert</th>
-                <th>Gelöscht</th>
                 <th></th>
             </tr>
         </thead>
@@ -27,9 +38,10 @@
             {{ each: $orders->reverse() as $order }}
                 <tr>
                     <td>
-                        <button class="checkbox-readonly" title="Status wechseln"
-                            style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }}"
-                            readonly></button>
+                        <form action="{{ route('toggle-paid', id: $order->id) }}" method="post" style="display: inline;">
+                            <input type="hidden" name="id" value="{{ $order->id }}">
+                            <button type="submit" class="checkbox-button" title="Status wechseln" style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }}"></button>
+                        </form>
                     </td>
                     <td>{{ $order->id }}</td>
                     <td class="text-wrap">{{ $order->name }}</td>
@@ -44,10 +56,9 @@
                             / {{ $order->modified_at }}
                         {{ if; }}
                     </td>
-                    <td>{{ $order->deleted_at }}</td>
                     <td>
-                        <form action="{{ route('restore', id: $order->id) }}" method="post">
-                            <button class="btn">Restore</button>
+                        <form action="{{ route('delete', id: $order->id) }}" method="post">
+                            <button class="btn warn">Löschen</button>
                         </form>
                     </td>
                 </tr>
@@ -81,16 +92,14 @@
                 {{ if; }}
             </div>
 
-            <div class="mb-05 text-wrap"><strong>Gelöscht:</strong>
-                {{ $order->deleted_at }}
-            </div>
-
             <div class="row between items-center mt">
-                <button class="checkbox-readonly" title="Status wechseln"
-                    style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }}"
-                    readonly></button>
+                <form action="{{ route('toggle-paid', id: $order->id) }}" method="post">
+                    <input type="hidden" name="id" value="{{ $order->id }}">
+                    <button type="submit" class="checkbox-button" title="Status wechseln"
+                        style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }}"></button>
+                </form>
                 <form action="{{ route('delete', id: $order->id) }}" method="post">
-                    <button class="btn">Restore</button>
+                    <button class="btn warn">Löschen</button>
                 </form>
             </div>
         </div>
