@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <!-- Pizza crust -->
+  <circle cx="55" cy="60" r="48" fill="#F4A460" stroke="#D2691E" stroke-width="3"/>
+  <!-- Pizza base -->
+  <circle cx="55" cy="60" r="42" fill="#FFD700"/>
+  <!-- Tomato sauce -->
+  <circle cx="55" cy="60" r="40" fill="#E74C3C" opacity="0.3"/>
+  <!-- Pepperoni -->
+  <circle cx="40" cy="45" r="7" fill="#CD5C5C"/>
+  <circle cx="65" cy="40" r="7" fill="#CD5C5C"/>
+  <circle cx="35" cy="65" r="7" fill="#CD5C5C"/>
+  <circle cx="60" cy="65" r="7" fill="#CD5C5C"/>
+  <circle cx="50" cy="80" r="7" fill="#CD5C5C"/>
+  <circle cx="75" cy="55" r="7" fill="#CD5C5C"/>
+  <!-- Green peppers -->
+  <path d="M45 35 Q48 32 51 35" fill="none" stroke="#27AE60" stroke-width="3" stroke-linecap="round"/>
+  <path d="M30 55 Q33 52 36 55" fill="none" stroke="#27AE60" stroke-width="3" stroke-linecap="round"/>
+  <path d="M55 72 Q58 69 61 72" fill="none" stroke="#27AE60" stroke-width="3" stroke-linecap="round"/>
+  <path d="M70 75 Q73 72 76 75" fill="none" stroke="#27AE60" stroke-width="3" stroke-linecap="round"/>
+  <!-- Black olives -->
+  <circle cx="48" cy="50" r="5" fill="#2C3E50"/>
+  <circle cx="48" cy="50" r="2" fill="#FFD700"/>
+  <circle cx="68" cy="60" r="5" fill="#2C3E50"/>
+  <circle cx="68" cy="60" r="2" fill="#FFD700"/>
+  <circle cx="42" cy="72" r="5" fill="#2C3E50"/>
+  <circle cx="42" cy="72" r="2" fill="#FFD700"/>
+  <!-- Mushroom slices -->
+  <path d="M60 50 Q63 44 66 50" fill="none" stroke="#D2B48C" stroke-width="3" stroke-linecap="round"/>
+  <path d="M75 45 Q78 39 81 45" fill="none" stroke="#D2B48C" stroke-width="3" stroke-linecap="round"/>
+  <path d="M38 78 Q41 72 44 78" fill="none" stroke="#D2B48C" stroke-width="3" stroke-linecap="round"/>
+  <!-- Onion rings -->
+  <circle cx="55" cy="55" r="4" fill="none" stroke="#9B59B6" stroke-width="2"/>
+  <circle cx="35" cy="48" r="4" fill="none" stroke="#9B59B6" stroke-width="2"/>
+  <circle cx="70" cy="68" r="4" fill="none" stroke="#9B59B6" stroke-width="2"/>
+  <!-- Server/tech box in corner -->
+  <rect x="72" y="5" width="40" height="34" rx="5" fill="#2C3E50" stroke="#1A252F" stroke-width="2"/>
+  <!-- Server slots -->
+  <rect x="77" y="10" width="30" height="10" rx="2" fill="#34495E"/>
+  <rect x="77" y="24" width="30" height="10" rx="2" fill="#34495E"/>
+  <!-- Server lights -->
+  <circle cx="83" cy="15" r="2.5" fill="#2ECC71"/>
+  <circle cx="92" cy="15" r="2.5" fill="#3498DB"/>
+  <circle cx="83" cy="29" r="2.5" fill="#E74C3C"/>
+  <circle cx="92" cy="29" r="2.5" fill="#2ECC71"/>
+  <!-- Form lines -->
+  <line x1="98" y1="15" x2="104" y2="15" stroke="#95A5A6" stroke-width="2" stroke-linecap="round"/>
+  <line x1="98" y1="29" x2="104" y2="29" stroke="#95A5A6" stroke-width="2" stroke-linecap="round"/>
+</svg>
