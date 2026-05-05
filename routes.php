@@ -3,6 +3,7 @@
 use App\Controllers\AdminController;
 use App\Controllers\LoginController;
 use App\Controllers\OrderController;
+use App\Middleware\RequireAdmin;
 use PXP\Http\Controllers\AssetController;
 use PXP\Http\Middleware\InteractiveAuth;
 use PXP\Router\Route;
@@ -20,7 +21,8 @@ Route::group(
     Route::get('/admin/analysis')->do(AdminController::class, 'analysis')->name('analysis'),
     Route::post('/admin/toggle-access')->do(AdminController::class, 'toggleAccess')->name('toggle-access'),
 )
-    ->middleware(InteractiveAuth::class);
+    ->middleware(InteractiveAuth::class)
+    ->middleware(RequireAdmin::class);
 
 Route::get('/login')->do(LoginController::class, 'form');
 Route::post('/login')->do(LoginController::class, 'login');
