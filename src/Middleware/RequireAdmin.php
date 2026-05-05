@@ -13,7 +13,7 @@ class RequireAdmin extends Middleware
     public function apply(): true|View
     {
         if (! Auth::user()?->is(Role::ADMIN)) {
-            throw new UnauthorizedException;
+            throw new UnauthorizedException('Zugriff nur als Admin');
         }
 
         return true;

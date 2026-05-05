@@ -28,4 +28,8 @@ $db->create('users', [
 
 $db->addColumns('users', [
     'role' => 'int not null default 0',
+    'name' => "string not null default ''",
 ]);
+
+$db->sql('create unique index if not exists '.
+    'unique_users_username on users(username)');

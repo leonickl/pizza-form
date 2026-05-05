@@ -1,8 +1,15 @@
 <form action="{{ route('store') }}" method="post">
     <div class="row between">
         <h1>Pizza bestellen</h1>
+
         <div>
-            <a class="btn secondary" href="{{ route('orders') }}">Login</a>
+            {{ if: $user === null }}
+                <a class="btn secondary" href="{{ route('login') }}">Login</a>
+            {{ elif: $user->is(App\Enums\Role::ADMIN) }}
+                <a class="btn secondary" href="{{ route('orders') }}">Bestellungen</a>
+            {{ else: }}
+                <a class="btn secondary" href="{{ route('profile') }}">Profil</a>
+            {{ if; }}
         </div>
     </div>
 

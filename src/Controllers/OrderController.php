@@ -6,6 +6,7 @@ use App\Day;
 use App\Models\Order;
 use PXP\Http\Response\Redirect;
 use PXP\Http\Response\Response;
+use PXP\Lib\Auth;
 
 class OrderController
 {
@@ -17,18 +18,19 @@ class OrderController
 
         return view('main', [
             'order' => session()->take('order'),
+            'user' => Auth::user(),
         ]);
     }
 
     public function action(): Response
     {
-        $data = request(['name', 'email', 'type', 'extra', 'days']);
-
-        validate($data->name, 'name')->string()->min(3)->max(40);
-        validate($data->email, 'email')->string()->min(6)->max(50);
-        validate($data->type, 'type')->string()->in('Vegan', 'Vegetarisch', 'Alles');
-        validate($data->extra, 'extra')->string()->nullable()->max(100);
-        validate($data->days, 'days')->array()->nullable();
+        $data = request()->validate(fn ($req) => [
+            $req->name->string()->min(3)->max(40),
+            $req->email->string()->min(6)->max(50),
+            $req->type->string()->in('Vegan', 'Vegetarisch', 'Alles'),
+            $req->extra->string()->nullable()->max(100),
+            $req->days->array()->nullable(),
+        ]);
 
         $data->days = Day::combine(
             v(...array_values($data->days ?? []))

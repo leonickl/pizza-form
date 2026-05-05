@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Enums\Role;
 use PXP\Http\Controllers\Controller;
 use PXP\Http\Response\Redirect;
 use PXP\Http\Response\Response;
@@ -11,19 +12,27 @@ class LoginController extends Controller
 {
     public function form(): Response
     {
-        return view('login');
+        return view('login', [
+            'errors' => session()->take('errors'),
+        ]);
     }
 
     public function login(): Response
     {
-        $request = request(['username', 'password']);
+        $request = request()->validate(fn ($req) => [
+            $req->email->string(),
+            $req->password->string(),
+        ]);
 
-        validate($request->username, 'username')->string();
-        validate($request->password, 'password')->string();
+        if (! Auth::login($request->email, $request->password)) {
+            return Redirect::route('login');
+        }
 
-        Auth::login($request->username, $request->password);
+        if (Auth::user()->is(Role::ADMIN)) {
+            return Redirect::route('orders');
+        }
 
-        return Redirect::route('orders');
+        return Redirect::route('main');
     }
 
     public function logout(): Response

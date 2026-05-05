@@ -3,6 +3,8 @@
 use App\Controllers\AdminController;
 use App\Controllers\LoginController;
 use App\Controllers\OrderController;
+use App\Controllers\ProfileController;
+use App\Controllers\RegisterController;
 use App\Middleware\RequireAdmin;
 use PXP\Http\Controllers\AssetController;
 use PXP\Http\Middleware\InteractiveAuth;
@@ -24,8 +26,16 @@ Route::group(
     ->middleware(InteractiveAuth::class)
     ->middleware(RequireAdmin::class);
 
-Route::get('/login')->do(LoginController::class, 'form');
+Route::group(
+    Route::get('/profile')->do(ProfileController::class, 'index')->name('profile'),
+)
+    ->middleware(InteractiveAuth::class);
+
+Route::get('/login')->do(LoginController::class, 'form')->name('login');
 Route::post('/login')->do(LoginController::class, 'login');
+
+Route::get('/register')->do(RegisterController::class, 'form')->name('register');
+Route::post('/register')->do(RegisterController::class, 'register');
 
 Route::get('/logout')->do(LoginController::class, 'logout')->name('logout');
 Route::post('/logout')->do(LoginController::class, 'logout');
