@@ -5,7 +5,7 @@
     "require": {
         "php": "^8.5",
         "ext-pdo": "*",
-        "leonickl/pxp-core": "^3.0",
+        "leonickl/pxp-core": "^4.0",
         "ext-sqlite3": "*"
     },
     "require-dev": {
@@ -25,5 +25,6 @@
             "name": "Leo Nickl",
             "email": "leo@leonickl.de"
         }
-    ]
+    ],
+    "minimum-stability": "beta"
 }

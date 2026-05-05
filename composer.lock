@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1c215d27029217eea22f281ad719559b",
+    "content-hash": "23491668c69ae25158b3ed318a7c4e0b",
     "packages": [
         {
             "name": "leonickl/plate",
-            "version": "v1.0.1",
+            "version": "v1.0.3-BETA",
             "source": {
                 "type": "git",
                 "url": "https://github.com/leonickl/plate.git",
-                "reference": "65371b0eb86d84208eb681be9ffa9a12385039d2"
+                "reference": "496919dc2d39d29ff68a954a1716acb7ac779e0f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leonickl/plate/zipball/65371b0eb86d84208eb681be9ffa9a12385039d2",
-                "reference": "65371b0eb86d84208eb681be9ffa9a12385039d2",
+                "url": "https://api.github.com/repos/leonickl/plate/zipball/496919dc2d39d29ff68a954a1716acb7ac779e0f",
+                "reference": "496919dc2d39d29ff68a954a1716acb7ac779e0f",
                 "shasum": ""
             },
             "require": {
@@ -39,22 +39,22 @@
             "description": "A PHP templating engine",
             "support": {
                 "issues": "https://github.com/leonickl/plate/issues",
-                "source": "https://github.com/leonickl/plate/tree/v1.0.1"
+                "source": "https://github.com/leonickl/plate/tree/v1.0.3-BETA"
             },
-            "time": "2026-04-21T16:24:01+00:00"
+            "time": "2026-05-02T11:20:21+00:00"
         },
         {
             "name": "leonickl/pxp-core",
-            "version": "v3.10.1",
+            "version": "v4.0.0-BETA.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/leonickl/pxp-core.git",
-                "reference": "64cfa5cee127f9434448c63f0383cb31903c2669"
+                "reference": "c70af88971084e82e3f0325e34e6826648c9f896"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leonickl/pxp-core/zipball/64cfa5cee127f9434448c63f0383cb31903c2669",
-                "reference": "64cfa5cee127f9434448c63f0383cb31903c2669",
+                "url": "https://api.github.com/repos/leonickl/pxp-core/zipball/c70af88971084e82e3f0325e34e6826648c9f896",
+                "reference": "c70af88971084e82e3f0325e34e6826648c9f896",
                 "shasum": ""
             },
             "require": {
@@ -86,9 +86,9 @@
             "description": "Core functionality for leonickl/pxp",
             "support": {
                 "issues": "https://github.com/leonickl/pxp-core/issues",
-                "source": "https://github.com/leonickl/pxp-core/tree/v3.10.1"
+                "source": "https://github.com/leonickl/pxp-core/tree/v4.0.0-BETA.1"
             },
-            "time": "2026-05-02T11:54:31+00:00"
+            "time": "2026-05-05T13:05:48+00:00"
         }
     ],
     "packages-dev": [
@@ -215,7 +215,7 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "beta",
     "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
