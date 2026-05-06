@@ -8,6 +8,7 @@ use PXP\Ds\Vector;
 
 /**
  * @property int $id
+ * @property string $name
  * @property string $username
  * @property string $password_hash
  * @property int $role
@@ -31,6 +32,9 @@ class User extends Model
         return $this->role() === $role;
     }
 
+    /**
+     * @return Vector<Order>
+     */
     public function orders(): Vector
     {
         return Order::all()
