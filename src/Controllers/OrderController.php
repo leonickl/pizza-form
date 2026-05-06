@@ -44,7 +44,7 @@ class OrderController
             : Day::combine(
                 v(...array_values($data->days ?? []))
                     ->map(fn ($day) => Day::from((int) $day)),
-              );
+            );
 
         return Redirect::route('main', [
             'order' => Order::create(
