@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\Role;
 use PXP\Data\Model;
+use PXP\Ds\Vector;
 
 /**
  * @property int $id
@@ -28,5 +29,12 @@ class User extends Model
     public function is(Role $role): bool
     {
         return $this->role() === $role;
+    }
+
+    public function orders(): Vector
+    {
+        return Order::all()
+            ->filter(fn (Order $order) => $order->user_id === $this->id
+                || $order->email === $this->username);
     }
 }

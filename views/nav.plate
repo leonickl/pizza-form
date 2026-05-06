@@ -10,6 +10,7 @@
         <a href="{{ route('orders') }}" class="btn">Bestellungen</a>
     {{ if; }}
 
+    <a class="btn" href="{{ route('profile') }}">Profil</a>
     <a class="btn secondary" href="{{ route('main') }}">Formular</a>
     <a class="btn warn" href="{{ route('logout') }}">Logout</a>
 </div>

@@ -1,2 +1,66 @@
 <h1>Profil von {{ $user->name }}</h1>
 
+<div class="nav row mb">
+    <a class="btn secondary" href="{{ route('main') }}">Formular</a>
+    <a class="btn warn" href="{{ route('logout') }}">Logout</a>
+</div>
+
+<div class="desktop-only overflow-x-auto">
+    <table class="styled w-full w-min-40">
+        <thead>
+            <tr>
+                <th>Bezahlt</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>E-Mail</th>
+                <th>Tage</th>
+                <th>Typ</th>
+                <th>Extra</th>
+                <th>Erstellt</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{ each: $user->orders()->reverse() as $order }}
+                <tr>
+                    <td>
+                        <button class="checkbox-readonly" title="Status wechseln"
+                            style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }}"
+                            readonly></button>
+                    </td>
+                    <td>{{ $order->id }}</td>
+                    <td class="text-wrap">{{ $order->name }}</td>
+                    <td class="text-wrap">{{ $order->email }}</td>
+                    <td>{{ $order->daysLabel() }}</td>
+                    <td>{{ $order->type }}</td>
+                    <td class="text-wrap">{{ $order->extra }}</td>
+                    <td class="text-wrap">{{ $order->created_at }}</td>
+                </tr>
+            {{ each; }}
+        </tbody>
+    </table>
+</div>
+
+<div class="mobile-only column mt">
+    {{ each: $user->orders()->reverse() as $order }}
+        <div class="card">
+            <div class="mb-05"><strong>ID:</strong> {{ $order->id }}</div>
+            <div class="mb-05 text-wrap"><strong>Name:</strong> {{ $order->name }}</div>
+            <div class="mb-05 text-wrap"><strong>E-Mail:</strong> {{ $order->email }}</div>
+
+            {{ if: trim($order->daysLabel()) !== '' }}
+                <div class="mb-05 text-wrap"><strong>Tage:</strong> {{ $order->daysLabel() }}</div>
+            {{ if; }}
+
+            <div class="mb-05 text-wrap"><strong>Typ:</strong> {{ $order->type }}</div>
+
+            {{ if: trim($order->extra) !== '' }}
+                <div class="mb-05 text-wrap"><strong>Extra:</strong> {{ $order->extra }}</div>
+            {{ if; }}
+
+            <div class="mb-05 text-wrap"><strong>Erstellt:</strong>
+                {{ $order->created_at }}
+            </div>
+        </div>
+    {{ each; }}
+</div>

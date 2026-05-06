@@ -24,21 +24,34 @@ class OrderController
 
     public function action(): Response
     {
+        $user = Auth::user();
+
+        $person = $user === null
+            ? request()->validate(fn ($req) => [
+                $req->name->string()->min(3)->max(40),
+                $req->email->string()->email()->min(6)->max(50),
+            ])
+            : o(user_id: $user->id, name: '', email: '');
+
         $data = request()->validate(fn ($req) => [
-            $req->name->string()->min(3)->max(40),
-            $req->email->string()->min(6)->max(50),
             $req->type->string()->in('Vegan', 'Vegetarisch', 'Alles'),
             $req->extra->string()->nullable()->max(100),
             $req->days->array()->nullable(),
         ]);
 
-        $data->days = Day::combine(
-            v(...array_values($data->days ?? []))
-                ->map(fn ($day) => Day::from((int) $day)),
-        );
+        $data->days = count(config('days')) === 1
+            ? array_first(config('days'))->value
+            : Day::combine(
+                v(...array_values($data->days ?? []))
+                    ->map(fn ($day) => Day::from((int) $day)),
+              );
 
         return Redirect::route('main', [
-            'order' => Order::create(...$data->toArray(), paid: false),
+            'order' => Order::create(
+                ...$data->toArray(),
+                ...$person->toArray(),
+                paid: false,
+            ),
         ]);
     }
 }

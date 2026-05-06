@@ -22,22 +22,27 @@
         </div>
     {{ if; }}
 
-    <label for="name" class="required">Name</label>
-    <input type="text" id="name" name="name" required minlength="3" maxlength="40">
+    {{ if: ! auth() }}
 
-    <label for="email" class="required">E-Mail-Adresse</label>
-    <input type="text" id="email" name="email" required minlength="6" maxlength="50">
+        <label for="name" class="required">Name</label>
+        <input type="text" id="name" name="name" required minlength="3" maxlength="40">
 
-    <label>Tag</label>
-    <div class="checkbox-group">
-        {{ each: config('days') as $day }}
-            <label>
-                <input type="checkbox" name="days[{{ $day->name }}]" value="{{ $day->value }}"
-                    {{ count(config('days')) === 1 ? 'checked' : '' }}>
-                {{ $day->label() }}
-            </label>
-        {{ each; }}
-    </div>
+        <label for="email" class="required">E-Mail-Adresse</label>
+        <input type="email" id="email" name="email" required minlength="6" maxlength="50">
+
+    {{ if; }}
+
+    {{ if: count(config('days')) > 1 }}
+        <label>Tag</label>
+        <div class="checkbox-group">
+            {{ each: config('days') as $day }}
+                <label>
+                    <input type="checkbox" name="days[{{ $day->name }}]" value="{{ $day->value }}">
+                    {{ $day->label() }}
+                </label>
+            {{ each; }}
+        </div>
+    {{ if; }}
 
     <label class="required">Pizza</label>
     <div class="radio-group">

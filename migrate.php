@@ -15,9 +15,6 @@ $db->create('orders', [
 $db->addColumns('orders', [
     'paid' => 'boolean not null default 0',
     'email' => 'text',
-]);
-
-$db->addColumns('orders', [
     'days' => 'int not null default 0',
 ]);
 
@@ -33,3 +30,7 @@ $db->addColumns('users', [
 
 $db->sql('create unique index if not exists '.
     'unique_users_username on users(username)');
+
+$db->addColumns('orders', [
+    'user_id' => 'int references users(id)',
+]);

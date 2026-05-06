@@ -28,6 +28,9 @@ Route::group(
 
 Route::group(
     Route::get('/profile')->do(ProfileController::class, 'index')->name('profile'),
+
+    Route::get('/logout')->do(LoginController::class, 'logout')->name('logout'),
+    Route::post('/logout')->do(LoginController::class, 'logout'),
 )
     ->middleware(InteractiveAuth::class);
 
@@ -36,8 +39,5 @@ Route::post('/login')->do(LoginController::class, 'login');
 
 Route::get('/register')->do(RegisterController::class, 'form')->name('register');
 Route::post('/register')->do(RegisterController::class, 'register');
-
-Route::get('/logout')->do(LoginController::class, 'logout')->name('logout');
-Route::post('/logout')->do(LoginController::class, 'logout');
 
 Route::get('/css/{file}')->do(AssetController::class, 'css')->name('css');
