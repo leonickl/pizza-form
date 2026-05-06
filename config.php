@@ -23,4 +23,13 @@ return [
         'components',
         'form',
     ],
+
+    'resend-api-key' => env('RESEND_API_KEY'),
+
+    'mail' => (object) [
+        'host' => env('MAIL_HOST'),
+        'user' => env('MAIL_USER'),
+        'pass' => env('MAIL_PASS'),
+        'port' => env('MAIL_PORT'),
+    ],
 ];

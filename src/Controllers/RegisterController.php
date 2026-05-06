@@ -19,8 +19,8 @@ class RegisterController extends Controller
     public function register(): Response
     {
         $request = request()->validate(fn ($req) => [
-            $req->email->string()->min(3)->max(40),
-            $req->name->string()->email()->min(6)->max(50),
+            $req->email->string()->email()->min(6)->max(50),
+            $req->name->string()->min(3)->max(40),
             $req->password->string()->min(8)->max(100),
         ]);
 
@@ -37,7 +37,7 @@ class RegisterController extends Controller
         );
 
         return Redirect::route('login', [
-            'errors' => ["Benutzer '$request->name' ($request->email) wurde erstellt"],
+            'errors' => ["Benutzer '$request->name' ($request->email) wurde erstellt. Bitte E-Mail-Adresse verifizieren."],
         ]);
     }
 }

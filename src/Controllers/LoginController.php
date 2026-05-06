@@ -28,7 +28,11 @@ class LoginController extends Controller
             return Redirect::route('login');
         }
 
-        if (Auth::user()?->is(Role::ADMIN)) {
+        if (! $user = Auth::user()) {
+            return Redirect::route('login');
+        }
+
+        if ($user->is(Role::ADMIN)) {
             return Redirect::route('orders');
         }
 

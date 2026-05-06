@@ -4,11 +4,11 @@
 
         <div>
             {{ if: $user === null }}
-                <a class="btn secondary" href="{{ route('login') }}">Login</a>
+                <a class="btn secondary" href="{{ route('login') }}">Mein Account</a>
             {{ elif: $user->is(App\Enums\Role::ADMIN) }}
                 <a class="btn secondary" href="{{ route('orders') }}">Bestellungen</a>
             {{ else: }}
-                <a class="btn secondary" href="{{ route('profile') }}">Profil</a>
+                <a class="btn secondary" href="{{ route('profile') }}">Mein Account</a>
             {{ if; }}
         </div>
     </div>
@@ -23,13 +23,11 @@
     {{ if; }}
 
     {{ if: ! auth() }}
-
         <label for="name" class="required">Name</label>
         <input type="text" id="name" name="name" required minlength="3" maxlength="40">
 
         <label for="email" class="required">E-Mail-Adresse</label>
         <input type="email" id="email" name="email" required minlength="6" maxlength="50">
-
     {{ if; }}
 
     {{ if: count(config('days')) > 1 }}
