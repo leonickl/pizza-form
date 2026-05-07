@@ -16,7 +16,7 @@ class Nav
 
             o(at: ['/'], to: route('login'), how: 'Login', guard: fn() => $user === null, classes: 'secondary'),
             o(at: ['/', '/orders/trash'], to: route('orders'), how: 'Bestellungen', guard: fn() => $user && $user->is(Role::ADMIN)),
-            o(at: ['/'], to: route('profile'), how: 'Mein Account', guard: fn() => $user && ! $user->is(Role::ADMIN)),
+            o(at: ['/', '/orders'], to: route('profile'), how: 'Mein Account', guard: fn() => $user),
 
             o(at: ['/login'], to: route('register'), how: 'Registrieren'),
 
