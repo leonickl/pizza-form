@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use PXP\Data\Model;
-use App\Models\User;
-use Override;
 use Carbon\Carbon;
+use Override;
+use PXP\Data\Model;
 
 /**
  * @property string $token

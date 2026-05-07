@@ -2,11 +2,11 @@
 
 namespace App\Controllers;
 
-use PXP\Http\Controllers\Controller;
-use PXP\Exceptions\DisplayException;
 use App\Models\User;
-use PXP\Http\Response\Redirect;
 use App\Models\VerificationLink;
+use PXP\Exceptions\DisplayException;
+use PXP\Http\Controllers\Controller;
+use PXP\Http\Response\Redirect;
 
 class VerificationController extends Controller
 {

@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use App\Enums\Role;
+use App\Mail;
 use PXP\Data\Model;
 use PXP\Ds\Vector;
-use App\Mail;
 
 /**
  * @property int $id

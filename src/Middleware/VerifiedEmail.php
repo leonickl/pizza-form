@@ -2,7 +2,6 @@
 
 namespace App\Middleware;
 
-use App\Enums\Role;
 use PXP\Exceptions\UnauthorizedException;
 use PXP\Http\Middleware\Middleware;
 use PXP\Http\Response\View;

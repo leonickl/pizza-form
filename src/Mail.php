@@ -10,8 +10,8 @@ use PXP\Lib\Log;
 readonly class Mail
 {
     public function __construct(
-        private string $subject, 
-        private string $body, 
+        private string $subject,
+        private string $body,
         private bool $html = false,
     ) {}
 
