@@ -1,8 +1,10 @@
 <?php
 
+use App\Nav;
+
 function head(string $heading): string
 {
-    $nav = new App\Nav;
+    $nav = new Nav;
 
     return "<div class=\"row between\">
         <h1>$heading</h1>
