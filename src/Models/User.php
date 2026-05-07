@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\Role;
 use PXP\Data\Model;
 use PXP\Ds\Vector;
+use App\Mail;
 
 /**
  * @property int $id
@@ -40,5 +41,17 @@ class User extends Model
         return Order::all()
             ->filter(fn (Order $order) => $order->user_id === $this->id
                 || $order->email === $this->username);
+    }
+
+    public function sendVerification(): void
+    {
+        $link = VerificationLink::create(user_id: $this->id)->url();
+
+        new Mail(
+            subject: 'E-Mail-Adresse verifizieren',
+            body: "Klicke bitte auf den folgenden Link, um deine E-Mail-Adresse zu verifizieren: <a href=\"$link\">$link</a>",
+            html: true,
+        )
+            ->send($this->username, $this->name);
     }
 }

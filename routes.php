@@ -5,13 +5,33 @@ use App\Controllers\LoginController;
 use App\Controllers\OrderController;
 use App\Controllers\ProfileController;
 use App\Controllers\RegisterController;
+use App\Controllers\VerificationController;
 use App\Middleware\RequireAdmin;
+use App\Middleware\VerifiedEmail;
 use PXP\Http\Controllers\AssetController;
 use PXP\Http\Middleware\InteractiveAuth;
 use PXP\Router\Route;
 
 Route::get('/')->do(OrderController::class, 'index')->name('main');
 Route::post('/orders')->do(OrderController::class, 'action')->name('store');
+
+Route::get('/register')->do(RegisterController::class, 'form')->name('register');
+Route::post('/register')->do(RegisterController::class, 'register');
+
+Route::get('/verify')->do(VerificationController::class, 'verify')->name('verify');
+
+Route::get('/login')->do(LoginController::class, 'form')->name('login');
+Route::post('/login')->do(LoginController::class, 'login');
+
+Route::get('/profile')->do(ProfileController::class, 'index')->name('profile')
+    ->middleware(InteractiveAuth::class)
+    ->middleware(VerifiedEmail::class);
+
+Route::group(
+    Route::get('/logout')->do(LoginController::class, 'logout')->name('logout'),
+    Route::post('/logout')->do(LoginController::class, 'logout'),
+)
+    ->middleware(InteractiveAuth::class);
 
 Route::group(
     Route::get('/orders')->do(AdminController::class, 'index')->name('orders'),
@@ -26,21 +46,7 @@ Route::group(
     Route::post('/admin/toggle-access')->do(AdminController::class, 'toggleAccess')->name('toggle-access'),
 )
     ->middleware(InteractiveAuth::class)
+    ->middleware(VerifiedEmail::class)
     ->middleware(RequireAdmin::class);
-
-Route::get('/profile')->do(ProfileController::class, 'index')->name('profile')
-    ->middleware(InteractiveAuth::class);
-
-Route::get('/login')->do(LoginController::class, 'form')->name('login');
-Route::post('/login')->do(LoginController::class, 'login');
-
-Route::group(
-    Route::get('/logout')->do(LoginController::class, 'logout')->name('logout'),
-    Route::post('/logout')->do(LoginController::class, 'logout'),
-)
-    ->middleware(InteractiveAuth::class);
-
-Route::get('/register')->do(RegisterController::class, 'form')->name('register');
-Route::post('/register')->do(RegisterController::class, 'register');
 
 Route::get('/css/{file}')->do(AssetController::class, 'css')->name('css');

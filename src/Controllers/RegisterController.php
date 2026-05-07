@@ -25,7 +25,7 @@ class RegisterController extends Controller
         ]);
 
         if (User::findAllBy('username', $request->email)->count() > 0) {
-            return Redirect::back([
+            return Redirect::route('register', [
                 'errors' => 'Diese E-Mail-Adresse ist schon registriert.',
             ]);
         }
@@ -34,7 +34,8 @@ class RegisterController extends Controller
             name: $request->name,
             username: $request->email,
             password_hash: password_hash($request->password, PASSWORD_DEFAULT),
-        );
+        )
+            ->sendVerification();
 
         return Redirect::route('login', [
             'errors' => ["Benutzer '$request->name' ($request->email) wurde erstellt. Bitte E-Mail-Adresse verifizieren."],

@@ -34,3 +34,12 @@ $db->sql('create unique index if not exists '.
 $db->addColumns('orders', [
     'user_id' => 'int references users(id)',
 ]);
+
+$db->create('verification_link', [
+    'token' => 'string not null',
+    'user_id' => 'int references user(id)',
+]);
+
+$db->addColumns('users', [
+    'verified' => 'int not null default 0',
+]);

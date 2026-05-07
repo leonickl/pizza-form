@@ -9,7 +9,11 @@ use PXP\Lib\Log;
 
 readonly class Mail
 {
-    public function __construct(private string $subject, private string $body) {}
+    public function __construct(
+        private string $subject, 
+        private string $body, 
+        private bool $html = false,
+    ) {}
 
     private function mailer(): PHPMailer
     {
@@ -37,7 +41,7 @@ readonly class Mail
 
         $mailer->addAddress($address, $name);
 
-        $mailer->isHTML(false);
+        $mailer->isHTML($this->html);
         $mailer->Subject = $this->subject;
         $mailer->Body = $this->body;
 

@@ -5,7 +5,7 @@ use App\Day;
 return [
     'title' => 'Pizze',
 
-    'domain' => env('HOST'),
+    'app-url' => env('APP_URL', 'http://localhost:8085'),
     'port' => 8085,
 
     'days' => [
