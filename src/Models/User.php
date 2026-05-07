@@ -13,6 +13,7 @@ use PXP\Ds\Vector;
  * @property string $username
  * @property string $password_hash
  * @property int $role
+ * @property bool $verified
  */
 class User extends Model
 {
