@@ -1,10 +1,11 @@
-<h1>Papierkorb der Bestellungen ({{ $orders->count() }})</h1>
+<div class="row between">
+    <h1>Papierkorb der Bestellungen ({{ $orders->count() }})</h1>
+    {{ == new App\Nav }}
+</div>
 
 {{ if: $restored }}
     <div class="notification"><p class="m-0 p-0">Bestellung von <b>{{ $restored->name }}</b> wiederhergestellt</p></div>
 {{ if; }}
-
-{{ ==view('nav') }}
 
 <div class="desktop-only overflow-x-auto">
     <table class="styled w-full w-min-40">

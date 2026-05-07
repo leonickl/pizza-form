@@ -18,7 +18,6 @@ class OrderController
 
         return view('main', [
             'order' => session()->take('order'),
-            'user' => Auth::user(),
         ]);
     }
 

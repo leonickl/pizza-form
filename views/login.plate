@@ -1,9 +1,6 @@
 <div class="row between">
     <h1>Anmelden bei {{ config('title') }}</h1>
-
-    <div>
-        <a class="btn secondary" href="{{ route('register') }}">Registrieren</a>
-    </div>
+    {{ == new App\Nav }}
 </div>
 
 {{ each: $errors ?? [] as $error }}

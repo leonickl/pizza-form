@@ -1,4 +1,7 @@
-<h1>Profil von {{ $user->name }}</h1>
+<div class="row between">
+    <h1>Profil von {{ $user->name }}</h1>
+    {{ == new App\Nav }}
+</div>
 
 <div class="nav row mb">
     <a class="btn secondary" href="{{ route('main') }}">Formular</a>
@@ -60,6 +63,12 @@
 
             <div class="mb-05 text-wrap"><strong>Erstellt:</strong>
                 {{ $order->created_at }}
+            </div>
+
+            <div class="row between items-center mt">
+                <button class="checkbox-readonly" title="Status wechseln"
+                    style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }}"
+                    readonly></button>
             </div>
         </div>
     {{ each; }}

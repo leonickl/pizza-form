@@ -1,4 +1,7 @@
-<h1>Bestellungen ({{ $orders->count() }})</h1>
+<div class="row between">
+    <h1>Bestellungen ({{ $orders->count() }})</h1>
+    {{ == new App\Nav }}
+</div>
 
 {{ if: $deleted }}
     <div class="notification"><p class="m-0 p-0">Bestellung von <b>{{ $deleted->name }}</b> gelöscht.</p>
@@ -15,8 +18,6 @@
 {{ if: $paid }}
     <div class="notification"><p class="m-0 p-0"><b>{{ $paid->name }}</b> hat {{ $paid->paid ? 'bezahlt' : 'nicht bezahlt' }}.</p></div>
 {{ if; }}
-
-{{ ==view('nav') }}
 
 <div class="desktop-only overflow-x-auto">
     <table class="styled w-full w-min-40">

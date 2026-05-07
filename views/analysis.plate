@@ -1,7 +1,6 @@
-<h1>Typen und Extras</h1>
-
-<div class="row end mb">
-    <a href="{{ route('orders') }}" class="btn">Zurück</a>
+<div class="row between">
+    <h1>Typen und Extras</h1>
+    {{ == new App\Nav }}
 </div>
 
 {{ each: $days as $day }}
