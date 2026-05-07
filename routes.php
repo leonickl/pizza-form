@@ -41,9 +41,9 @@ Route::group(
     Route::post('/orders/{id}/restore')->do(AdminController::class, 'restore')->name('restore'),
     Route::post('/orders/{id}/toggle-paid')->do(AdminController::class, 'togglePaid')->name('toggle-paid'),
 
-    Route::get('/admin/analysis')->do(AdminController::class, 'analysis')->name('analysis'),
+    Route::get('/analysis')->do(AdminController::class, 'analysis')->name('analysis'),
 
-    Route::post('/admin/toggle-access')->do(AdminController::class, 'toggleAccess')->name('toggle-access'),
+    Route::post('/toggle-access')->do(AdminController::class, 'toggleAccess')->name('toggle-access'),
 )
     ->middleware(InteractiveAuth::class)
     ->middleware(VerifiedEmail::class)

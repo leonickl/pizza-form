@@ -1,7 +1,4 @@
-<div class="row between">
-    <h1>Bestellungen ({{ $orders->count() }})</h1>
-    {{ == new App\Nav }}
-</div>
+{{ == head("Bestellungen (".$orders->count().")") }}
 
 {{ if: $deleted }}
     <div class="notification"><p class="m-0 p-0">Bestellung von <b>{{ $deleted->name }}</b> gelöscht.</p>

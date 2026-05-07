@@ -1,7 +1,4 @@
-<div class="row between">
-    <h1>Typen und Extras</h1>
-    {{ == new App\Nav }}
-</div>
+{{ == head("Typen und Extras") }}
 
 {{ each: $days as $day }}
     <div class="mb-3">

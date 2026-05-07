@@ -19,7 +19,8 @@
             "App\\": "src/"
         },
         "files": [
-            "routes.php"
+            "routes.php",
+            "functions.php"
         ]
     },
     "authors": [

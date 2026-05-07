@@ -1,7 +1,4 @@
-<div class="row between">
-    <h1>Anmelden bei {{ config('title') }}</h1>
-    {{ == new App\Nav }}
-</div>
+{{ == head("Anmelden bei ".config('title')) }}
 
 {{ each: $errors ?? [] as $error }}
     <div class="notification"><p class="m-0 p-0">{{ $error }}</p></div>

@@ -18,6 +18,7 @@ class OrderController
 
         return view('main', [
             'order' => session()->take('order'),
+            'user' => Auth::user(),
         ]);
     }
 
@@ -25,12 +26,12 @@ class OrderController
     {
         $user = Auth::user();
 
-        $person = $user === null
-            ? request()->validate(fn ($req) => [
+        $person = $user
+            ? o(user_id: $user->id, name: '', email: '')
+            : request()->validate(fn ($req) => [
                 $req->name->string()->min(3)->max(40),
                 $req->email->string()->email()->min(6)->max(50),
-            ])
-            : o(user_id: $user->id, name: '', email: '');
+            ]);
 
         $data = request()->validate(fn ($req) => [
             $req->type->string()->in('Vegan', 'Vegetarisch', 'Alles'),

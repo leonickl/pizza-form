@@ -1,9 +1,6 @@
-<form action="{{ route('store') }}" method="post">
-    <div class="row between">
-        <h1>Pizza bestellen</h1>
-        {{ == new App\Nav }}
-    </div>
+{{ == head("Pizza bestellen") }}
 
+<form action="{{ route('store') }}" method="post">
     {{ if: $order }}
         <div class="notification">
             <p>Bestellung aufgenommen für
@@ -13,7 +10,7 @@
         </div>
     {{ if; }}
 
-    {{ if: ! auth() }}
+    {{ if: ! $user }}
         <label for="name" class="required">Name</label>
         <input type="text" id="name" name="name" required minlength="3" maxlength="40">
 

@@ -12,9 +12,9 @@ class Nav
         $user = Auth::user();
 
         return [
-            o(at: ['/login', '/register'], to: route('main'), how: 'Formular'),
+            o(at: ['/login', '/register', '/profile', '/orders'], to: route('main'), how: 'Formular', classes: 'secondary'),
 
-            o(at: ['/'], to: route('login'), how: 'Mein Account', guard: fn() => $user === null),
+            o(at: ['/'], to: route('login'), how: 'Login', guard: fn() => $user === null, classes: 'secondary'),
             o(at: ['/', '/orders/trash'], to: route('orders'), how: 'Bestellungen', guard: fn() => $user && $user->is(Role::ADMIN)),
             o(at: ['/'], to: route('profile'), how: 'Mein Account', guard: fn() => $user && ! $user->is(Role::ADMIN)),
 
@@ -39,10 +39,13 @@ class Nav
             $allow_url = in_array('*', $item->at) || in_array(url(), $item->at);
 
             if ($allow_url && ($item->guard ?? fn () => true)()) {
-                $links .= "<a class=\"btn $item->classes\" href=\"$item->to\" style=\"$item->style\">$item->how</a>";
+                $classes = $item->classes ?? '';
+                $style = $item->style ?? '';
+
+                $links .= "<a class=\"btn $classes\" href=\"$item->to\" style=\"$style\">$item->how</a>";
             }
         }
 
-        return "<div class=\"nav row mb\">$links</div>";
+        return $links;
     }
 }

@@ -1,7 +1,4 @@
-<div class="row between">
-    <h1>Registrieren bei {{ config('title') }}</h1>
-    {{ == new App\Nav }}
-</div>
+{{ == head("Registrieren bei ".config('title')) }}
 
 {{ each: $errors ?? [] as $error }}
     <div class="notification"><p class="m-0 p-0">{{ $error }}</p></div>
@@ -15,7 +12,7 @@
     <input type="text" id="name" name="name" required minlength="3" maxlength="40">
 
     <label for="password" class="required">Passwort</label>
-    <input type="password" id="password" name="password" required>
+    <input type="password" id="password" name="password" required minlength="8" maxlength="100">
 
     <button type="submit" class="btn mt-2">Login</button>
 </form>
