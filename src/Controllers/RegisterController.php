@@ -26,7 +26,7 @@ class RegisterController extends Controller
 
         if (User::findAllBy('username', $request->email)->count() > 0) {
             return Redirect::route('register', [
-                'errors' => 'Diese E-Mail-Adresse ist schon registriert.',
+                'errors' => ['Diese E-Mail-Adresse ist schon registriert.'],
             ]);
         }
 
