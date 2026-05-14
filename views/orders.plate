@@ -50,7 +50,9 @@
                     <td>
                         <form action="{{ route('toggle-paid', id: $order->id) }}" method="post" style="display: inline;">
                             <input type="hidden" name="id" value="{{ $order->id }}">
-                            <button type="submit" class="checkbox-button" title="Status wechseln" style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }}"></button>
+                            <button type="submit" class="checkbox-button" title="Status wechseln"
+                                style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }};
+                                    font-weight: bold; font-size: larger">€</button>
                         </form>
                     </td>
                     <td>{{ $order->id }}</td>
@@ -112,7 +114,8 @@
                 <form action="{{ route('toggle-paid', id: $order->id) }}" method="post">
                     <input type="hidden" name="id" value="{{ $order->id }}">
                     <button type="submit" class="checkbox-button" title="Status wechseln"
-                        style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }}"></button>
+                        style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }};
+                            font-weight: bold; font-size: larger">€</button>
                 </form>
 
                 <form action="{{ route('delete', id: $order->id) }}?to=orders" method="post">

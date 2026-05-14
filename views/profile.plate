@@ -19,9 +19,9 @@
             {{ each: $user->orders()->reverse() as $order }}
                 <tr>
                     <td>
-                        <button class="checkbox-readonly" title="Status wechseln"
-                            style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }}"
-                            readonly></button>
+                        <button class="checkbox-readonly" title="Status wechseln" readonly
+                            style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }};
+                                font-weight: bold; font-size: larger">€</button>
                     </td>
                     <td>{{ $order->id }}</td>
                     <td class="text-wrap">{{ $order->name }}</td>
@@ -58,9 +58,9 @@
             </div>
 
             <div class="row between items-center mt">
-                <button class="checkbox-readonly" title="Status wechseln"
-                    style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }}"
-                    readonly></button>
+                <button class="checkbox-readonly" title="Status wechseln" readonly
+                    style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }};
+                        font-weight: bold; font-size: larger">€</button>
             </div>
         </div>
     {{ each; }}
