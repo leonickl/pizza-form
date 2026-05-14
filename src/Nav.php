@@ -39,7 +39,7 @@ class Nav
         foreach ($this->items() as $item) {
             $allow_url = in_array('*', $item->at) || in_array(url(), $item->at);
 
-            if ($allow_url && ($item->guard ?? fn () => true)()) {
+            if ($allow_url && (@$item->guard ?? fn () => true)()) {
                 $classes = @$item->classes ?? '';
                 $style = @$item->style ?? '';
 
