@@ -26,6 +26,9 @@
     align-items: center;
 }
 
+.wrap {
+    flex-wrap: wrap;
+}
 
 /**
  * Margin and Padding
@@ -67,19 +70,17 @@
     padding-left: 1rem;
 }
 
-
 /**
  * Width
  */
 
 .w-full {
-    width: 100%;  
+    width: 100%;
 }
 
 .w-min-40 {
     min-width: 40rem;
 }
-
 
 /**
  * Text

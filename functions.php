@@ -6,10 +6,10 @@ function head(string $heading): string
 {
     $nav = new Nav;
 
-    return "<div class=\"row between\">
+    return "<div class=\"row wrap between\">
         <h1>$heading</h1>
         <div>
-            <div class=\"nav row mb\">$nav</div>
+            <div class=\"row wrap mb\">$nav</div>
         </div>
     </div>";
 }
