@@ -1,7 +1,7 @@
 {{ == head("Papierkorb der Bestellungen (".$orders->count().")") }}
 
 {{ if: $restored }}
-    <div class="notification"><p class="m-0 p-0">Bestellung von <b>{{ $restored->name }}</b> wiederhergestellt</p></div>
+    <div class="notification"><p class="m-0 p-0">Bestellung von <b>{{ $restored->name }}</b> wiederhergestellt.</p></div>
 {{ if; }}
 
 <div class="desktop-only overflow-x-auto">

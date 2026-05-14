@@ -16,8 +16,8 @@ class AdminController extends Controller
         return view('orders', [
             'orders' => Order::all()
                 ->sort(fn ($a, $b) => $b->paid <=> $a->paid ?: $b->name <=> $a->name),
+            'archived' => session()->take('archived'),
             'deleted' => session()->take('deleted'),
-            'restored' => session()->take('restored'),
             'paid' => session()->take('paid'),
         ]);
     }
@@ -27,6 +27,30 @@ class AdminController extends Controller
         return view('trash', [
             'orders' => Order::trashed()
                 ->sort(fn ($a, $b) => $a->deleted_at <=> $b->deleted_at),
+            'restored' => session()->take('restored'),
+        ]);
+    }
+
+    public function archived(): Response
+    {
+        return view('archived', [
+            'orders' => Order::archived()
+                ->sort(fn ($a, $b) => $a->deleted_at <=> $b->deleted_at),
+            'unarchived' => session()->take('unarchived'),
+        ]);
+    }
+
+    public function archive(int $id): Response
+    {
+        return Redirect::route('orders', [
+            'archived' => Order::find($id)->archive(),
+        ]);
+    }
+
+    public function unarchive(int $id): Response
+    {
+        return Redirect::route('archived', [
+            'unarchived' => Order::find($id)->unarchive(),
         ]);
     }
 
@@ -45,7 +69,7 @@ class AdminController extends Controller
     {
         DB::init()->restore('orders', $id);
 
-        return Redirect::route('orders', [
+        return Redirect::route('trash', [
             'restored' => Order::find($id),
         ]);
     }

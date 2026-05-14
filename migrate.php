@@ -43,3 +43,7 @@ $db->create('verification_link', [
 $db->addColumns('users', [
     'verified' => 'int not null default 0',
 ]);
+
+$db->addColumns('orders', [
+    'archived_at' => 'datetime',
+]);

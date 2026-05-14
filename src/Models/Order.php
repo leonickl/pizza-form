@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Day;
 use PXP\Data\Model;
+use PXP\Ds\Vector;
 
 /**
  * @property int $id
@@ -15,10 +16,45 @@ use PXP\Data\Model;
  * @property bool $paid
  * @property int $days
  * @property string|null $deleted_at
+ * @property string|null $archived_at
  */
 class Order extends Model
 {
     protected string $table = 'orders';
+
+    /**
+     * @return Vector<static>
+     */
+    public static function all(): Vector
+    {
+        return parent::all()
+            ->filter(fn (self $order) => $order->archived_at === null);
+    }
+
+    /**
+     * @return Vector<static>
+     */
+    public static function archived(): Vector
+    {
+        return parent::all()
+            ->filter(fn (self $order) => $order->archived_at !== null);
+    }
+
+    public function archive(): self
+    {
+        $this->archived_at = date('Y-m-d H:i:s');
+        $this->save();
+
+        return $this;
+    }
+
+    public function unarchive(): self
+    {
+        $this->archived_at = null;
+        $this->save();
+
+        return $this;
+    }
 
     public function daysLabel(): string
     {

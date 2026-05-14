@@ -36,6 +36,10 @@ Route::group(
 Route::group(
     Route::get('/orders')->do(AdminController::class, 'index')->name('orders'),
     Route::get('/orders/trash')->do(AdminController::class, 'trash')->name('trash'),
+    Route::get('/orders/archived')->do(AdminController::class, 'archived')->name('archived'),
+
+    Route::post('/orders/{id}/archive')->do(AdminController::class, 'archive')->name('archive'),
+    Route::post('/orders/{id}/unarchive')->do(AdminController::class, 'unarchive')->name('unarchive'),
 
     Route::post('/orders/{id}/delete')->do(AdminController::class, 'destroy')->name('delete'),
     Route::post('/orders/{id}/restore')->do(AdminController::class, 'restore')->name('restore'),
