@@ -45,7 +45,7 @@
                     <td>{{ $order->deleted_at }}</td>
                     <td>
                         <form action="{{ route('restore', id: $order->id) }}" method="post">
-                            <button class="btn">Restore</button>
+                            <button class="btn">{{ == view('icon.restore') }}</button>
                         </form>
                     </td>
                 </tr>
@@ -88,7 +88,7 @@
                     style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }}"
                     readonly></button>
                 <form action="{{ route('delete', id: $order->id) }}" method="post">
-                    <button class="btn">Restore</button>
+                    <button class="btn">{{ == view('icon.restore') }}</button>
                 </form>
             </div>
         </div>
