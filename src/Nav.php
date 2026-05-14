@@ -3,8 +3,8 @@
 namespace App;
 
 use App\Enums\Role;
-use PXP\Lib\Auth;
 use PXP\Ds\Obj;
+use PXP\Lib\Auth;
 
 class Nav
 {
