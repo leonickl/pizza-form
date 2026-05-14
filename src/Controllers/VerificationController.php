@@ -7,10 +7,11 @@ use App\Models\VerificationLink;
 use PXP\Exceptions\DisplayException;
 use PXP\Http\Controllers\Controller;
 use PXP\Http\Response\Redirect;
+use PXP\Http\Response\Response;
 
 class VerificationController extends Controller
 {
-    public function verify()
+    public function verify(): Response
     {
         $token = request()->string('token');
 

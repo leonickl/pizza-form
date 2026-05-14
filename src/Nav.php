@@ -4,10 +4,14 @@ namespace App;
 
 use App\Enums\Role;
 use PXP\Lib\Auth;
+use PXP\Ds\Obj;
 
 class Nav
 {
-    protected function items()
+    /**
+     * @return list<Obj>
+     */
+    protected function items(): array
     {
         $user = Auth::user();
 

@@ -9,10 +9,11 @@ use PXP\Data\Model;
 /**
  * @property string $token
  * @property int $user_id
+ * @property string $created_at
  */
 class VerificationLink extends Model
 {
-    protected $table = 'verification_link';
+    protected string $table = 'verification_link';
 
     #[Override]
     protected function defaults(): array
