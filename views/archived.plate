@@ -1,5 +1,13 @@
 {{ == head("Archiv der Bestellungen (".$orders->count().")") }}
 
+{{ if: $deleted }}
+    <div class="notification"><p class="m-0 p-0">Bestellung von <b>{{ $deleted->name }}</b> gelöscht.</p>
+        <form action="{{ route('restore', id: $deleted->id) }}?to=archived" method="post">
+            <button class="btn">Wiederherstellen</button>
+        </form>
+    </div>
+{{ if; }}
+
 {{ if: $unarchived }}
     <div class="notification"><p class="m-0 p-0">Bestellung von <b>{{ $unarchived->name }}</b> entarchiviert.</p></div>
 {{ if; }}
@@ -44,9 +52,15 @@
                     </td>
                     <td>{{ $order->archived_at }}</td>
                     <td>
-                        <form action="{{ route('unarchive', id: $order->id) }}" method="post">
-                            <button class="btn">{{ == view('icon.unarchive') }}</button>
-                        </form>
+                        <div class="row">
+                            <form action="{{ route('delete', id: $order->id) }}?to=archived" method="post">
+                                <button class="btn warn">{{ == view('icon.trash') }}</button>
+                            </form>
+
+                            <form action="{{ route('unarchive', id: $order->id) }}?to=archived" method="post">
+                                <button class="btn">{{ == view('icon.unarchive') }}</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             {{ each; }}
@@ -87,7 +101,12 @@
                 <button class="checkbox-readonly" title="Status wechseln"
                     style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }}"
                     readonly></button>
-                <form action="{{ route('unarchive', id: $order->id) }}" method="post">
+
+                <form action="{{ route('delete', id: $order->id) }}?to=archived" method="post">
+                    <button class="btn warn">{{ == view('icon.trash') }}</button>
+                </form>
+
+                <form action="{{ route('unarchive', id: $order->id) }}?to=archived" method="post">
                     <button class="btn">{{ == view('icon.unarchive') }}</button>
                 </form>
             </div>

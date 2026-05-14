@@ -32,6 +32,8 @@ class AdminController extends Controller
         return view('trash', [
             'orders' => Order::trashed()
                 ->sort(fn ($a, $b) => $a->deleted_at <=> $b->deleted_at),
+
+            'restored' => session()->take('restored'),
         ]);
     }
 
@@ -40,19 +42,22 @@ class AdminController extends Controller
         return view('archived', [
             'orders' => Order::archived()
                 ->sort(fn ($a, $b) => $a->deleted_at <=> $b->deleted_at),
+
+            'unarchived' => session()->take('unarchived'),
+            'deleted' => session()->take('deleted'),
         ]);
     }
 
     public function archive(int $id): Response
     {
-        return Redirect::route('orders', [
+        return Redirect::route($this->to('orders'), [
             'archived' => Order::find($id)->archive(),
         ]);
     }
 
     public function unarchive(int $id): Response
     {
-        return Redirect::route('orders', [
+        return Redirect::route($this->to('orders'), [
             'unarchived' => Order::find($id)->unarchive(),
         ]);
     }
@@ -63,7 +68,7 @@ class AdminController extends Controller
 
         $order->delete();
 
-        return Redirect::route('orders', [
+        return Redirect::route($this->to('orders'), [
             'deleted' => $order,
         ]);
     }
@@ -72,7 +77,7 @@ class AdminController extends Controller
     {
         DB::init()->restore('orders', $id);
 
-        return Redirect::route('orders', [
+        return Redirect::route($this->to('orders'), [
             'restored' => Order::find($id),
         ]);
     }
@@ -122,5 +127,18 @@ class AdminController extends Controller
         perma(['accessible' => ! perma('accessible', false)]);
 
         return Redirect::route('orders');
+    }
+
+    /**
+     * Checks whether the user provided a redirect
+     * target and used the default otherwise.
+     */
+    private function to(string $default): string
+    {
+        $to = request()->string('to', $default);
+
+        return in_array($to, ['archived', 'unarchived', 'orders', 'trash'])
+            ? $to
+            : $default;
     }
 }

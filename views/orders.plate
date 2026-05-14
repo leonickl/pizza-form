@@ -2,7 +2,7 @@
 
 {{ if: $deleted }}
     <div class="notification"><p class="m-0 p-0">Bestellung von <b>{{ $deleted->name }}</b> gelöscht.</p>
-        <form action="{{ route('restore', id: $deleted->id) }}" method="post">
+        <form action="{{ route('restore', id: $deleted->id) }}?to=orders" method="post">
             <button class="btn">Wiederherstellen</button>
         </form>
     </div>
@@ -10,10 +10,18 @@
 
 {{ if: $archived }}
     <div class="notification"><p class="m-0 p-0">Bestellung von <b>{{ $archived->name }}</b> archiviert.</p>
-        <form action="{{ route('unarchive', id: $archived->id) }}" method="post">
+        <form action="{{ route('unarchive', id: $archived->id) }}?to=orders" method="post">
             <button class="btn">Entarchivieren</button>
         </form>
     </div>
+{{ if; }}
+
+{{ if: $restored }}
+    <div class="notification"><p class="m-0 p-0">Bestellung von <b>{{ $restored->name }}</b> wiederhergestellt.</p></div>
+{{ if; }}
+
+{{ if: $unarchived }}
+    <div class="notification"><p class="m-0 p-0">Bestellung von <b>{{ $unarchived->name }}</b> entarchiviert.</p></div>
 {{ if; }}
 
 {{ if: $paid }}
@@ -60,11 +68,11 @@
                     </td>
                     <td>
                         <div class="row">
-                            <form action="{{ route('delete', id: $order->id) }}" method="post">
+                            <form action="{{ route('delete', id: $order->id) }}?to=orders" method="post">
                                 <button class="btn warn">{{ == view('icon.trash') }}</button>
                             </form>
 
-                            <form action="{{ route('archive', id: $order->id) }}" method="post">
+                            <form action="{{ route('archive', id: $order->id) }}?to=orders" method="post">
                                 <button class="btn secondary">{{ == view('icon.archive') }}</button>
                             </form>
                         </div>
@@ -107,11 +115,11 @@
                         style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }}"></button>
                 </form>
 
-                <form action="{{ route('delete', id: $order->id) }}" method="post">
+                <form action="{{ route('delete', id: $order->id) }}?to=orders" method="post">
                     <button class="btn warn">{{ == view('icon.trash') }}</button>
                 </form>
 
-                <form action="{{ route('archive', id: $order->id) }}" method="post">
+                <form action="{{ route('archive', id: $order->id) }}?to=orders" method="post">
                     <button class="btn secondary">{{ == view('icon.archive') }}</button>
                 </form>
             </div>
