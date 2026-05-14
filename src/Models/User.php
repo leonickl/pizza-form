@@ -40,7 +40,7 @@ class User extends Model
     public function orders(): Vector
     {
         return Order::all()
-            ->with(...Order::trashed())
+            ->with(...Order::archived())
             ->sort(fn ($one, $other) => $one->id <=> $other->id)
             ->filter(fn (Order $order) => $order->user_id === $this->id
                 || $order->email === $this->username);
