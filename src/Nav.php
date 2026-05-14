@@ -40,7 +40,7 @@ class Nav
 
             if ($allow_url && ($item->guard ?? fn () => true)()) {
                 $classes = $item->classes ?? '';
-                $style = $item->style ?? '';
+                $style = @$item->style ?? '';
 
                 $links .= "<a class=\"btn $classes\" href=\"$item->to\" style=\"$style\">$item->how</a>";
             }
