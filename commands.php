@@ -1,7 +1,7 @@
 <?php
 
-use PXP\Console\Command;
 use App\Models\User;
+use PXP\Console\Command;
 
 Command::new('create:user', function (?string $name, ?string $email, ?string $password, string $role = '0') {
     if ($name === null) {
@@ -20,7 +20,7 @@ Command::new('create:user', function (?string $name, ?string $email, ?string $pa
         name: $name,
         username: $email,
         password_hash: password_hash($password, PASSWORD_DEFAULT),
-        role: (int)$role,
+        role: (int) $role,
     );
 
     echo "created user with id $user->id\n";
