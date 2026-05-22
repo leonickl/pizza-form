@@ -1,4 +1,4 @@
-{{ == head("Typen und Extras") }}
+{{ plug: 'head', title: "Typen und Extras" }}
 
 {{ each: $days as $day }}
     <div class="mb-3">

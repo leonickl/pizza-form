@@ -1,4 +1,4 @@
-{{ == head("Papierkorb der Bestellungen (".$orders->count().")") }}
+{{ plug: 'head', title: "Papierkorb der Bestellungen (".$orders->count().")" }}
 
 {{ if: $restored }}
     <div class="notification"><p class="m-0 p-0">Bestellung von <b>{{ $restored->name }}</b> wiederhergestellt.</p></div>
@@ -26,7 +26,8 @@
                 <tr>
                     <td>
                         <button class="checkbox-readonly" title="Status wechseln" readonly
-                            style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }};
+                            style="color: {{ $order->paid ? 'black' : 'whitesmoke' }};
+                                background-color: {{ $order->paid ? 'lightgreen' : 'red' }};
                                 font-weight: bold; font-size: larger">€</button>
                     </td>
                     <td>{{ $order->id }}</td>
@@ -45,7 +46,7 @@
                     <td>{{ $order->deleted_at }}</td>
                     <td>
                         <form action="{{ route('restore', id: $order->id) }}?to=trash" method="post">
-                            <button class="btn">{{ == view('icon.restore') }}</button>
+                            <button class="btn">{{ plug: 'icon.restore' }}</button>
                         </form>
                     </td>
                 </tr>
@@ -83,13 +84,14 @@
                 {{ $order->deleted_at }}
             </div>
 
-            <div class="row between items-center mt">
+            <div class="row start items-center mt">
                 <button class="checkbox-readonly" title="Status wechseln" readonly
-                    style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }};
+                    style="color: {{ $order->paid ? 'black' : 'whitesmoke' }};
+                        background-color: {{ $order->paid ? 'lightgreen' : 'red' }};
                         font-weight: bold; font-size: larger">€</button>
 
                 <form action="{{ route('delete', id: $order->id) }}?to=trash" method="post">
-                    <button class="btn">{{ == view('icon.restore') }}</button>
+                    <button class="btn">{{ plug: 'icon.restore' }}</button>
                 </form>
             </div>
         </div>

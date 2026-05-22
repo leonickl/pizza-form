@@ -1,4 +1,4 @@
-{{ == head("Archiv der Bestellungen (".$orders->count().")") }}
+{{ plug: 'head', title: "Archiv der Bestellungen (".$orders->count().")" }}
 
 {{ if: $deleted }}
     <div class="notification"><p class="m-0 p-0">Bestellung von <b>{{ $deleted->name }}</b> gelöscht.</p>
@@ -34,7 +34,8 @@
                 <tr>
                     <td>
                         <button class="checkbox-readonly" title="Status wechseln" readonly
-                            style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }};
+                            style="color: {{ $order->paid ? 'black' : 'whitesmoke' }};
+                                background-color: {{ $order->paid ? 'lightgreen' : 'red' }};
                                 font-weight: bold; font-size: larger">€</button>
                     </td>
                     <td>{{ $order->id }}</td>
@@ -54,11 +55,11 @@
                     <td>
                         <div class="row">
                             <form action="{{ route('delete', id: $order->id) }}?to=archived" method="post">
-                                <button class="btn warn">{{ == view('icon.trash') }}</button>
+                                <button class="btn warn">{{ plug: 'icon.trash' }}</button>
                             </form>
 
                             <form action="{{ route('unarchive', id: $order->id) }}?to=archived" method="post">
-                                <button class="btn">{{ == view('icon.unarchive') }}</button>
+                                <button class="btn">{{ plug: 'icon.unarchive' }}</button>
                             </form>
                         </div>
                     </td>
@@ -97,17 +98,18 @@
                 {{ $order->archived_at }}
             </div>
 
-            <div class="row between items-center mt">
+            <div class="row start items-center mt">
                 <button class="checkbox-readonly" title="Status wechseln" readonly
-                    style="background-color: {{ $order->paid ? 'lightgreen' : 'red' }};
+                    style="color: {{ $order->paid ? 'black' : 'whitesmoke' }};
+                        background-color: {{ $order->paid ? 'lightgreen' : 'red' }};
                         font-weight: bold; font-size: larger">€</button>
 
                 <form action="{{ route('delete', id: $order->id) }}?to=archived" method="post">
-                    <button class="btn warn">{{ == view('icon.trash') }}</button>
+                    <button class="btn warn">{{ plug: 'icon.trash' }}</button>
                 </form>
 
                 <form action="{{ route('unarchive', id: $order->id) }}?to=archived" method="post">
-                    <button class="btn">{{ == view('icon.unarchive') }}</button>
+                    <button class="btn">{{ plug: 'icon.unarchive' }}</button>
                 </form>
             </div>
         </div>

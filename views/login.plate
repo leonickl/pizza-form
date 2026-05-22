@@ -1,4 +1,4 @@
-{{ == head("Anmelden bei ".config('title')) }}
+{{ plug: 'head', title: "Anmelden bei ".config('title')) }}
 
 {{ each: $errors ?? [] as $error }}
     <div class="notification"><p class="m-0 p-0">{{ $error }}</p></div>
@@ -6,7 +6,7 @@
 
 <form action="/login" method="post">
     <label for="email" class="required">E-Mail-Adresse</label>
-    <input type="text" id="email" name="email" required>
+    <input type="email" id="email" name="email" required>
 
     <label for="password" class="required">Passwort</label>
     <input type="password" id="password" name="password" required>

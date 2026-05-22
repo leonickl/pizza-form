@@ -1,4 +1,4 @@
-{{ == head("Profil von $user->name") }}
+{{ plug: 'head', title: "Profil von $user->name" }}
 
 <div class="desktop-only overflow-x-auto">
     <table class="styled w-full w-min-40">

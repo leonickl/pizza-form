@@ -1,4 +1,4 @@
-{{ == head("Pizza bestellen") }}
+{{ plug: 'head', title: "Pizza bestellen" }}
 
 <form action="{{ route('store') }}" method="post">
     {{ if: $order }}
