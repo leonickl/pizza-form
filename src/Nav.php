@@ -2,9 +2,9 @@
 
 namespace App;
 
-use App\Enums\Role;
+use PXP\Auth\Enums\Role;
+use PXP\Auth\Auth;
 use PXP\Ds\Obj;
-use PXP\Lib\Auth;
 
 class Nav
 {
@@ -16,11 +16,11 @@ class Nav
         $user = Auth::user();
 
         return [
-            o(at: ['/login', '/register', '/profile', '/orders'], to: route('main'), how: 'Formular', classes: 'secondary'),
+            o(at: ['/login', '/register', '/my', '/orders'], to: route('main'), how: 'Formular', classes: 'secondary'),
 
             o(at: ['/'], to: route('login'), how: 'Login', guard: fn () => $user === null, classes: 'secondary'),
             o(at: ['/', '/orders/trash', '/orders/archived'], to: route('orders'), how: 'Bestellungen', guard: fn () => $user && $user->is(Role::ADMIN)),
-            o(at: ['/', '/orders'], to: route('profile'), how: 'Mein Account', guard: fn () => $user),
+            o(at: ['/', '/orders'], to: route('my'), how: 'Mein Account', guard: fn () => $user),
 
             o(at: ['/login'], to: route('register'), how: 'Registrieren'),
 

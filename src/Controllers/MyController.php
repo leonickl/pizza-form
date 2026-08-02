@@ -2,15 +2,15 @@
 
 namespace App\Controllers;
 
+use PXP\Auth\Auth;
 use PXP\Http\Controllers\Controller;
 use PXP\Http\Response\View;
-use PXP\Lib\Auth;
 
-class ProfileController extends Controller
+class MyController extends Controller
 {
     public function index(): View
     {
-        return view('profile', [
+        return view('my', [
             'user' => Auth::user(),
         ]);
     }

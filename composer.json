@@ -5,7 +5,8 @@
     "require": {
         "php": "^8.5",
         "ext-pdo": "*",
-        "leonickl/pxp-core": "^4.0",
+        "leonickl/pxp-core": "^5.0",
+        "leonickl/pxp-auth": "^0.1",
         "ext-sqlite3": "*",
         "phpmailer/phpmailer": "^7.0",
         "nesbot/carbon": "^3.11"
@@ -29,5 +30,5 @@
             "email": "leo@leonickl.de"
         }
     ],
-    "minimum-stability": "beta"
+    "prefer-stable": true
 }

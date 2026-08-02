@@ -4,9 +4,9 @@ namespace App\Controllers;
 
 use App\Day;
 use App\Models\Order;
+use PXP\Auth\Auth;
 use PXP\Http\Response\Redirect;
 use PXP\Http\Response\Response;
-use PXP\Lib\Auth;
 
 class OrderController
 {

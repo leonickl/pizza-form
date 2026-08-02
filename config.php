@@ -30,4 +30,12 @@ return [
         'pass' => env('MAIL_PASS'),
         'port' => env('MAIL_PORT'),
     ],
+
+    'modules' => [
+        'auth' => 'leonickl/pxp-auth',
+    ],
+
+    'resolver' => [
+        PXP\Auth\Models\Identity::class => App\Models\User::class,
+    ],
 ];

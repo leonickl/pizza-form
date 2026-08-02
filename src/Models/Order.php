@@ -74,7 +74,7 @@ class Order extends Model
         }
 
         if ($property === 'email' && $this->user_id !== null) {
-            return User::find($this->user_id)->username;
+            return User::find($this->user_id)->email;
         }
 
         return parent::__get($property);

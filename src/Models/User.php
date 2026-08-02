@@ -2,38 +2,11 @@
 
 namespace App\Models;
 
-use App\Enums\Role;
-use App\Mail;
-use PXP\Data\Model;
+use PXP\Auth\Models\User as BaseUser;
 use PXP\Ds\Vector;
 
-/**
- * @property int $id
- * @property string $name
- * @property string $username
- * @property string $password_hash
- * @property int $role
- * @property bool $verified
- */
-class User extends Model
+class User extends BaseUser
 {
-    protected string $table = 'users';
-
-    public function setPasswordHash(string $password): void
-    {
-        $this->password_hash = password_hash($password, PASSWORD_DEFAULT);
-    }
-
-    public function role(): Role
-    {
-        return Role::make($this->role);
-    }
-
-    public function is(Role $role): bool
-    {
-        return $this->role() === $role;
-    }
-
     /**
      * @return Vector<Order>
      */
@@ -43,18 +16,6 @@ class User extends Model
             ->with(...Order::archived())
             ->sort(fn ($one, $other) => $one->id <=> $other->id)
             ->filter(fn (Order $order) => $order->user_id === $this->id
-                || $order->email === $this->username);
-    }
-
-    public function sendVerification(): void
-    {
-        $link = VerificationLink::create(user_id: $this->id)->url();
-
-        new Mail(
-            subject: 'E-Mail-Adresse verifizieren',
-            body: "Klicke bitte auf den folgenden Link, um deine E-Mail-Adresse zu verifizieren: <a href=\"$link\">$link</a>",
-            html: true,
-        )
-            ->send($this->username, $this->name);
+                || $order->email === $this->email);
     }
 }

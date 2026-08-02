@@ -1,15 +1,15 @@
 <?php
 
 use App\Controllers\AdminController;
-use App\Controllers\LoginController;
+use App\Controllers\MyController;
 use App\Controllers\OrderController;
-use App\Controllers\ProfileController;
-use App\Controllers\RegisterController;
-use App\Controllers\VerificationController;
-use App\Middleware\RequireAdmin;
-use App\Middleware\VerifiedEmail;
+use PXP\Auth\Middleware\RequireAdmin;
+use PXP\Auth\Middleware\VerifiedEmail;
+use PXP\Auth\Controllers\LoginController;
+use PXP\Auth\Controllers\RegisterController;
+use PXP\Auth\Controllers\VerificationController;
 use PXP\Http\Controllers\AssetController;
-use PXP\Http\Middleware\InteractiveAuth;
+use PXP\Auth\Middleware\InteractiveAuth;
 use PXP\Router\Route;
 
 Route::get('/')->do(OrderController::class, 'index')->name('main');
@@ -23,7 +23,7 @@ Route::get('/verify')->do(VerificationController::class, 'verify')->name('verify
 Route::get('/login')->do(LoginController::class, 'form')->name('login');
 Route::post('/login')->do(LoginController::class, 'login');
 
-Route::get('/profile')->do(ProfileController::class, 'index')->name('profile')
+Route::get('/my')->do(MyController::class, 'index')->name('my')
     ->middleware(InteractiveAuth::class)
     ->middleware(VerifiedEmail::class);
 
