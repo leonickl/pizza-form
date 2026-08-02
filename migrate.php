@@ -19,7 +19,7 @@ $db->addColumns('orders', [
 ]);
 
 $db->create('users', [
-    'username' => 'text not null',
+    'email' => 'text not null',
     'password_hash' => 'text not null',
 ]);
 
@@ -29,7 +29,7 @@ $db->addColumns('users', [
 ]);
 
 $db->sql('create unique index if not exists '.
-    'unique_users_username on users(username)');
+    'unique_users_email on users(email)');
 
 $db->addColumns('orders', [
     'user_id' => 'int references users(id)',
