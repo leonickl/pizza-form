@@ -3,13 +3,13 @@
 use App\Controllers\AdminController;
 use App\Controllers\MyController;
 use App\Controllers\OrderController;
-use PXP\Auth\Middleware\RequireAdmin;
-use PXP\Auth\Middleware\VerifiedEmail;
 use PXP\Auth\Controllers\LoginController;
 use PXP\Auth\Controllers\RegisterController;
 use PXP\Auth\Controllers\VerificationController;
-use PXP\Http\Controllers\AssetController;
 use PXP\Auth\Middleware\InteractiveAuth;
+use PXP\Auth\Middleware\RequireAdmin;
+use PXP\Auth\Middleware\VerifiedEmail;
+use PXP\Http\Controllers\AssetController;
 use PXP\Router\Route;
 
 Route::get('/')->do(OrderController::class, 'index')->name('main');

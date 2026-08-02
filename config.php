@@ -1,6 +1,8 @@
 <?php
 
 use App\Day;
+use App\Models\User;
+use PXP\Auth\Models\Identity;
 
 return [
     'title' => 'Pizze',
@@ -36,6 +38,6 @@ return [
     ],
 
     'resolver' => [
-        PXP\Auth\Models\Identity::class => App\Models\User::class,
+        Identity::class => User::class,
     ],
 ];
