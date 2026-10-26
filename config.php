@@ -8,7 +8,7 @@ return [
     'title' => 'Pizze',
 
     'app-url' => env('APP_URL', 'http://localhost:8085'),
-    'port' => 8085,
+    'port' => 8086,
 
     'days' => [
         Day::SUNDAY,
