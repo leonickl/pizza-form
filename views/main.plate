@@ -46,7 +46,7 @@
         </label>
     </div>
 
-    <label for="extra">Sonderwünsche</label>
+    <label for="extra">Wünsche</label>
     <textarea id="extra" name="extra" rows="4" placeholder="Optional..." maxlength="100"></textarea>
 
     <label for="agb" class="required">Hinweise</label>
