@@ -25,9 +25,9 @@ class Order extends Model
     /**
      * @return Vector<static>
      */
-    public static function all(): Vector
+    public static function all(array $columns = ['*']): Vector
     {
-        return parent::all()
+        return parent::all($columns)
             ->filter(fn (self $order) => $order->archived_at === null);
     }
 
